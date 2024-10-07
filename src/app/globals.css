@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.swiper-pagination-bullet {
+  background-color: gray; /* Default bullet color */
+  opacity: 1; /* Makes the bullet fully visible */
+}
+.swiper-pagination-bullet-active {
+  background-color: #ef4444; /* Tailwind's bg-red-500 color */
+}
+/* main.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
