@@ -14,9 +14,9 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Services />
-      <Expertise />
       <Portfolio />
+      <Expertise />
+      <Services />
       <Testimonials />
       {/* <Careers /> */}
       <Pricing />

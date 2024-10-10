@@ -11,3 +11,17 @@
 }
 /* main.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* Custom Scrollbar Styles - Polished Orange Theme */
+  ::-webkit-scrollbar{
+    width: 0.3rem;
+  }
+  
+  ::-webkit-scrollbar-track{
+    background-color: transparent;
+  }
+  
+  ::-webkit-scrollbar-thumb{
+    /* width: .5rem; */
+    background-color: rgb(255, 115, 0);
+  }
