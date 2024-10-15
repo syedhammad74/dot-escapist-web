@@ -56,7 +56,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
   return (
     <div
       ref={ref}
-      className="h-[310vh] bg-gradient-to-bl from-orange-900 via-black to-gray-900 py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[200vh] sm:h-[250vh] md:h-[310vh] bg-gradient-to-bl from-orange-900 via-black to-gray-900 py-20 sm:py-30 md:py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -68,7 +68,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
         }}
         className=""
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse mt-36 space-x-20 mb-20">
+        <motion.div className="flex flex-row-reverse space-x-reverse mt-20 sm:mt-28 md:mt-36 space-x-4 sm:space-x-10 md:space-x-20 mb-10 sm:mb-15 md:mb-20 overflow-x-auto sm:overflow-x-visible">
           {firstRow.map((product) => (
             <ProductCard
               product={product}
@@ -77,7 +77,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row mb-20 space-x-20">
+        <motion.div className="flex flex-row mb-10 sm:mb-15 md:mb-20 space-x-4 sm:space-x-10 md:space-x-20 overflow-x-auto sm:overflow-x-visible">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
@@ -93,11 +93,11 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
 
 export const Header = () => {
   return (
-    <div className="max-w-7xl relative mx-auto py-20 md:py-40 px-4 w-full left-0 top-0">
-      <h1 className="text-2xl md:text-7xl font-bold text-white">
+    <div className="max-w-7xl relative mx-auto py-10 sm:py-20 md:py-40 px-4 w-full left-0 top-0">
+      <h1 className="text-2xl sm:text-4xl md:text-7xl font-bold text-white">
         The Ultimate <br /> development studio
       </h1>
-      <p className="max-w-2xl text-base md:text-xl mt-8 text-neutral-200">
+      <p className="max-w-2xl text-sm sm:text-base md:text-xl mt-4 sm:mt-6 md:mt-8 text-neutral-200">
         We build beautiful products with the latest technologies and frameworks.
         We are a team of passionate developers and designers that love to build
         amazing products.
@@ -122,7 +122,7 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-48 w-60 sm:h-72 sm:w-96 md:h-96 md:w-[30rem] relative flex-shrink-0"
     >
       <Link
         href={product.link}
@@ -137,7 +137,7 @@ export const ProductCard = ({
         />
       </Link>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
+      <h2 className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 opacity-0 group-hover/product:opacity-100 text-white text-sm sm:text-base md:text-lg">
         {product.title}
       </h2>
     </motion.div>

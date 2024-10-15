@@ -124,7 +124,7 @@ const DotescapistInterface: React.FC = () => {
         </motion.form>
 
         <motion.div
-          className="flex flex-wrap justify-center gap-6 md:gap-10"
+          className="flex flex-wrap justify-center gap-6 md:gap-28 bottom-0"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.8, delay: 0.8, ease: "easeOut" }}

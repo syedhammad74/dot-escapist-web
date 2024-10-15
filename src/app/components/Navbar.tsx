@@ -62,19 +62,20 @@ export default function Navbar() {
           duration: 0.3,
         }}
         className={cn(
-          "flex max-w-5xl mx-auto fixed top-4 inset-x-0 opacity-100 bg-white shadow-lg z-50 px-6 py-3 items-center justify-between rounded-full"
+          "flex max-w-5xl mx-auto fixed top-4 inset-x-0 opacity-100 bg-white shadow-lg z-50 px-4 py-3 items-center justify-between rounded-full",
+          "w:px-2 w:py-2 xs:px-4 xs:py-2 sm:px-6 sm:py-3"
         )}
       >
         <Link href="/" className="flex items-center gap-4" aria-label="Home">
           <Image
             src={logo}
             alt="Dot Escapist Logo"
-            className="w-[90px] sm:w-[110px] transition-transform duration-300 hover:scale-110"
+            className="w-[50px] xs:w-[60px] sm:w-[70px] md:w-[90px] lg:w-[110px] transition-transform duration-300 hover:scale-110"
             loading="lazy"
           />
         </Link>
 
-        <nav className="hidden md:flex items-center gap-6 text-sm font-medium">
+        <nav className="hidden lsm:flex items-center gap-3 md:gap-4 lg:gap-6 text-sm font-medium">
           {navItems.map((navItem, idx) => (
             <Link
               key={`link-${idx}`}
@@ -97,30 +98,30 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-6">
+        <div className="hidden lsm:flex items-center gap-3 md:gap-4 lg:gap-6">
           {/* Contact Us Button */}
           <Link
             href="#pricing"
             onClick={(e) => handleSmoothScroll(e, "pricing")}
-            className="relative items-center justify-start inline-block px-4 py-2 lg:px-5 lg:py-2 overflow-hidden font-bold rounded-full group"
+            className="relative items-center justify-start inline-block px-3 py-2 lg:px-5 lg:py-2 overflow-hidden font-bold rounded-full group"
           >
-            <span className="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-[#E72C0D] opacity-[3%]"></span>
-            <span className="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-24 bg-[#E72C0D] opacity-100 group-hover:-translate-x-8"></span>
-            <span className="relative w-full text-left text-[0.9rem] lg:text-[0.95rem] text-gray-800 transition-colors duration-200 ease-in-out group-hover:text-white font-semibold">
+            <span className="w-32 h-32 rotate-45 translate-x-12 -translate-y-2 absolute left-0 top-0 bg-[#e7760d] opacity-[3%]"></span>
+            <span className="absolute top-0 left-0 w-48 h-48 -mt-1 transition-all duration-500 ease-in-out rotate-45 -translate-x-56 -translate-y-24 bg-gradient-to-r from-orange-400 to-orange-600 opacity-100 group-hover:-translate-x-8"></span>
+            <span className="relative w-full text-left text-[0.85rem] lg:text-[0.95rem] text-gray-800 transition-colors duration-200 ease-in-out group-hover:text-white font-semibold">
               Contact Us
             </span>
-            <span className="absolute inset-0 border-2 border-[#E72C0D] rounded-full"></span>
+            <span className="absolute inset-0 border-[3px] border-[#e7760d] rounded-full"></span>
           </Link>
         </div>
 
         <button
           aria-label="Open Menu"
-          className="md:hidden ml-4"
+          className="lsm:hidden ml-4"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="w-8 h-8"
+            className="w-6 h-6 xs:w-8 xs:h-8"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
@@ -163,9 +164,9 @@ export default function Navbar() {
             onClick={() => setMenuOpen(false)}
             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
           >
-            <div className="fixed top-0 left-0 w-[70%] max-w-[300px] h-screen bg-white shadow-lg transition-transform duration-500 ease-in-out z-50 mobile-menu rounded-r-lg">
-              <div className="p-8">
-                <nav className="grid gap-6">
+            <div className="fixed top-0 left-0 w-[75%] max-w-[320px] h-screen bg-white shadow-lg transition-transform duration-500 ease-in-out z-50 mobile-menu rounded-r-lg">
+              <div className="p-6 xs:p-8">
+                <nav className="grid gap-4 xs:gap-6">
                   {navItems.map((navItem, idx) => (
                     <Link
                       key={`mobile-link-${idx}`}
@@ -176,7 +177,7 @@ export default function Navbar() {
                         }
                         setMenuOpen(false);
                       }}
-                      className="text-base font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 ease-in-out"
+                      className="text-sm xs:text-base font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 ease-in-out"
                     >
                       {navItem.name}
                     </Link>
@@ -184,7 +185,7 @@ export default function Navbar() {
                   <Link
                     href="#pricing"
                     onClick={(e) => handleSmoothScroll(e, "pricing")}
-                    className="text-base font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 ease-in-out"
+                    className="text-sm xs:text-base font-medium text-gray-800 hover:text-red-600 transition-colors duration-200 ease-in-out"
                   >
                     Contact Us
                   </Link>

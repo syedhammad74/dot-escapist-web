@@ -1,160 +1,186 @@
 "use client";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaCode,
-  FaCogs,
-  FaMobileAlt,
-  FaCloud,
-  FaDatabase,
-  FaPaintBrush,
-  FaRobot,
-  FaProjectDiagram,
-  FaBrain,
-  FaShieldAlt,
-  FaNetworkWired,
-  FaLaptopCode,
-} from "react-icons/fa";
-import { motion, useTransform, useScroll } from "framer-motion";
-import { useRef } from "react";
+  Cpu,
+  Globe,
+  BarChart,
+  Zap,
+  Layers,
+  Share2,
+  ChevronDown,
+} from "lucide-react";
 
-// Services data with improved descriptions and icons
-const servicesData: CardType[] = [
+// Define the type for a service
+interface Service {
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  details: string[];
+}
+
+// Define the services array with proper types
+const services: Service[] = [
   {
-    title: "Frontend Development",
-    description:
-      "Crafting responsive and interactive user interfaces with modern technologies like React and Angular.",
-    icon: <FaPaintBrush />,
+    icon: Cpu,
+    title: "AI-Powered Development",
+    description: "Cutting-edge AI integration for smarter web solutions",
+    details: [
+      "Machine learning algorithms for personalized user experiences",
+      "Natural language processing for advanced chatbots",
+      "Predictive analytics for data-driven decision making",
+    ],
   },
   {
-    title: "Backend Development",
-    description:
-      "Building robust server-side applications and APIs using Node.js, Django, and more.",
-    icon: <FaDatabase />,
+    icon: Globe,
+    title: "Global SEO Optimization",
+    description: "Boost your worldwide digital presence",
+    details: [
+      "Multi-language keyword research and optimization",
+      "International link building strategies",
+      "Geo-targeting techniques for local markets",
+    ],
   },
   {
-    title: "DevOps Engineering",
-    description:
-      "Automating deployment, scaling processes, and ensuring continuous integration and delivery.",
-    icon: <FaCogs />,
+    icon: BarChart,
+    title: "Data-Driven Marketing",
+    description: "Leverage big data for precision targeting",
+    details: [
+      "Advanced customer segmentation",
+      "Real-time campaign performance tracking",
+      "Multi-channel attribution modeling",
+    ],
   },
   {
-    title: "AI & Machine Learning",
-    description:
-      "Implementing intelligent systems using AI models to drive innovation and efficiency.",
-    icon: <FaBrain />,
+    icon: Zap,
+    title: "High-Performance Websites",
+    description: "Lightning-fast, scalable web applications",
+    details: [
+      "Server-side rendering for improved load times",
+      "Progressive Web App (PWA) development",
+      "Content Delivery Network (CDN) integration",
+    ],
   },
   {
-    title: "Prompt Engineering",
-    description:
-      "Designing advanced prompts for AI models like GPT to achieve desired outcomes.",
-    icon: <FaRobot />,
+    icon: Layers,
+    title: "Full-Stack Solutions",
+    description: "End-to-end development for complex projects",
+    details: [
+      "Microservices architecture implementation",
+      "DevOps practices for continuous integration and deployment",
+      "Scalable database design and optimization",
+    ],
   },
   {
-    title: "GPT Model Development",
-    description:
-      "Developing custom GPT models tailored to specific business needs and applications.",
-    icon: <FaProjectDiagram />,
-  },
-  {
-    title: "Cloud Solutions",
-    description:
-      "Leveraging AWS, Azure, and GCP for scalable and secure cloud infrastructure.",
-    icon: <FaCloud />,
-  },
-  {
-    title: "Full Stack Development",
-    description:
-      "Providing end-to-end solutions from frontend to backend development.",
-    icon: <FaLaptopCode />,
+    icon: Share2,
+    title: "Cross-Platform Integration",
+    description: "Seamless experiences across all devices",
+    details: [
+      "Native mobile app development (iOS & Android)",
+      "Cross-platform frameworks like React Native",
+      "API development for third-party integrations",
+    ],
   },
 ];
 
-const ServicesSection = () => {
+// Define types for the component props
+interface ServiceCardProps {
+  service: Service;
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <section
-      id="services"
-      className="relative h-[150vh] overflow-hidden bg-gradient-to-b from-white via-white to-white py-20"
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: -20 }}
+      transition={{ duration: 0.5 }}
+      className="relative group h-full"
     >
-      {/* Decorative Elements */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-white to-white opacity-90"></div>
+      <div className="absolute flex justify-center items-center inset-0 bg-white/10 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300" />
+      <div className="relative p-6 bg-gray-900 border border-gray-800 rounded-2xl h-full flex flex-col">
+        <div className="w-12 h-12 mb-4 bg-white rounded-full flex items-center justify-center">
+          <service.icon className="w-6 h-6 text-gray-900" />
+        </div>
+        <h3 className="text-xl font-semibold mb-2 text-white">
+          {service.title}
+        </h3>
+        <p className="text-gray-300 mb-4 flex-grow">{service.description}</p>
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200"
+          aria-expanded={isExpanded}
+        >
+          <span className="mr-2">
+            {isExpanded ? "Hide Details" : "Show Details"}
+          </span>
+          <ChevronDown
+            className={`w-4 h-4 transition-transform duration-200 ${
+              isExpanded ? "transform rotate-180" : ""
+            }`}
+          />
+        </button>
+        <AnimatePresence>
+          {isExpanded && (
+            <motion.ul
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="mt-4 space-y-2 text-gray-400"
+            >
+              {service.details.map((detail: string, index: number) => (
+                <motion.li
+                  key={index}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  className="flex items-start"
+                >
+                  <span className="mr-2 mt-1 text-white">•</span>
+                  {detail}
+                </motion.li>
+              ))}
+            </motion.ul>
+          )}
+        </AnimatePresence>
+      </div>
+    </motion.div>
+  );
+};
 
-      {/* Floating Decorative Circles */}
-      <div className="absolute bottom-8 right-[-70px] w-[250px] h-[250px] bg-gradient-to-r from-orange-500 via-orange-400 to-orange-300 rounded-full blur-3xl opacity-70 animate-pulse-slow"></div>
-      <div className="absolute top-10 left-[-110px] w-[220px] h-[220px] bg-gradient-to-tl from-orange-300 via-orange-400 to-orange-500 rounded-full blur-3xl opacity-70 animate-spin-slow"></div>
-
-      <div className="container mx-auto px-6 relative z-10">
-        <Header />
-        <HorizontalScrollCarousel />
+export default function FuturisticServices() {
+  return (
+    <section className="w-full flex justify-center items-center py-12 md:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-bl from-orange-900 via-black to-gray-900">
+      <div className="container px-4 md:px-6 relative z-10 ">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white mb-4">
+            Future-Ready Services
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Empowering your digital presence with cutting-edge solutions. Our
+            comprehensive suite of services is designed to propel your business
+            into the future of technology.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-20">
+          {services.map((service, index) => (
+            <ServiceCard key={index} service={service} />
+          ))}
+        </div>
+        <div className="mt-16 text-center">
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-3 bg-white text-black font-bold rounded-full text-lg hover:bg-gray-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+          >
+            Explore Our Services
+          </motion.button>
+        </div>
       </div>
     </section>
   );
-};
-
-const Header = () => (
-  <div className="mb-12 text-center">
-    <h2 className="text-5xl font-extrabold text-black">
-      Our Professional Services
-    </h2>
-    <p className="mt-4 text-gray-600 text-lg">
-      We offer a wide range of services to meet your needs.
-    </p>
-  </div>
-);
-
-const HorizontalScrollCarousel = () => {
-  const targetRef = useRef<HTMLDivElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "end start"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], ["100%", "-130%"]);
-
-  return (
-    <div ref={targetRef} className="relative h-[100vh]">
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-8">
-          {servicesData.map((card, index) => (
-            <Card card={card} key={index} />
-          ))}
-        </motion.div>
-      </div>
-    </div>
-  );
-};
-
-const Card = ({ card }: { card: CardType }) => {
-  return (
-    <div
-      key={card.title}
-      className="group relative h-[400px] w-[300px] flex-shrink-0 bg-gradient-to-b from-white to-gray-100 text-black rounded-2xl shadow-lg hover:shadow-2xl transform transition-all duration-300 hover:scale-105"
-    >
-      {/* Decorative Border */}
-      <div className="absolute inset-0 border-2 border-transparent group-hover:border-orange-500 rounded-2xl transition-all duration-300"></div>
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full p-6 text-center">
-        <div className="text-5xl text-orange-500 mb-4 group-hover:text-orange-600 transition-colors duration-300">
-          {card.icon}
-        </div>
-        <h3 className="text-2xl font-bold text-black mb-2 group-hover:text-orange-500 transition-colors duration-300">
-          {card.title}
-        </h3>
-        <p className="text-gray-600 group-hover:text-gray-500 transition-colors duration-300">
-          {card.description}
-        </p>
-        {/* Learn More Button */}
-        <button className="mt-6 px-6 py-2 bg-orange-500 text-white rounded-full hover:bg-orange-600 transition-colors duration-300">
-          Learn More
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default ServicesSection;
-
-type CardType = {
-  title: string;
-  description: string;
-  icon: JSX.Element;
-};
+}
