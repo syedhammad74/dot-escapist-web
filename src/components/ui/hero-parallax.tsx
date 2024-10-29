@@ -17,9 +17,8 @@ interface Product {
 }
 
 export const HeroParallax = ({ products }: { products: Product[] }) => {
-  const firstRow = products.slice(0, 5);
-  const secondRow = products.slice(5, 10);
-  const thirdRow = products.slice(10, 15);
+  const firstRow = products.slice(0, 10);
+  const secondRow = products.slice(10, 15);
   const ref = React.useRef<HTMLDivElement | null>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -56,7 +55,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
   return (
     <div
       ref={ref}
-      className="h-[200vh] sm:h-[250vh] md:h-[310vh] bg-gradient-to-bl from-orange-900 via-black to-gray-900 py-20 sm:py-30 md:py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[200vh] sm:h-[250vh] md:h-[290vh] bg-gradient-to-bl from-orange-900 via-black to-gray-900 py-20 sm:py-30 md:py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -66,9 +65,9 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
           translateY,
           opacity,
         }}
-        className=""
+        className="mt-32"
       >
-        <motion.div className="flex flex-row-reverse space-x-reverse mt-20 sm:mt-28 md:mt-36 space-x-4 sm:space-x-10 md:space-x-20 mb-10 sm:mb-15 md:mb-20 overflow-x-auto sm:overflow-x-visible">
+        <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20 ">
           {firstRow.map((product) => (
             <ProductCard
               product={product}
@@ -77,7 +76,7 @@ export const HeroParallax = ({ products }: { products: Product[] }) => {
             />
           ))}
         </motion.div>
-        <motion.div className="flex flex-row mb-10 sm:mb-15 md:mb-20 space-x-4 sm:space-x-10 md:space-x-20 overflow-x-auto sm:overflow-x-visible">
+        <motion.div className="flex flex-row space-x-20 ">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
@@ -122,7 +121,7 @@ export const ProductCard = ({
         y: -20,
       }}
       key={product.title}
-      className="group/product h-48 w-60 sm:h-72 sm:w-96 md:h-96 md:w-[30rem] relative flex-shrink-0"
+      className="group/product h-48 w-60 sm:h-72 sm:w-80 md:h-96 md:w-[30rem] relative flex-shrink-0"
     >
       <Link
         href={product.link}
