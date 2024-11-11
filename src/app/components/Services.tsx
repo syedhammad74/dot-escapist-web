@@ -2,12 +2,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
+  Stethoscope,
   Cpu,
   Globe,
-  BarChart,
-  Zap,
-  Layers,
-  Share2,
+  Cloud,
+  Settings,
+  FileText,
+  Brush,
   ChevronDown,
 } from "lucide-react";
 
@@ -23,62 +24,65 @@ interface Service {
 const services: Service[] = [
   {
     icon: Cpu,
-    title: "AI-Powered Development",
-    description: "Cutting-edge AI integration for smarter web solutions",
+    title: "Full Stack Development",
+    description:
+      "Comprehensive development across both frontend and backend layers",
     details: [
-      "Machine learning algorithms for personalized user experiences",
-      "Natural language processing for advanced chatbots",
-      "Predictive analytics for data-driven decision making",
+      "Building scalable web applications",
+      "Utilizing modern frameworks and libraries",
+      "Integration of APIs and databases",
     ],
   },
   {
     icon: Globe,
-    title: "Global SEO Optimization",
-    description: "Boost your worldwide digital presence",
+    title: "Web Applications",
+    description: "Development of responsive and dynamic web applications",
     details: [
-      "Multi-language keyword research and optimization",
-      "International link building strategies",
-      "Geo-targeting techniques for local markets",
+      "React, Angular, and Vue.js for dynamic user interfaces",
+      "Next.js for server-side rendering and static site generation",
+      "Progressive Web Apps (PWA) for enhanced user experience",
     ],
   },
   {
-    icon: BarChart,
-    title: "Data-Driven Marketing",
-    description: "Leverage big data for precision targeting",
+    icon: Cloud,
+    title: "Cloud Engineering",
+    description: "Cloud solutions for scalable and secure infrastructure",
     details: [
-      "Advanced customer segmentation",
-      "Real-time campaign performance tracking",
-      "Multi-channel attribution modeling",
+      "Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP)",
+      "Cloud architecture design and deployment",
+      "Serverless computing and container orchestration",
     ],
   },
   {
-    icon: Zap,
-    title: "High-Performance Websites",
-    description: "Lightning-fast, scalable web applications",
+    icon: Settings,
+    title: "DevOps",
+    description:
+      "Efficient development and deployment through DevOps practices",
     details: [
-      "Server-side rendering for improved load times",
-      "Progressive Web App (PWA) development",
-      "Content Delivery Network (CDN) integration",
+      "Continuous Integration and Continuous Deployment (CI/CD)",
+      "Tools like Docker, Kubernetes, Jenkins, and GitHub Actions",
+      "Infrastructure as Code with Terraform and Ansible",
     ],
   },
   {
-    icon: Layers,
-    title: "Full-Stack Solutions",
-    description: "End-to-end development for complex projects",
+    icon: Stethoscope,
+    title: "Healthcare Compliance Experts",
+    description:
+      "HIPAA, HL7, HITECH—we handle the toughest compliance needs, so you don’t have to.",
     details: [
-      "Microservices architecture implementation",
-      "DevOps practices for continuous integration and deployment",
-      "Scalable database design and optimization",
+      "Best Technologies use.",
+      "Integration with third-party services",
+      "User-friendly interfaces for non-technical users",
     ],
   },
   {
-    icon: Share2,
-    title: "Cross-Platform Integration",
-    description: "Seamless experiences across all devices",
+    icon: Brush,
+    title: "Designing",
+    description: "Creative design solutions for web and mobile applications",
     details: [
-      "Native mobile app development (iOS & Android)",
-      "Cross-platform frameworks like React Native",
-      "API development for third-party integrations",
+      "UI/UX design for enhanced user experiences",
+      "Graphic design for branding and marketing",
+      "Mobile app design for Android and iOS platforms",
     ],
   },
 ];
@@ -101,17 +105,19 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
       className="relative group h-full"
     >
       <div className="absolute flex justify-center items-center inset-0 bg-white/10 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300" />
-      <div className="relative p-6 bg-gray-900 border border-gray-800 rounded-2xl h-full flex flex-col">
-        <div className="w-12 h-12 mb-4 bg-white rounded-full flex items-center justify-center">
-          <service.icon className="w-6 h-6 text-gray-900" />
+      <div className="relative p-4 sm:p-6 md:p-8 bg-gray-900 border border-gray-800 rounded-2xl h-full flex flex-col">
+        <div className="w-10 h-10 sm:w-12 sm:h-12 mb-4 bg-white rounded-full flex items-center justify-center">
+          <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900" />
         </div>
-        <h3 className="text-xl font-semibold mb-2 text-white">
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">
           {service.title}
         </h3>
-        <p className="text-gray-300 mb-4 flex-grow">{service.description}</p>
+        <p className="text-gray-300 mb-4 flex-grow text-sm sm:text-base">
+          {service.description}
+        </p>
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200"
+          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 text-sm sm:text-base"
           aria-expanded={isExpanded}
         >
           <span className="mr-2">
@@ -132,13 +138,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
               transition={{ duration: 0.3 }}
               className="mt-4 space-y-2 text-gray-400"
             >
-              {service.details.map((detail: string, index: number) => (
+              {service.details.map((detail, index) => (
                 <motion.li
                   key={index}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex items-start"
+                  className="flex items-start text-sm sm:text-base"
                 >
                   <span className="mr-2 mt-1 text-white">•</span>
                   {detail}
@@ -154,31 +160,35 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
 
 export default function FuturisticServices() {
   return (
-    <section className="w-full flex justify-center items-center py-12 md:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-bl from-orange-900 via-black to-gray-900">
-      <div className="container px-4 md:px-6 relative z-10 ">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl text-white mb-4">
-            Future-Ready Services
+    <section
+      id="services"
+      className="w-full flex justify-center items-center py-10 xs:py-16 tmd:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-bl from-orange-900 via-black to-gray-900"
+    >
+      <div className="container px-4 xs:px-6 tsm:px-8 tmd:px-10 relative z-10">
+        <div className="text-center mb-10 xs:mb-16">
+          {/* Decorative line above the heading */}
+          <div className="flex justify-center items-center mb-4">
+            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
+          </div>
+
+          {/* Main heading with serious and impactful effect */}
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
+            Our Escape Routes
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Empowering your digital presence with cutting-edge solutions. Our
-            comprehensive suite of services is designed to propel your business
-            into the future of technology.
+
+          {/* Decorative line below the heading */}
+          <div className="flex justify-center items-center mt-2 mb-4">
+            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
+          </div>
+
+          <p className="text-sm xs:text-base md:text-lg lg:text-xl text-gray-300 max-w-lg xs:max-w-2xl md:max-w-3xl mx-auto mt-4">
+            Escaping Norms with Every Service We Offer
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mx-20">
+        <div className="grid grid-cols-1 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 xs:gap-8 md:gap-10">
           {services.map((service, index) => (
             <ServiceCard key={index} service={service} />
           ))}
-        </div>
-        <div className="mt-16 text-center">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-white text-black font-bold rounded-full text-lg hover:bg-gray-200 transition duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
-          >
-            Explore Our Services
-          </motion.button>
         </div>
       </div>
     </section>

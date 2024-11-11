@@ -49,20 +49,23 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-orange-900 text-gray-100 px-4 py-8">
+    <div
+      id="CTA"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-black to-orange-900 text-gray-100 px-4 py-8"
+    >
       <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 ">
         {/* Left Section */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex-col  justify-center mt-40 space-y-6  "
+          className="flex-col  justify-center mt-10 lg:mt-40 space-y-6"
         >
           <h2 className="text-lg font-semibold text-teal-400 uppercase tracking-wider">
-            Contact Us
+            Get in Touch
           </h2>
-          <h2 className="text-4xl font-bold text-white leading-snug">
-            Let's Connect
+          <h2 className="text-3xl lg:text-4xl font-bold text-white leading-snug">
+            Let’s Plan Your Escape
           </h2>
           <p className="text-base text-gray-300 leading-relaxed">
             Have a question or want to collaborate? Use our contact form or
@@ -232,6 +235,8 @@ export default function ContactForm() {
                 <option value="consulting">Consulting</option>
                 <option value="development">Development</option>
                 <option value="design">Design</option>
+                <option value="fullstack">Full Stack Development</option>
+                <option value="cloud">Cloud Services</option>
                 <option value="other">Other</option>
               </select>
             </div>

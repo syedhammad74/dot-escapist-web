@@ -6,19 +6,17 @@ import { Check, ChevronRight } from "lucide-react";
 
 const plans = [
   {
-    name: "Custom Cloud Solutions",
-    price: "$4,999",
+    name: "Starter Escape",
+    price: "$2,500",
     period: "per month",
     description:
-      "Tailored cloud architecture and API solutions for growing businesses.",
+      "Perfect for early-stage startups and small projects looking for core development support.",
     features: [
-      "Custom cloud architecture (AWS/Azure/GCP)",
-      "API development & integration",
-      "Scalable microservices architecture",
-      "DevOps & CI/CD implementation",
-      "Cloud security & compliance",
-      "24-hour support response time",
-      "Unlimited revisions",
+      "Full Stack Development (Web & Mobile)",
+      "Basic Cloud Setup & Consultation",
+      "1-2 Team Members",
+      "1 Project Scope Review & Consultation",
+      "Email Support (9 AM - 6 PM)",
     ],
     cta: "Get Started",
     icon: (
@@ -39,19 +37,18 @@ const plans = [
     ),
   },
   {
-    name: "Full-Stack Development",
-    price: "$6,999",
+    name: "Growth Escape",
+    price: "$7,500",
     period: "per month",
     description:
-      "Comprehensive full-stack development with cloud integration for startups and enterprises.",
+      "Ideal for growing businesses that need more robust cloud solutions and development teams.",
     features: [
-      "React / Next.js development",
-      "Custom API development",
-      "Cloud integration (AWS/Azure/GCP)",
-      "Scalable infrastructure design",
-      "SEO optimization",
-      "Continuous delivery & support",
-      "7-10 days turnaround time",
+      "Full Stack Development (Web & Mobile)",
+      "Certified Cloud Architecture (AWS, GCP, Azure)",
+      "3-5 Team Members",
+      "3 Project Scope Reviews & Ongoing Consultation",
+      "Enhanced Support (Phone & Email, 24-hour Response)",
+      "DevOps Integration & CI/CD Pipeline Setup",
     ],
     cta: "Select Plan",
     highlighted: true,
@@ -73,19 +70,19 @@ const plans = [
     ),
   },
   {
-    name: "Enterprise DevOps Solutions",
-    price: "$15,000+",
-    period: "starting at",
+    name: "Enterprise Escape",
+    price: "Custom Pricing",
+    period: "Contact Us for a Detailed Quote",
     description:
-      "Advanced DevOps automation and multi-cloud infrastructure for large-scale enterprises.",
+      "Custom-tailored for large enterprises with complex systems and strict compliance needs.",
     features: [
-      "Multi-cloud architecture",
-      "Advanced DevOps automation",
-      "Comprehensive cloud security",
-      "Infrastructure as Code (IaC)",
-      "24/7 monitoring & alerting",
-      "AI-driven cloud optimization",
-      "Custom SLAs & support",
+      "Full Stack Development (Custom Features)",
+      "Advanced Cloud Solutions (Multi-Cloud, Global Scaling)",
+      "Dedicated Team (5+ Members)",
+      "Unlimited Project Scope Reviews & Strategic Consultation",
+      "24/7 Premium Support (Dedicated Account Manager)",
+      "Healthcare Compliance Consulting (HIPAA, HL7, HITECH)",
+      "Ongoing DevOps Management & Continuous Optimization",
     ],
     cta: "Contact Us",
     icon: (
@@ -111,8 +108,7 @@ export default function ProfessionalOrangeBlackGrayPricing() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-tl from-black via-gray-900 to-orange-900 py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-
+    <div id="pricing" className="min-h-screen bg-gradient-to-tl from-black via-gray-900 to-orange-900 py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10 space-y-16">
         <div className="text-center space-y-4">
           <motion.h2
@@ -153,7 +149,7 @@ export default function ProfessionalOrangeBlackGrayPricing() {
               onMouseLeave={() => setHoveredIndex(null)}
               className={`relative overflow-hidden rounded-2xl transition-all duration-300 ${
                 plan.highlighted
-                  ? "bg-gradient-to-br from-orange-600 to-amber-700 shadow-xl shadow-orange-500/50 scale-105"
+                  ? "bg-gradient-to-br from-orange-700 to-amber-700 shadow-xl shadow-orange-500/50 scale-105"
                   : "bg-gray-800/50 backdrop-blur-xl hover:scale-105 hover:shadow-lg hover:shadow-orange-400/40"
               }`}
             >

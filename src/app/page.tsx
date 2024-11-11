@@ -3,8 +3,6 @@ import Services from "../app/components/Services";
 import Expertise from "./components/Expertise";
 import Portfolio from "./components/Portfolio";
 import Testimonials from "./components/Testimonials";
-import Careers from "./components/Careers";
-import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
 import Navbar from "./components/Navbar";
@@ -21,7 +19,6 @@ export default function Home() {
       {/* <Careers /> */}
       <Pricing />
       <CTA />
-      {/* <Contact /> */}
       <Footer />
     </div>
   );

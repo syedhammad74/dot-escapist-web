@@ -4,6 +4,5 @@ export const navItems = [
   { name: "Experices", link: "#expertise" },
   { name: "Work", link: "#work" },
   { name: "Testimonials", link: "#testimonial" },
-  { name: "Carrer", link: "#carrer" },
-  { name: "Privacy", link: "/privacy" },
+  { name: "Pricing", link: "#pricing" },
 ];

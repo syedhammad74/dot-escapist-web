@@ -1,53 +1,78 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
-// Intersection Observer Hook for the animation trigger
-const useOnScreen = (ref: React.RefObject<HTMLElement>): boolean => {
-  const [isIntersecting, setIntersecting] = useState(false);
+import { useState, useRef, Fragment } from "react";
+import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { Dialog, Transition } from "@headlessui/react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIntersecting(entry.isIntersecting),
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [ref]);
-
-  return isIntersecting;
-};
-
-// Testimonial Data
 const testimonials = [
   {
     quote:
-      "The AI Image Generator has become my not-so-secret weapon in the world of marketing. It's a game-changer for creating captivating visuals that leave a lasting impression on our audience.",
+      "The Dotescapists has become my not-so-secret weapon in the world of marketing.",
     name: "John Reynolds",
     title: "Marketing Maven at Peak Promotions",
-    img: "/placeholder.svg",
+    avatar: "/hammadbhai.png",
+    rating: 5,
   },
   {
     quote:
-      "Power AI has revolutionized how we approach creative projects. The flexibility and quality of the images generated have significantly improved our workflow.",
+      "Their expertise in cloud migrations was like a breath of fresh air for our tech ecosystem.",
     name: "Sara Williams",
     title: "Creative Director at Innovate Agency",
-    img: "/placeholder2.svg",
+    avatar: "/bilalbhai.png",
+    rating: 5,
   },
   {
     quote:
       "Using Power AI has streamlined our design process. The AI-generated images are stunning and have saved us countless hours.",
     name: "Michael Chen",
     title: "Lead Designer at PixelPerfect",
-    img: "/placeholder3.svg",
+    avatar: "/hammadbhai.png",
+    rating: 4,
+  },
+  {
+    quote:
+      "Dot Escapists helped us escape from outdated infrastructure, bringing us cutting-edge solutions that transformed our operations.",
+    name: "Emily Clarkson",
+    title: "Creative Strategist at Visionary Media",
+    avatar: "/avatar1.png",
+    rating: 5,
+  },
+  {
+    quote:
+      "Thanks to Dotescapist, we can now generate high-quality scripts on the web, which helps our social media campaigns immensely.",
+    name: "David Kim",
+    title: "Social Media Manager at Click Growth",
+    avatar: "/avatar2.png",
+    rating: 4,
+  },
+  {
+    quote:
+      "Dotescapist innovative features have given us a competitive edge in our industry. It's an indispensable tool for our team.",
+    name: "Alex Thompson",
+    title: "CTO at TechInnovate",
+    avatar: "/avatar3.png",
+    rating: 5,
+  },
+  {
+    quote:
+      "The customer support team at Dotescapist is exceptional. They've been incredibly helpful in optimizing our use of the platform.",
+    name: "Rachel Lee",
+    title: "Customer Success Manager at GrowthBoost",
+    avatar: "/avatar4.png",
+    rating: 4,
   },
 ];
 
-// Hexagonal Pattern Component for subtle background
-// Hexagonal Pattern Component for subtle background
-const HexagonBackground = ({ className = "" }: { className?: string }) => (
-  <div className={`absolute inset-0 z-0 opacity-20 ${className}`}>
+const HexagonBackground = ({ className = "" }) => (
+  <div className={cn("absolute inset-0 z-0 opacity-10", className)}>
     <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern
@@ -70,192 +95,269 @@ const HexagonBackground = ({ className = "" }: { className?: string }) => (
   </div>
 );
 
+const StarRating = ({ rating }: { rating: number }) => (
+  <div className="flex space-x-1">
+    {[...Array(5)].map((_, i) => (
+      <Star
+        key={i}
+        className={cn(
+          "w-4 h-4 md:w-5 md:h-5 transition-colors duration-200",
+          i < rating ? "text-yellow-400 fill-current" : "text-gray-500"
+        )}
+      />
+    ))}
+  </div>
+);
 
-// Main Testimonials Section Component
-const TestimonialsSection = () => {
-  const [activeTestimonial, setActiveTestimonial] = useState<number>(0);
-  const hexGridRef = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(hexGridRef);
-
-  // Trigger hexagonal grid animation when it enters the viewport
-  useEffect(() => {
-    if (isVisible) {
-      const hexagons = document.querySelectorAll(".hexagon");
-      hexagons.forEach((hexagon: any, index: number) => {
-        setTimeout(() => {
-          hexagon.classList.add("opacity-100", "scale-100");
-        }, index * 100); // Staggered animation for hexagons
-      });
-    }
-  }, [isVisible]);
-
-  // Auto-slide logic for testimonials
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextTestimonial();
-    }, 7000);
-    return () => clearInterval(interval);
-  }, [activeTestimonial]);
-
-  const nextTestimonial = () => {
-    setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
+const TestimonialCard = ({
+  review,
+}: {
+  review: {
+    quote: string;
+    name: string;
+    title: string;
+    avatar: string;
+    rating: number;
   };
+}) => (
+  <div className="bg-gray-900 rounded-lg p-8 h-72 flex flex-col justify-between border border-gray-800 transition-all duration-300 hover:border-orange-500 hover:shadow-xl hover:shadow-orange-500/10">
+    <div className="flex flex-col h-full">
+      <div className="flex items-center mb-6">
+        <div className="relative w-16 h-16">
+          <Image
+            src={review.avatar}
+            alt={review.name}
+            fill
+            className="rounded-full border-2 border-orange-500 object-cover"
+          />
+        </div>
+        <div className="ml-4">
+          <p className="text-lg font-semibold text-white">{review.name}</p>
+          <p className="text-sm text-gray-400">{review.title}</p>
+        </div>
+      </div>
+      <StarRating rating={review.rating} />
+      <p className="text-base text-gray-300 mt-4 flex-grow">{review.quote}</p>
+    </div>
+  </div>
+);
 
-  const prevTestimonial = () => {
-    setActiveTestimonial(
-      (prev) => (prev - 1 + testimonials.length) % testimonials.length
-    );
+export default function ResponsiveTestimonialSection() {
+  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
+  const [reviews, setReviews] = useState(testimonials);
+  const [userName, setUserName] = useState("");
+  const [userQuote, setUserQuote] = useState("");
+  const [userRating, setUserRating] = useState(5);
+  const swiperRef = useRef<any>(null);
+
+  const handleReviewSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (userName && userQuote) {
+      const newReview = {
+        quote: userQuote,
+        name: userName,
+        title: "User Review",
+        avatar: "/default-avatar.png",
+        rating: userRating,
+      };
+      setReviews([...reviews, newReview]);
+      setIsReviewDialogOpen(false);
+      setUserName("");
+      setUserQuote("");
+      setUserRating(5);
+    }
   };
 
   return (
     <section
-      ref={hexGridRef}
-      className="relative w-full h-screen bg-gradient-to-tr from-orange-900 via-gray-900 to-black py-24 overflow-hidden flex items-center justify-center"
+      id="testimonial"
+      className="relative w-full bg-gradient-to-tr from-orange-900 via-gray-900 to-black py-16 md:py-20 lg:py-24 overflow-hidden"
     >
-      {/* Hexagonal grid background */}
-      <HexagonBackground className="top-0 left-0 w-1/3 h-1/3" />
-      <HexagonBackground className="bottom-0 top-[80vh] left-[70%] h-full" />
+      <HexagonBackground />
 
-      <div className="container relative z-10 mx-4 sm:mx-8 md:mx-16 px-4 sm:px-6 md:px-8 lg:px-10 max-w-7xl flex flex-col items-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Testimonial Text */}
-          <div className="space-y-8 flex items-start justify-start flex-col">
-            <motion.h3
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-              className="text-xs font-semibold tracking-wider uppercase text-gray-300 border-l-4 pl-3 mb-4 border-green-400"
-            >
-              Testimonials
-            </motion.h3>
-            <motion.h2
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: "easeInOut" }}
-              className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-50 leading-tight"
-            >
-              What Our Users Say About Power AI
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
-              className="text-lg text-gray-300 max-w-xl"
-            >
-              Discover how Power AI has transformed creative projects for our
-              users, enhancing workflows with the power of AI-generated visuals.
-            </motion.p>
-
-            <div className="flex items-center space-x-2 pb-6">
-              {[...Array(5)].map((_, i) => (
-                <svg
-                  key={i}
-                  className="w-5 h-5 text-yellow-400 fill-current transition-transform duration-200 hover:scale-110"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
-              ))}
-            </div>
-
-            <div className="w-full max-w-md h-48">
-              <AnimatePresence mode="wait">
-                <motion.blockquote
-                  key={activeTestimonial}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 30 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="text-base sm:text-lg font-medium leading-relaxed text-gray-200 italic border-l-4 border-green-500 pl-4"
-                >
-                  "{testimonials[activeTestimonial].quote}"
-                </motion.blockquote>
-              </AnimatePresence>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTestimonial}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                  className="space-y-1 mt-4"
-                >
-                  <p className="text-lg font-semibold text-gray-50">
-                    {testimonials[activeTestimonial].name}
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    {testimonials[activeTestimonial].title}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="text-center mb-10 xs:mb-16">
+          {/* Decorative line above the heading */}
+          <div className="flex justify-center items-center mb-4">
+            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
           </div>
 
-          {/* Image */}
-          <div className="relative aspect-square w-[50vh] max-w-sm mx-20 lg:max-w-lg overflow-hidden shadow-lg rounded-lg group">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.8, ease: "easeInOut" }}
-                className="relative w-full h-full bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg overflow-hidden group-hover:shadow-xl transition-shadow duration-700"
-              >
-                <img
-                  src={testimonials[activeTestimonial].img}
-                  alt="Power AI Visualization"
-                  className="w-full h-full object-center transition-transform duration-1000 ease-in-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute bottom-0 left-0 p-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <h3 className="text-lg sm:text-xl font-bold mb-1">
-                    AI-Generated Masterpiece
-                  </h3>
-                  <p className="text-xs sm:text-sm">
-                    Created using Power AI's cutting-edge technology
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+          {/* Main heading with serious and impactful effect */}
+          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
+            Client Testimonials
+          </h2>
+
+          {/* Decorative line below the heading */}
+          <div className="flex justify-center items-center mt-2 mb-4">
+            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
           </div>
+
+          <p className="text-sm xs:text-base md:text-lg lg:text-xl text-gray-300 max-w-lg xs:max-w-2xl md:max-w-3xl mx-auto mt-4">
+            What Our Clients Say After Their Escape
+          </p>
         </div>
 
-        {/* Pagination */}
-        <div className="flex justify-center items-center space-x-4 mt-12">
-          <button
-            onClick={prevTestimonial}
-            className="p-3 rounded-full bg-gray-700 hover:bg-gray-600 text-gray-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-600"
-            aria-label="Previous Testimonial"
+        <Swiper
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper;
+          }}
+          slidesPerView={1}
+          spaceBetween={24}
+          loop={true}
+          modules={[Autoplay]}
+          autoplay={{
+            delay: 5000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+            },
+            1024: {
+              slidesPerView: 2,
+            },
+            1280: {
+              slidesPerView: 3,
+            },
+          }}
+          className="mySwiper w-full max-w-6xl"
+        >
+          {reviews.map((review, index) => (
+            <SwiperSlide key={index} className="h-auto">
+              <TestimonialCard review={review} />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="flex justify-center mt-12 lg:mt-16">
+          <Button
+            onClick={() => setIsReviewDialogOpen(true)}
+            className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl text-base"
           >
-            <ChevronLeft className="w-5 h-5" />
-          </button>
-          <div className="flex space-x-2">
-            {[...Array(testimonials.length)].map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveTestimonial(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ease-in-out focus:outline-none ${
-                  index === activeTestimonial
-                    ? "bg-green-500 border-2 border-green-400 scale-125"
-                    : "bg-gray-500 hover:bg-green-400"
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-          </div>
-          <button
-            onClick={nextTestimonial}
-            className="p-3 rounded-full bg-gray-700 hover:bg-gray-600 text-gray-200 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-green-600"
-            aria-label="Next Testimonial"
-          >
-            <ChevronRight className="w-5 h-5" />
-          </button>
+            Add Your Review
+          </Button>
         </div>
       </div>
+
+      <Transition appear show={isReviewDialogOpen} as={Fragment}>
+        <Dialog
+          as="div"
+          className="fixed inset-0 z-50 overflow-y-auto"
+          onClose={() => setIsReviewDialogOpen(false)}
+        >
+          <div className="min-h-screen px-4 text-center">
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0"
+              enterTo="opacity-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100"
+              leaveTo="opacity-0"
+            >
+              <Dialog
+                className="fixed inset-0 bg-black bg-opacity-80 transition-opacity"
+                onClose={function (value: boolean): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
+            </Transition.Child>
+
+            <span
+              className="inline-block h-screen align-middle"
+              aria-hidden="true"
+            >
+              &#8203;
+            </span>
+            <Transition.Child
+              as={Fragment}
+              enter="ease-out duration-300"
+              enterFrom="opacity-0 scale-95"
+              enterTo="opacity-100 scale-100"
+              leave="ease-in duration-200"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <div className="inline-block w-full max-w-md p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-900 border border-gray-700 text-gray-100 rounded-lg shadow-2xl">
+                <Dialog.Title
+                  as="h3"
+                  className="text-2xl font-semibold leading-6 mb-6"
+                >
+                  Add Your Review
+                </Dialog.Title>
+                <form onSubmit={handleReviewSubmit} className="space-y-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-base font-medium">
+                      Name
+                    </label>
+                    <input
+                      id="name"
+                      value={userName}
+                      onChange={(e) => setUserName(e.target.value)}
+                      placeholder="Enter your name"
+                      className="w-full px-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base transition-colors duration-200"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="rating" className="text-base font-medium">
+                      Rating
+                    </label>
+                    <div className="flex space-x-2">
+                      {[1, 2, 3, 4, 5].map((value) => (
+                        <button
+                          key={value}
+                          type="button"
+                          onClick={() => setUserRating(value)}
+                          className={cn(
+                            "w-10 h-10 transition-all duration-300",
+                            userRating >= value
+                              ? "text-yellow-400"
+                              : "text-gray-500"
+                          )}
+                        >
+                          <Star className="w-8 h-8 fill-current" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="experience"
+                      className="text-base font-medium"
+                    >
+                      Your Experience
+                    </label>
+                    <textarea
+                      id="experience"
+                      value={userQuote}
+                      onChange={(e) => setUserQuote(e.target.value)}
+                      placeholder="Share your experience with Power AI"
+                      className="w-full px-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base transition-colors duration-200"
+                      rows={4}
+                    />
+                  </div>
+                  <div className="flex justify-end gap-4 mt-8">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={() => setIsReviewDialogOpen(false)}
+                      className="text-base border-gray-700 hover:bg-gray-800 transition-colors duration-200"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      type="submit"
+                      className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white text-base transition-all duration-200"
+                    >
+                      Submit Review
+                    </Button>
+                  </div>
+                </form>
+              </div>
+            </Transition.Child>
+          </div>
+        </Dialog>
+      </Transition>
     </section>
   );
-};
-
-export default TestimonialsSection;
+}

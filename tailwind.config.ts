@@ -18,10 +18,10 @@ const config = {
         "xs": "320px", // Older small phones
         "sm": "360px", // Small smartphones (Most Android phones)
         "md": "375px", // Medium smartphones (iPhone SE, iPhone 6/7/8)
-        "lg": "414px", // Larger smartphones (iPhone Pro Max)
+        "lsg": "414px", // Larger smartphones (iPhone Pro Max)
         "tsm": "600px", // Small tablets and phablets
         "tmd": "768px", // Standard tablets (iPad Mini, older iPads)
-        "tlg": "834px", // Larger tablets (iPad Air, iPad Pro)
+        "lg": "834px", // Larger tablets (iPad Air, iPad Pro)
         "lsm": "1024px", // Small laptops or Chromebooks
         "lmd": "1280px", // Older laptops
         "lnm": "1366px", // Standard laptops
