@@ -28,9 +28,9 @@ const services: Service[] = [
     description:
       "Comprehensive development across both frontend and backend layers",
     details: [
-      "Building scalable web applications",
-      "Utilizing modern frameworks and libraries",
-      "Integration of APIs and databases",
+      "Customized, secure, and scalable solutions built with the latest technologies",
+      "Complete development services from frontend to backend for smooth, reliable user experiences.",
+      "Crafting seamless integration between powerful APIs and dynamic databases.",
     ],
   },
   {
@@ -70,7 +70,7 @@ const services: Service[] = [
     description:
       "HIPAA, HL7, HITECH—we handle the toughest compliance needs, so you don’t have to.",
     details: [
-      "Best Technologies use.",
+      "Extensive Health Care Certifications in HIPPA, CERHT, HL7, HITECH",
       "Integration with third-party services",
       "User-friendly interfaces for non-technical users",
     ],
@@ -82,7 +82,7 @@ const services: Service[] = [
     details: [
       "UI/UX design for enhanced user experiences",
       "Graphic design for branding and marketing",
-      "Mobile app design for Android and iOS platforms",
+      "Custom, creative, and brand-focused designs.",
     ],
   },
 ];

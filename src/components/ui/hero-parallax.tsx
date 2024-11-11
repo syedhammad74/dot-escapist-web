@@ -87,7 +87,7 @@ const BigScreenHeroParallax = ({ products }: { products: Product[] }) => {
   return (
     <div
       ref={ref}
-      className="h-[200vh] sm:h-[250vh] md:h-[290vh] bg-gradient-to-bl from-orange-900 via-black to-gray-900 py-20 sm:py-30 md:py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[200vh] sm:h-[250vh] md:h-[290vh] bg-gradient-to-br from-orange-900 via-black to-gray-900 py-20 sm:py-30 md:py-40 overflow-hidden antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -128,7 +128,7 @@ const MobileHeroParallax = ({ products }: { products: Product[] }) => {
   const secondRow = products.slice(Math.ceil(products.length / 2));
 
   return (
-    <div className="h-auto bg-gradient-to-bl from-orange-900 via-black to-gray-900 py-6 overflow-hidden flex flex-col items-center">
+    <div className="h-auto bg-gradient-to-br from-orange-900 via-black to-gray-900 py-6 overflow-hidden flex flex-col items-center">
       <MobileHeader />
       <div className="mt-6 w-full flex flex-col items-center space-y-6">
         {/* First row moving left to right */}

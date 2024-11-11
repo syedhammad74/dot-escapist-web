@@ -16,7 +16,7 @@ const plans = [
       "Basic Cloud Setup & Consultation",
       "1-2 Team Members",
       "1 Project Scope Review & Consultation",
-      "Email Support (9 AM - 6 PM)",
+      "Email Support (24/7)",
     ],
     cta: "Get Started",
     icon: (
@@ -72,7 +72,6 @@ const plans = [
   {
     name: "Enterprise Escape",
     price: "Custom Pricing",
-    period: "Contact Us for a Detailed Quote",
     description:
       "Custom-tailored for large enterprises with complex systems and strict compliance needs.",
     features: [
@@ -84,7 +83,7 @@ const plans = [
       "Healthcare Compliance Consulting (HIPAA, HL7, HITECH)",
       "Ongoing DevOps Management & Continuous Optimization",
     ],
-    cta: "Contact Us",
+    cta: "Find your perfect escape plan",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

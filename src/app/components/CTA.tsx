@@ -68,9 +68,10 @@ export default function ContactForm() {
             Let’s Plan Your Escape
           </h2>
           <p className="text-base text-gray-300 leading-relaxed">
-            Have a question or want to collaborate? Use our contact form or
-            reach out to us directly with the information below. Rest assured,
-            your details are safe with us according to our
+            Have a question or eager to collaborate? Connect with the Escapers
+            team using our contact form or reach out directly through the
+            information below. Rest assured, your details are safe with us in
+            line with our data protection policy.
             <a href="#" className="text-teal-400 underline ml-1">
               data protection policy
             </a>
@@ -79,13 +80,11 @@ export default function ContactForm() {
           <div className="text-gray-300 space-y-4">
             <p className="flex items-center space-x-4">
               <FaEnvelope className="text-teal-400 text-2xl" />
-              <span className="font-medium text-lg">
-                info@futuristicdev.com
-              </span>
+              <span className="font-medium text-lg">hs.escapist@gmail.com</span>
             </p>
             <p className="flex items-center space-x-4">
               <FaPhoneAlt className="text-teal-400 text-2xl" />
-              <span className="font-medium text-lg">+1 (555) 123-4567</span>
+              <span className="font-medium text-lg">+92 325 181-0101</span>
             </p>
           </div>
         </motion.div>

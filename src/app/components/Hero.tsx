@@ -67,13 +67,13 @@ const DotescapistInterface: React.FC = () => {
 
       <div className="relative z-10 flex flex-col justify-center items-center min-h-screen text-center px-4 sm:px-6 md:px-8 lg:px-10 lg:mt-[2vw] lg:mb-6 xl:px-16 py-8 sm:py-12 md:py-16 lg:py-24">
         <motion.div
-          className="w-full max-w-[280px] xs:max-w-xs sm:max-w-sm md:max-w-xl lg:max-w-2xl xl:max-w-2xl 2xl:max-w-3xl mx-auto mt-4 sm:mt-8 lg:mt-16"
+          className="w-full max-w-[100vh] xs:max-w-xs sm:max-w-sm md:max-w-3xl lg:max-w-3xl xl:max-w-3xl 2xl:max-w-3xl mx-auto mt-4 sm:mt-8 lg:mt-16"
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
         >
           <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-extrabold leading-tight mb-2 sm:mb-4 lg:mb-6 tracking-tight">
-            Escape the 
+            Escape the
             <OrangeGradientText className="text-xl ml-3 xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl mt-1 sm:mt-2">
                Ordinary.
             </OrangeGradientText>
@@ -134,10 +134,10 @@ const DotescapistInterface: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
         >
-          <FeatureItem icon={Globe} text="Global Digital Ecosystem" />
-          <FeatureItem icon={Shield} text="Quantum-Secure Networks" />
-          <FeatureItem icon={Cpu} text="AI-Powered Innovations" />
-          <FeatureItem icon={ArrowRight} text="Future-Proof Solutions" />
+          <FeatureItem icon={Globe} text="Devops & CI/CD pipelines" />
+          <FeatureItem icon={Shield} text="Cloud Engineering  " />
+          <FeatureItem icon={Cpu} text="Web-Development   " />
+          <FeatureItem icon={ArrowRight} text="Graphic-Designing   " />
         </motion.div>
       </div>
     </div>

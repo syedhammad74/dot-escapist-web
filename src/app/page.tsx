@@ -7,11 +7,13 @@ import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
 import Navbar from "./components/Navbar";
 import CTA from "./components/CTA";
+import Careers from "./components/About";
 
 export default function Home() {
   return (
     <div>
       <Hero />
+      <Careers />
       <Portfolio />
       <Expertise />
       <Services />
