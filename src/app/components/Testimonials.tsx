@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useRef, Fragment } from "react";
-import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, Fragment } from "react";
+import { Star } from "lucide-react";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Dialog, Transition } from "@headlessui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
@@ -148,7 +148,6 @@ export default function ResponsiveTestimonialSection() {
   const [userName, setUserName] = useState("");
   const [userQuote, setUserQuote] = useState("");
   const [userRating, setUserRating] = useState(5);
-  const swiperRef = useRef<any>(null);
 
   const handleReviewSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -177,17 +176,14 @@ export default function ResponsiveTestimonialSection() {
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center mb-10 xs:mb-16">
-          {/* Decorative line above the heading */}
           <div className="flex justify-center items-center mb-4">
             <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
           </div>
 
-          {/* Main heading with serious and impactful effect */}
           <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
             Client Testimonials
           </h2>
 
-          {/* Decorative line below the heading */}
           <div className="flex justify-center items-center mt-2 mb-4">
             <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
           </div>
@@ -198,9 +194,6 @@ export default function ResponsiveTestimonialSection() {
         </div>
 
         <Swiper
-          onSwiper={(swiper) => {
-            swiperRef.current = swiper;
-          }}
           slidesPerView={1}
           spaceBetween={24}
           loop={true}
@@ -255,12 +248,7 @@ export default function ResponsiveTestimonialSection() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog
-                className="fixed inset-0 bg-black bg-opacity-80 transition-opacity"
-                onClose={function (value: boolean): void {
-                  throw new Error("Function not implemented.");
-                }}
-              />
+              <div className="fixed inset-0 bg-black bg-opacity-80 transition-opacity"></div>
             </Transition.Child>
 
             <span
@@ -339,7 +327,6 @@ export default function ResponsiveTestimonialSection() {
                   <div className="flex justify-end gap-4 mt-8">
                     <Button
                       type="button"
-                      variant="outline"
                       onClick={() => setIsReviewDialogOpen(false)}
                       className="text-base border-gray-700 hover:bg-gray-800 transition-colors duration-200"
                     >

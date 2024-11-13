@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
-import { Dialog, Dialog as HeadlessDialog, Transition } from "@headlessui/react";
+import { Dialog, Transition } from "@headlessui/react";
 import {
   motion,
   useAnimation,
@@ -9,14 +9,10 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import {
-  FaDesktop,
   FaNetworkWired,
   FaCloud,
   FaProjectDiagram,
   FaLock,
-  FaRobot,
-  FaMobileAlt,
-  FaChartLine,
   FaPython,
   FaJs,
   FaNode,
@@ -35,7 +31,6 @@ import {
   FaDigitalOcean,
   FaGithub,
   FaServer,
-  FaCloudversify,
   FaStream,
 } from "react-icons/fa";
 import {
@@ -53,7 +48,6 @@ import {
   SiApachekafka,
   SiRabbitmq,
   SiGraphql,
-  SiFirebase,
   SiGo,
 } from "react-icons/si";
 

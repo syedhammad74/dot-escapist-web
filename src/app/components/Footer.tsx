@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Link from "next/link";
-import Image from "next/image"
+import Image from "next/image";
 import {
   Facebook,
   Twitter,
@@ -18,16 +18,6 @@ import {
 } from "lucide-react";
 
 export default function Footer() {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   const currentYear = new Date().getFullYear();
 
   return (
@@ -37,7 +27,7 @@ export default function Footer() {
         <div className="absolute inset-0 bg-gradient-to-tr from-gray-900 via-black to-orange-900"></div>
 
         {/* Animated Circles */}
-        <div className="absolute w-20 tsm:w-32 tmd:w-40 lg:w-60 lsm:w-80 h-20 tsm:h-32 tmd:h-40 lg:h-60 lsm:h-80 bg-white opacity-10 rounded-full top-2 tsm:top-6 lg:top-8 lsm:top-10 left-2 tsm:left-6 lg:left-8 lsm:left-10 animate-bounce-slow transform-translate-x-1/2"></div>
+        <div className="absolute w-20 tsm:w-32 tmd:w-40 lg:w-60 lsm:w-80 h-20 tsm:h-32 tmd:h-40 lg:h-60 lsm:h-80 bg-white opacity-10 rounded-full top-2 tsm:top-6 lg:top-8 lsm:top-10 left-2 tsm:left-6 lg:left-8 lsm:left-10 animate-bounce-slow transform translate-x-1/2"></div>
         <div className="absolute w-16 tsm:w-24 tmd:w-32 lg:w-48 lsm:w-64 h-16 tsm:h-24 tmd:h-32 lg:h-48 lsm:h-64 bg-white opacity-10 rounded-full top-8 tsm:top-12 lg:top-16 lsm:top-32 left-1/2 transform -translate-x-1/2 animate-bounce-slow"></div>
         <div className="absolute w-24 tsm:w-36 tmd:w-48 lg:w-60 lsm:w-72 h-24 tsm:h-36 tmd:h-48 lg:h-60 lsm:h-72 bg-white opacity-10 rounded-full bottom-4 tsm:bottom-8 lg:bottom-16 lsm:bottom-20 right-2 tsm:right-6 lg:right-8 lsm:right-10 animate-bounce-slow"></div>
       </div>

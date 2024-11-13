@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope, FaBuilding, FaUserTie } from "react-icons/fa";
+import emailjs from "emailjs-com";
 
 export default function ContactForm() {
   const [formState, setFormState] = useState({
@@ -15,6 +16,8 @@ export default function ContactForm() {
     interest: "",
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleInputChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
@@ -24,7 +27,7 @@ export default function ContactForm() {
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (
       formState.firstName.trim() &&
@@ -32,17 +35,56 @@ export default function ContactForm() {
       formState.email.trim() &&
       formState.message.trim()
     ) {
-      console.log("Form submitted:", formState);
-      alert("Thank you for reaching out! We'll get back to you shortly.");
-      setFormState({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        position: "",
-        message: "",
-        interest: "",
-      });
+      setIsSubmitting(true);
+      try {
+        // Send email to the website owner if any interest is selected
+        if (formState.interest) {
+          await emailjs.send(
+            "service_so7rk5a", // Replace with your EmailJS service ID
+            "template_c3whuhf", // Replace with your EmailJS template ID for the web owner
+            {
+              email: formState.email,
+              message: `${formState.firstName} ${formState.lastName} is interested in ${formState.interest}. Email: ${formState.email}`,
+              firstName: formState.firstName,
+              lastName: formState.lastName,
+              interest: formState.interest,
+            },
+            "pLae-yYMcZWglDNeTAndE" // Replace with your EmailJS user ID
+          );
+        }
+
+        // Send email to the user
+        await emailjs.send(
+          "service_au6x3sg", // Replace with your EmailJS service ID
+          "template_41bx6gt", // Replace with your EmailJS template ID
+          {
+            firstName: formState.firstName,
+            lastName: formState.lastName,
+            email: formState.email,
+            message: formState.message,
+            company: formState.company,
+            position: formState.position,
+            interest: formState.interest,
+          },
+          "wcTCzjqMgcp8fWUU_" // Replace with your EmailJS user ID
+        );
+
+        alert("Thank you for reaching out! We'll get back to you shortly.");
+        setFormState({
+          firstName: "",
+          lastName: "",
+          email: "",
+          company: "",
+          position: "",
+          message: "",
+          interest: "",
+        });
+      } catch (error) {
+        console.error("Failed to send email:", error);
+        alert("Something went wrong. Please try again later.");
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
       alert("Please fill in all required fields before submitting.");
     }
@@ -59,7 +101,7 @@ export default function ContactForm() {
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
-          className="flex-col  justify-center mt-10 lg:mt-40 space-y-6"
+          className="flex-col justify-center mt-10 lg:mt-40 space-y-6"
         >
           <h2 className="text-lg font-semibold text-teal-400 uppercase tracking-wider">
             Get in Touch
@@ -254,9 +296,12 @@ export default function ContactForm() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               type="submit"
-              className="w-full py-3 px-6 rounded-lg shadow-md text-base font-medium text-white bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-teal-400 transition-transform ease-in-out duration-300"
+              disabled={isSubmitting}
+              className={`w-full py-3 px-6 rounded-lg shadow-md text-base font-medium text-white bg-gradient-to-r from-teal-500 to-green-500 hover:from-teal-600 hover:to-green-600 focus:outline-none focus:ring-4 focus:ring-offset-2 focus:ring-teal-400 transition-transform ease-in-out duration-300 ${
+                isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+              }`}
             >
-              Submit
+              {isSubmitting ? "Submitting..." : "Submit"}
             </motion.button>
           </form>
           <p className="mt-6 text-sm text-gray-400">

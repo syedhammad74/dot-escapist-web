@@ -7,7 +7,6 @@ import {
   Globe,
   Cloud,
   Settings,
-  FileText,
   Brush,
   ChevronDown,
 } from "lucide-react";

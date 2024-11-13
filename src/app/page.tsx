@@ -5,7 +5,6 @@ import Portfolio from "./components/Portfolio";
 import Testimonials from "./components/Testimonials";
 import Footer from "./components/Footer";
 import Pricing from "./components/Pricing";
-import Navbar from "./components/Navbar";
 import CTA from "./components/CTA";
 import Careers from "./components/About";
 
