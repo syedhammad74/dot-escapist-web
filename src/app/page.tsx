@@ -17,7 +17,6 @@ export default function Home() {
       <Expertise />
       <Services />
       <Testimonials />
-      {/* <Careers /> */}
       <Pricing />
       <CTA />
       <Footer />

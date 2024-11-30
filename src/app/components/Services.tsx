@@ -128,6 +128,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
             }`}
           />
         </button>
+
         <AnimatePresence>
           {isExpanded && (
             <motion.ul
@@ -161,9 +162,9 @@ export default function FuturisticServices() {
   return (
     <section
       id="services"
-      className="w-full flex justify-center items-center py-10 xs:py-16 tmd:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-bl from-orange-900 via-black to-gray-900"
+      className="w-full  flex justify-center items-center py-10 xs:py-16 tmd:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-bl from-orange-900 via-black to-gray-900"
     >
-      <div className="container px-4 xs:px-6 tsm:px-8 tmd:px-10 relative z-10">
+      <div className="container px-4 xs:px-6 tsm:px-8 tmd:px-10 relative z-10 lg:mx-16">
         <div className="text-center mb-10 xs:mb-16">
           {/* Decorative line above the heading */}
           <div className="flex justify-center items-center mb-4">

@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../../public/logo.png";
 import { navItems } from "@/constants/nav";
 import { cn } from "@/lib/utils";
 
@@ -13,21 +12,19 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Navbar Visibility on Scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      setVisible(currentScrollPos <= lastScrollY || currentScrollPos < 50);
-      setLastScrollY(currentScrollPos);
-    };
+  const handleScroll = useCallback(() => {
+    const currentScrollPos = window.scrollY;
+    setVisible(currentScrollPos <= lastScrollY || currentScrollPos < 50);
+    setLastScrollY(currentScrollPos);
+  }, [lastScrollY]);
 
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [lastScrollY]);
+  }, [handleScroll]);
 
-  // Smooth Scroll
   const handleSmoothScroll = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
     id: string
@@ -36,6 +33,16 @@ export default function Navbar() {
     const section = document.getElementById(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
+    }
+    setMenuOpen(false);
+  };
+
+  const handleDragEnd = (
+    event: MouseEvent | TouchEvent | PointerEvent,
+    info: PanInfo
+  ) => {
+    if (info.offset.x < -50) {
+      setMenuOpen(false);
     }
   };
 
@@ -52,8 +59,10 @@ export default function Navbar() {
       >
         <Link href="/" className="flex items-center gap-4" aria-label="Home">
           <Image
-            src={logo}
+            src="/logo.png"
             alt="Dot Escapist Logo"
+            width={110}
+            height={110}
             className="w-[50px] xs:w-[60px] sm:w-[70px] md:w-[90px] lg:w-[110px] hover:scale-105 transition-transform duration-200 ease-in-out"
             loading="lazy"
           />
@@ -83,7 +92,6 @@ export default function Navbar() {
         </nav>
 
         <div className="hidden lsm:flex items-center gap-4 md:gap-6 lg:gap-8">
-          {/* Contact Us Button */}
           <Link
             href="#CTA"
             onClick={(e) => handleSmoothScroll(e, "CTA")}
@@ -99,7 +107,7 @@ export default function Navbar() {
         </div>
 
         <button
-          aria-label="Open Menu"
+          aria-label={menuOpen ? "Close Menu" : "Open Menu"}
           className="lsm:hidden ml-4"
           onClick={() => setMenuOpen(!menuOpen)}
         >
@@ -172,6 +180,11 @@ export default function Navbar() {
                   damping: 15,
                   duration: 0.5,
                 }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.1}
+                onDragEnd={handleDragEnd}
+                onClick={(e) => e.stopPropagation()}
                 className="fixed top-0 left-0 w-[75%] max-w-[320px] h-screen bg-gradient-to-bl from-gray-800 to-black shadow-lg z-50 mobile-menu rounded-r-lg"
               >
                 <div className="p-6 xs:p-8 relative">
@@ -200,7 +213,7 @@ export default function Navbar() {
                     ))}
                     <Link
                       href="#CTA"
-                      onClick={(e) => handleSmoothScroll(e, "#CTA")}
+                      onClick={(e) => handleSmoothScroll(e, "CTA")}
                       className="text-sm xs:text-base font-medium text-gray-100 hover:text-red-500 transition-colors duration-200 ease-in-out"
                     >
                       Contact Us

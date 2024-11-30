@@ -83,14 +83,6 @@ const Progress = ({
       animate={{ width: `${value}%` }}
       transition={{ duration: 1, ease: "easeInOut" }}
     ></motion.div>
-    <motion.span
-      className="text-xs sm:text-xs font-bold text-orange-500 mt-1"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1, ease: "easeInOut" }}
-    >
-      {value}%
-    </motion.span>
   </div>
 );
 
@@ -242,7 +234,9 @@ const achievements = [
 
 export default function AboutSection() {
   const [activeExpertise, setActiveExpertise] = useState<string>("Full Stack");
-  const [animatedProgress, setAnimatedProgress] = useState<number>(0);
+  const [animatedProgress, setAnimatedProgress] = useState<number>(
+    expertiseAreas.find((area) => area.name === "Full Stack")?.progress || 0
+  );
   const [animatedCount, setAnimatedCount] = useState<{ [key: string]: number }>(
     {
       "Global Reach": 0,
@@ -251,9 +245,21 @@ export default function AboutSection() {
     }
   );
   const achievementsRef = useRef<HTMLDivElement | null>(null);
-  const isInView =
-    achievementsRef.current?.getBoundingClientRect().top ??
-    0 < window.innerHeight;
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleScroll = () => {
+        if (achievementsRef.current) {
+          const rect = achievementsRef.current.getBoundingClientRect();
+          setIsInView(rect.top < window.innerHeight);
+        }
+      };
+      window.addEventListener("scroll", handleScroll);
+      handleScroll();
+      return () => window.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
 
   useEffect(() => {
     if (activeExpertise) {
@@ -261,18 +267,22 @@ export default function AboutSection() {
         (area) => area.name === activeExpertise
       )?.progress;
       if (targetProgress !== undefined) {
-        setAnimatedProgress(0);
-        const progressInterval = setInterval(() => {
-          setAnimatedProgress((prev) => {
-            if (prev < targetProgress) {
-              return prev + 1;
-            } else {
-              clearInterval(progressInterval);
-              return targetProgress;
-            }
-          });
-        }, 10);
-        return () => clearInterval(progressInterval);
+        const duration = 1000; // Animation duration in ms
+        const startTime = performance.now();
+
+        const updateProgress = (currentTime: number) => {
+          const elapsedTime = currentTime - startTime;
+          const progress = Math.min(
+            (elapsedTime / duration) * targetProgress,
+            targetProgress
+          );
+          setAnimatedProgress(progress);
+          if (elapsedTime < duration) {
+            requestAnimationFrame(updateProgress);
+          }
+        };
+
+        requestAnimationFrame(updateProgress);
       }
     }
   }, [activeExpertise]);
@@ -285,7 +295,8 @@ export default function AboutSection() {
           let allCompleted = true;
           achievements.forEach((achievement) => {
             if (newCounts[achievement.title] < achievement.value) {
-              newCounts[achievement.title] += 1;
+              newCounts[achievement.title] +=
+                achievement.title === "Client Base" ? 5 : 1;
               allCompleted = false;
             }
           });
@@ -388,7 +399,7 @@ export default function AboutSection() {
                                     ease: "easeInOut",
                                   }}
                                 >
-                                  {animatedProgress}%
+                                  {Math.round(animatedProgress)}%
                                 </motion.span>
                               </div>
                               <Progress value={animatedProgress} />

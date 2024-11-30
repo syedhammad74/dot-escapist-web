@@ -385,7 +385,7 @@ function ExpertiseCard({ expertise, index, onClick }: ExpertiseCardProps) {
   return (
     <motion.div
       ref={ref}
-      className="group relative p-4 sm:p-6 bg-gray-800/80 backdrop-blur rounded-xl shadow-lg transition-all duration-500 hover:shadow-orange-500/20 border border-gray-700 overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-105"
+      className="group relative p-4 sm:p-6  bg-gray-800/80 backdrop-blur rounded-xl shadow-lg transition-all duration-500 hover:shadow-orange-500/20 border border-gray-700 overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-105"
       variants={{
         hidden: { opacity: 0, y: 50 },
         visible: {

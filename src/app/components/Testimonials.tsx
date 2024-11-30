@@ -42,7 +42,7 @@ const testimonials = [
       "Dot Escapists helped us escape from outdated infrastructure, bringing us cutting-edge solutions that transformed our operations.",
     name: "Emily Clarkson",
     title: "Creative Strategist at Visionary Media",
-    avatar: "/avatar1.png",
+    avatar: "/hammadbhai.png",
     rating: 5,
   },
   {
@@ -50,7 +50,7 @@ const testimonials = [
       "Thanks to Dotescapist, we can now generate high-quality scripts on the web, which helps our social media campaigns immensely.",
     name: "David Kim",
     title: "Social Media Manager at Click Growth",
-    avatar: "/avatar2.png",
+    avatar: "/hammadbhai.png",
     rating: 4,
   },
   {
@@ -58,7 +58,7 @@ const testimonials = [
       "Dotescapist innovative features have given us a competitive edge in our industry. It's an indispensable tool for our team.",
     name: "Alex Thompson",
     title: "CTO at TechInnovate",
-    avatar: "/avatar3.png",
+    avatar: "/hammadbhai.png",
     rating: 5,
   },
   {
@@ -66,7 +66,7 @@ const testimonials = [
       "The customer support team at Dotescapist is exceptional. They've been incredibly helpful in optimizing our use of the platform.",
     name: "Rachel Lee",
     title: "Customer Success Manager at GrowthBoost",
-    avatar: "/avatar4.png",
+    avatar: "/hammadbhai.png",
     rating: 4,
   },
 ];
