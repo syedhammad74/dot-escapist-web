@@ -11,6 +11,7 @@ module.exports = {
     exec_mode: 'fork',
     autorestart: true,
     watch: false,
-    max_memory_restart: '1G'
+    max_memory_restart: '1G',
+    pre_start: 'npm run build'
   }]
 } 
