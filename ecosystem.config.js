@@ -1,7 +1,9 @@
 module.exports = {
   apps: [{
     name: 'dot-escapist-web',
-    script: 'server.js',
+    script: 'npm',
+    args: "run start",
+    cwd: "./",
     env: {
       NODE_ENV: 'production',
       PORT: 3005
