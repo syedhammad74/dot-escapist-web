@@ -1,8 +1,7 @@
 module.exports = {
   apps: [{
     name: 'dot-escapist-web',
-    script: 'node_modules/next/dist/bin/next',
-    args: 'start',
+    script: 'server.js',
     env: {
       NODE_ENV: 'production',
       PORT: 3005
@@ -11,7 +10,6 @@ module.exports = {
     exec_mode: 'fork',
     autorestart: true,
     watch: false,
-    max_memory_restart: '1G',
-    pre_start: 'npm run build'
+    max_memory_restart: '1G'
   }]
 } 
