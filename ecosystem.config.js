@@ -1,10 +1,8 @@
 module.exports = {
   apps: [{
     name: 'dot-escapist-web',
-    script: 'npm',
-    args: "run build && npm run start",
-    interpreter: "/bin/bash",
-    cwd: "./",
+    script: './start-server.sh',
+    cwd: "/root/dot-escapist-web",
     env: {
       NODE_ENV: 'production',
       PORT: 3005
