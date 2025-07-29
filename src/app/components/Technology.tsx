@@ -122,10 +122,15 @@ const Technology = () => {
   return (
     <section
       id="technology"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-sage-50 to-white"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-cyan-50 via-teal-50 to-emerald-50 overflow-hidden"
     >
+      {/* Technology Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-teal-500/5 to-emerald-500/5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(6,182,212,0.08),transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.08),transparent_50%)]" />
+
       <EnhancedDecorations section="technology" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}

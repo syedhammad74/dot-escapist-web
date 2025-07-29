@@ -3,6 +3,7 @@ import Problems from "./components/Problems";
 import Services from "./components/Services";
 import Technology from "./components/Technology";
 import ROI from "./components/ROI";
+import SuccessStories from "./components/SuccessStories";
 import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
 import {
@@ -19,6 +20,7 @@ export default function Home() {
       <Services />
       <Technology />
       <ROI />
+      <SuccessStories />
       <FAQ />
       <CTA />
     </div>

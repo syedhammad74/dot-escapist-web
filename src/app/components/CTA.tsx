@@ -72,10 +72,15 @@ const CTA = () => {
   return (
     <section
       id="CTA"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-sage-50 to-white"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-forest-50 via-sage-50 to-emerald-50 overflow-hidden"
     >
+      {/* CTA Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-forest-500/5 via-sage-500/5 to-emerald-500/5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(35,83,71,0.1),transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(16,185,129,0.1),transparent_50%)]" />
+
       <EnhancedDecorations section="cta" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Panel - Content */}
           <motion.div

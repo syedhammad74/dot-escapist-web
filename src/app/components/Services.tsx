@@ -71,74 +71,74 @@ const Services = () => {
   const services = [
     {
       icon: Building2,
-      title: "Project Management",
+      title: "Project Management Hub",
       description:
-        "Complete lifecycle management for precast concrete projects with real-time tracking and collaboration.",
+        "Multi-project dashboard, client portal, stakeholder management, and project templates for accelerated setup.",
       features: [
-        "Real-time project tracking",
-        "Team collaboration tools",
-        "Automated workflows",
-        "Progress monitoring",
+        "Multi-Project Dashboard",
+        "Client Portal with real-time updates",
+        "Stakeholder Management",
+        "Project Templates",
       ],
     },
     {
       icon: Database,
-      title: "Data Management",
+      title: "Intelligent Element Lifecycle Management",
       description:
-        "Centralized data storage with advanced search, version control, and automated backups.",
+        "Complete tracking from design to installation with technical specifications, production control, and quality workflows.",
       features: [
-        "Centralized data storage",
-        "Version control",
-        "Advanced search",
-        "Automated backups",
-      ],
-    },
-    {
-      icon: Cloud,
-      title: "Cloud Platform",
-      description:
-        "Secure cloud-based platform accessible from anywhere with enterprise-grade security.",
-      features: [
-        "24/7 accessibility",
-        "Enterprise security",
-        "Automatic updates",
-        "Scalable infrastructure",
-      ],
-    },
-    {
-      icon: Shield,
-      title: "Security & Compliance",
-      description:
-        "Bank-level security with role-based access control and comprehensive audit trails.",
-      features: [
-        "Role-based access",
-        "Audit trails",
-        "Data encryption",
-        "Compliance ready",
+        "Design Phase Management",
+        "Production Control",
+        "Quality Control Workflows",
+        "Logistics Coordination",
       ],
     },
     {
       icon: BarChart3,
-      title: "Advanced Analytics",
+      title: "Advanced Reporting & Analytics",
       description:
-        "Powerful reporting and analytics tools for data-driven decision making.",
+        "Professional report generation with dual-language support, multiple export formats, and automated distribution.",
       features: [
-        "Custom dashboards",
-        "Real-time reports",
-        "Performance metrics",
-        "Predictive analytics",
+        "Technical Transmittal Reports",
+        "Production Reports",
+        "Delivery & Logistics Reports",
+        "Financial Reports",
+      ],
+    },
+    {
+      icon: Shield,
+      title: "Advanced User Management",
+      description:
+        "Department-based permission structure with role-specific dashboards and complete audit trails.",
+      features: [
+        "Department-based Permissions",
+        "Role-specific Dashboards",
+        "Complete Audit Trails",
+        "Secure Authentication",
+      ],
+    },
+    {
+      icon: Cloud,
+      title: "Data Integration Engine",
+      description:
+        "Bulk Excel import capabilities with intelligent field mapping, validation, and template systems.",
+      features: [
+        "Bulk Excel Import",
+        "Intelligent Field Mapping",
+        "Error Detection",
+        "Template Systems",
       ],
     },
     {
       icon: Users,
-      title: "Team Collaboration",
+      title: "Role-Based Team Collaboration",
       description:
-        "Seamless collaboration tools for teams across different locations and time zones.",
+        "Design, production, quality control, and site teams work together with seamless handoffs between phases.",
       features: [
-        "Real-time messaging",
-        "File sharing",
-        "Task assignment",
-        "Mobile access",
+        "Design Team Focus",
+        "Production Management",
+        "Quality Control",
+        "Site Operations",
       ],
     },
   ];
@@ -146,10 +146,15 @@ const Services = () => {
   return (
     <section
       id="services"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-sage-50 to-white"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 overflow-hidden"
     >
+      {/* Services Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 via-indigo-500/5 to-purple-500/5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_25%_25%,rgba(59,130,246,0.08),transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_75%_75%,rgba(147,51,234,0.08),transparent_50%)]" />
+
       <EnhancedDecorations section="services" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}

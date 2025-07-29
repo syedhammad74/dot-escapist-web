@@ -253,6 +253,52 @@ export const EnhancedDecorations: React.FC<{ section: string }> = ({
         ))}
       </>
     ),
+    "success-stories": (
+      <>
+        {/* Success Stories-specific: Achievement indicators */}
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-16 h-16"
+          animate={{
+            scale: [1, 1.2, 1],
+            rotate: [0, 10, -10, 0],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        >
+          <div className="w-full h-full relative">
+            <div className="absolute inset-0 border-2 border-purple-500/20 rounded-full" />
+            <div className="absolute inset-4 border border-purple-500/15 rounded-full" />
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-purple-500/30 rounded-full" />
+          </div>
+        </motion.div>
+
+        {/* Success stars */}
+        {[...Array(5)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-pink-400/40 rounded-full"
+            style={{
+              left: `${20 + i * 12}%`,
+              top: `${30 + i * 10}%`,
+            }}
+            animate={{
+              scale: [0.5, 1.3, 0.5],
+              opacity: [0.2, 0.5, 0.2],
+            }}
+            transition={{
+              duration: 4 + i * 0.3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: i * 0.2,
+            }}
+          />
+        ))}
+      </>
+    ),
     faq: (
       <>
         {/* FAQ-specific: Question patterns */}

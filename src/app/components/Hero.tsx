@@ -13,7 +13,7 @@ import {
   Cloud,
   Zap,
 } from "lucide-react";
-import HeroAnimation from "@/components/ui/hero-animation";
+import NeuralNetworkHero from "@/components/ui/neural-network-hero";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
 const ForestGradientText: React.FC<{
@@ -116,9 +116,14 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-white via-sage-50 to-white pt-24 sm:pt-28 lg:pt-32">
+    <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-forest-50 via-white to-sage-50 pt-24 sm:pt-28 lg:pt-32 overflow-hidden">
+      {/* Hero Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-forest-500/5 via-transparent to-sage-500/5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_30%_20%,rgba(35,83,71,0.1),transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_80%,rgba(134,163,134,0.1),transparent_50%)]" />
+
       <EnhancedDecorations section="hero" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 xl:gap-24 items-center">
           {/* Left Content */}
           <motion.div
@@ -193,15 +198,15 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Futuristic Construction Animation */}
+          {/* Right Content - Neural Network Animation */}
           <motion.div
             className="flex justify-center lg:justify-end"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="relative">
-              <HeroAnimation />
+            <div className="relative w-full max-w-md lg:max-w-lg">
+              <NeuralNetworkHero />
             </div>
           </motion.div>
         </div>

@@ -195,10 +195,15 @@ const ROI = () => {
   return (
     <section
       id="roi"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-sage-50 via-white to-forest-50"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 overflow-hidden"
     >
+      {/* ROI Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 via-emerald-500/5 to-teal-500/5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(34,197,94,0.08),transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_70%,rgba(20,184,166,0.08),transparent_50%)]" />
+
       <EnhancedDecorations section="roi" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}

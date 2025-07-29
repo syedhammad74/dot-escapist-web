@@ -10,6 +10,8 @@ import {
   FileText,
   Users,
   BarChart3,
+  Database,
+  Shield,
 } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
@@ -75,62 +77,73 @@ const Problems = () => {
   const problems = [
     {
       icon: FileText,
-      title: "Excel Chaos & Data Fragmentation",
+      title: "Excel Sheet Chaos",
       description:
-        "Critical project data scattered across multiple spreadsheets, leading to version conflicts and outdated information.",
-      impact: "High Risk",
+        "Multiple versions floating across different teams with no real-time collaboration and manual data entry consuming hours every day.",
+      impact: "Version control nightmares leading to costly mistakes",
+    },
+    {
+      icon: Database,
+      title: "Data Fragmentation Crisis",
+      description:
+        "Design team works in isolation from production, quality control data stored separately from project files, delivery schedules disconnected from production reality.",
+      impact: "Payment tracking happens in different systems",
+    },
+    {
+      icon: Shield,
+      title: "Security & Integrity Risks",
+      description:
+        "Sensitive project data shared via email and OneDrive with no user role management, no audit trails for quality control decisions.",
+      impact: "Data loss risks with local file storage",
     },
     {
       icon: Clock,
-      title: "Manual Processes & Time Waste",
+      title: "Time Waste Reality",
       description:
-        "Teams spend hours on repetitive data entry and report generation instead of focusing on project delivery.",
-      impact: "Medium Risk",
-    },
-    {
-      icon: Users,
-      title: "Poor Collaboration & Communication",
-      description:
-        "Lack of real-time visibility leads to miscommunication, delays, and costly rework.",
-      impact: "High Risk",
-    },
-    {
-      icon: BarChart3,
-      title: "Inaccurate Reporting & Analytics",
-      description:
-        "Manual reporting processes result in delayed insights and poor decision-making capabilities.",
-      impact: "Medium Risk",
+        "14+ hours per week per employee on non-productive activities with teams constantly searching for the latest project information.",
+      impact: "End-of-day data compilation taking 2-3 hours",
     },
   ];
 
   const costImpacts = [
     {
-      icon: DollarSign,
+      icon: AlertTriangle,
       title: "Project Delays",
-      value: "$50K-200K",
-      description: "Per project due to manual processes",
+      value: "25-40%",
+      description: "Manual processes causing timeline extensions",
+    },
+    {
+      icon: XCircle,
+      title: "Quality Issues",
+      value: "High",
+      description: "Miscommunication leading to rework and client complaints",
+    },
+    {
+      icon: DollarSign,
+      title: "Resource Waste",
+      value: "Significant",
+      description: "Teams working from outdated information",
     },
     {
       icon: TrendingDown,
-      title: "Productivity Loss",
-      value: "25-40%",
-      description: "Time wasted on administrative tasks",
-    },
-    {
-      icon: AlertTriangle,
-      title: "Error Costs",
-      value: "$10K-50K",
-      description: "Per error due to manual data entry",
+      title: "Growth Limitations",
+      value: "Critical",
+      description: "Unable to scale operations efficiently",
     },
   ];
 
   return (
     <section
       id="problems"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-sage-50 via-white to-forest-50"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-red-50 via-orange-50 to-amber-50 overflow-hidden"
     >
+      {/* Problems Background Pattern */}
+      <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 via-orange-500/5 to-amber-500/5" />
+      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_30%,rgba(239,68,68,0.08),transparent_50%)]" />
+      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_80%_70%,rgba(245,158,11,0.08),transparent_50%)]" />
+
       <EnhancedDecorations section="problems" />
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
