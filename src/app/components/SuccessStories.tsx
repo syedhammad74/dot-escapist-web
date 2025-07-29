@@ -108,17 +108,20 @@ const SuccessStories = () => {
 
   const testimonials = [
     {
-      quote: "ICS has transformed our construction management processes. We now have complete visibility into all our projects and can make data-driven decisions that improve our bottom line.",
+      quote:
+        "ICS has transformed our construction management processes. We now have complete visibility into all our projects and can make data-driven decisions that improve our bottom line.",
       author: "Construction Company Executive",
       role: "Executive Leadership",
     },
     {
-      quote: "The reporting capabilities alone have saved us 20+ hours per week. The system pays for itself just in administrative savings.",
+      quote:
+        "The reporting capabilities alone have saved us 20+ hours per week. The system pays for itself just in administrative savings.",
       author: "Project Manager",
       role: "Project Management",
     },
     {
-      quote: "Moving from Excel to ICS was the best business decision we've made. Our clients love the transparency, and our teams are more efficient than ever.",
+      quote:
+        "Moving from Excel to ICS was the best business decision we've made. Our clients love the transparency, and our teams are more efficient than ever.",
       author: "Operations Director",
       role: "Operations",
     },
@@ -127,13 +130,16 @@ const SuccessStories = () => {
   return (
     <section
       id="success-stories"
-      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-purple-50 via-pink-50 to-rose-50 overflow-hidden"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-success-pattern overflow-hidden"
     >
-      {/* Success Stories Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-pink-500/5 to-rose-500/5" />
-      <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_25%_25%,rgba(168,85,247,0.08),transparent_50%)]" />
-      <div className="absolute bottom-0 right-0 w-full h-full bg-[radial-gradient(circle_at_75%_75%,rgba(244,63,94,0.08),transparent_50%)]" />
-      
+      {/* Floating Background Shapes */}
+      <div className="floating-shapes">
+        <div className="floating-shape"></div>
+        <div className="floating-shape"></div>
+        <div className="floating-shape"></div>
+        <div className="floating-shape"></div>
+      </div>
+
       <EnhancedDecorations section="success-stories" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl relative z-10">
         <motion.div
@@ -159,8 +165,8 @@ const SuccessStories = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Success metrics from current implementations showing measurable impact
-            on construction management efficiency and project delivery.
+            Success metrics from current implementations showing measurable
+            impact on construction management efficiency and project delivery.
           </motion.p>
         </motion.div>
 
@@ -262,4 +268,4 @@ const SuccessStories = () => {
   );
 };
 
-export default SuccessStories; 
+export default SuccessStories;

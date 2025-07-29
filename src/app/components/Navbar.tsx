@@ -37,10 +37,9 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
         href={href}
         onClick={handleClick}
         className={cn(
-          "px-4 py-2.5 text-sm font-semibold transition-all duration-300 relative",
-          "hover:text-forest-600 hover:bg-gradient-to-r hover:from-forest-50 hover:to-sage-50 rounded-xl",
-          "text-forest-700 border border-transparent hover:border-forest-200/50",
-          "backdrop-blur-sm"
+          "px-3 py-2 text-sm font-medium transition-all duration-300 relative",
+          "hover:text-forest-600 hover:bg-forest-50/80 rounded-lg",
+          "text-forest-700"
         )}
       >
         {label}
@@ -48,8 +47,8 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
           {isHovered && (
             <motion.div
               layoutId="navIndicator"
-              className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-forest-500 via-sage-400 to-forest-600 rounded-full"
-              style={{ bottom: "-1px" }}
+              className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-forest-500 to-sage-400 rounded-full"
+              style={{ bottom: "-2px" }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               exit={{ scaleX: 0 }}
@@ -150,38 +149,13 @@ export default function Navbar() {
                   <motion.div
                     whileHover={{ scale: 1.05, y: -1 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="flex items-center space-x-3"
                   >
-                    <div className="relative">
-                      <CustomLogo size="md" />
-                      <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-forest-500/20 to-sage-400/20 rounded-full blur-xl"
-                        animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.3, 0.6, 0.3],
-                        }}
-                        transition={{
-                          duration: 3,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </div>
-                    <div className="hidden sm:block">
-                      <div className="text-xl font-bold text-forest-800 group-hover:text-forest-600 transition-colors duration-300">
-                        ICS
-                      </div>
-                      <div className="text-xs text-forest-600 group-hover:text-forest-500 transition-colors duration-300 leading-tight">
-                        Integrated Construction
-                        <br />
-                        Solutions
-                      </div>
-                    </div>
+                    <CustomLogo size="md" />
                   </motion.div>
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden lg:flex items-center space-x-2">
+                <nav className="hidden lg:flex items-center space-x-1">
                   {navItems.map((navItem, index) => (
                     <motion.div
                       key={`link-${index}`}
