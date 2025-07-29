@@ -12,6 +12,7 @@ import {
   BarChart3,
   Database,
   Shield,
+  XCircle,
 } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
