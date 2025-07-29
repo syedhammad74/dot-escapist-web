@@ -10,11 +10,8 @@ import {
   BarChart3,
   Users,
   Target,
-  Zap,
   ArrowUp,
   Calendar,
-  Shield,
-  Database,
 } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 

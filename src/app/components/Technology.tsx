@@ -2,20 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  Database,
-  Cloud,
-  Shield,
-  Globe,
-  Zap,
-  Layers,
-  Cpu,
-  Wifi,
-  Smartphone,
-  Lock,
-  RefreshCw,
-  BarChart3,
-} from "lucide-react";
+import { Database, Cloud, Shield, Smartphone } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
 const TechCard: React.FC<{

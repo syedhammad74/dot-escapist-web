@@ -9,12 +9,7 @@ import {
   Shield,
   BarChart3,
   Users,
-  Clock,
-  Target,
   CheckCircle,
-  Zap,
-  Layers,
-  Globe,
 } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 

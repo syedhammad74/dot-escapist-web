@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence, PanInfo } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { navItems } from "@/constants/nav";
 import { cn } from "@/lib/utils";
@@ -91,15 +91,6 @@ export default function Navbar() {
       section.scrollIntoView({ behavior: "smooth" });
     }
     setMenuOpen(false);
-  };
-
-  const handleDragEnd = (
-    event: MouseEvent | TouchEvent | PointerEvent,
-    info: PanInfo
-  ) => {
-    if (info.offset.x < -50) {
-      setMenuOpen(false);
-    }
   };
 
   return (

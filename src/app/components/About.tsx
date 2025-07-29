@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { motion } from "framer-motion";
 import {
   FileSpreadsheet,
@@ -12,9 +12,7 @@ import {
   Calendar,
   AlertTriangle,
   DollarSign,
-  Users,
   BarChart3,
-  CheckCircle,
 } from "lucide-react";
 
 const ProblemCard = ({
@@ -50,35 +48,6 @@ const ProblemCard = ({
             <span className="text-xs font-medium text-forest-700">{stats}</span>
           </div>
         )}
-      </div>
-    </div>
-  </motion.div>
-);
-
-const CostImpactCard = ({
-  title,
-  value,
-  description,
-  icon: Icon,
-}: {
-  title: string;
-  value: string;
-  description: string;
-  icon: React.ElementType;
-}) => (
-  <motion.div
-    className="bg-gradient-to-br from-forest-50 to-sage-50 border border-forest-200 p-4 rounded-xl shadow-lg"
-    whileHover={{ y: -3 }}
-    transition={{ duration: 0.3 }}
-  >
-    <div className="flex items-center space-x-3">
-      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
-        <Icon className="w-4 h-4 text-white" />
-      </div>
-      <div className="flex-1">
-        <h4 className="text-sm font-semibold text-forest-800">{title}</h4>
-        <div className="text-lg font-bold text-forest-700">{value}</div>
-        <p className="text-forest-600 text-sm">{description}</p>
       </div>
     </div>
   </motion.div>
@@ -129,51 +98,8 @@ const problemsData = [
   },
 ];
 
-const costImpacts = [
-  {
-    title: "Project Delays",
-    value: "25-40%",
-    description: "Timeline extensions due to manual processes",
-    icon: Calendar,
-  },
-  {
-    title: "Quality Issues",
-    value: "35%",
-    description: "Improvement needed in on-time delivery",
-    icon: AlertTriangle,
-  },
-  {
-    title: "Resource Waste",
-    value: "14+ hours/week",
-    description: "Per employee on non-productive activities",
-    icon: Clock,
-  },
-  {
-    title: "Error Costs",
-    value: "$10K-50K",
-    description: "Per error due to manual data entry",
-    icon: DollarSign,
-  },
-];
-
 export default function ProblemsSection() {
-  const [activeProblem, setActiveProblem] = useState(0);
   const problemsRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(false);
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const handleScroll = () => {
-        if (problemsRef.current) {
-          const rect = problemsRef.current.getBoundingClientRect();
-          setIsInView(rect.top < window.innerHeight);
-        }
-      };
-      window.addEventListener("scroll", handleScroll);
-      handleScroll();
-      return () => window.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
 
   return (
     <section
@@ -227,8 +153,8 @@ export default function ProblemsSection() {
           >
             Every day, your teams struggle with disconnected systems, manual
             processes, and data fragmentation. The result? Delayed projects,
-            costly errors, and frustrated teams. Here's what's really happening
-            in your organization.
+            costly errors, and frustrated teams. Here&apos;s what&apos;s really
+            happening in your organization.
           </motion.p>
         </motion.div>
 
@@ -263,9 +189,9 @@ export default function ProblemsSection() {
               Ready to Break Free from the Excel Nightmare?
             </h3>
             <p className="text-forest-600 text-lg mb-4">
-              It's time to transform your construction management from chaos to
-              control. Discover how ICS can eliminate these problems and
-              accelerate your project delivery.
+              It&apos;s time to transform your construction management from
+              chaos to control. Discover how ICS can eliminate these problems
+              and accelerate your project delivery.
             </p>
             <motion.button
               className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"

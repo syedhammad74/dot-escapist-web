@@ -8,8 +8,6 @@ import {
   DollarSign,
   TrendingDown,
   FileText,
-  Users,
-  BarChart3,
   Database,
   Shield,
   XCircle,

@@ -9,8 +9,6 @@ import {
   BarChart3,
   Quote,
   Star,
-  Building2,
-  Users,
 } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
@@ -56,7 +54,7 @@ const TestimonialCard: React.FC<{
       <Quote className="w-6 h-6 text-forest-500 flex-shrink-0 mt-1" />
       <div className="flex-1">
         <p className="text-forest-700 text-sm sm:text-base leading-relaxed italic">
-          "{quote}"
+          &ldquo;{quote}&rdquo;
         </p>
       </div>
     </div>

@@ -6,10 +6,7 @@ import ROI from "./components/ROI";
 import SuccessStories from "./components/SuccessStories";
 import FAQ from "./components/FAQ";
 import CTA from "./components/CTA";
-import {
-  EnhancedDecorations,
-  BackgroundPattern,
-} from "@/components/ui/enhanced-decorations";
+import { BackgroundPattern } from "@/components/ui/enhanced-decorations";
 
 export default function Home() {
   return (

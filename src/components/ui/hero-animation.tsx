@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Building2, Database, Cloud, Zap, Layers } from "lucide-react";
+import { Building2, Database, Cloud, Layers } from "lucide-react";
 
 const HeroAnimation: React.FC = () => {
   return (
