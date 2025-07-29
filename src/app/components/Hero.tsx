@@ -11,9 +11,10 @@ import {
   Shield,
   Database,
   Cloud,
-  Globe,
   Zap,
 } from "lucide-react";
+import HeroAnimation from "@/components/ui/hero-animation";
+import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
 const ForestGradientText: React.FC<{
   children: React.ReactNode;
@@ -33,19 +34,20 @@ const StatCard: React.FC<{
   delay: number;
 }> = ({ icon: Icon, value, label, delay }) => (
   <motion.div
-    className="flex flex-col items-center justify-center space-y-3 bg-white p-5 rounded-xl shadow-lg border border-sage-200"
+    className="flex flex-col items-center justify-center space-y-3 bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-sage-200/50 hover:shadow-2xl hover:border-forest-300/50 transition-all duration-300"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
+    whileHover={{ y: -5, scale: 1.02 }}
   >
-    <div className="p-2.5 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg">
-      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+    <div className="p-3 bg-gradient-to-br from-forest-500 to-sage-400 rounded-xl shadow-lg">
+      <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
     </div>
     <div className="text-center">
-      <div className="text-xl sm:text-2xl font-bold text-forest-700">
+      <div className="text-2xl sm:text-3xl font-bold text-forest-700 mb-1">
         {value}
       </div>
-      <div className="text-xs sm:text-sm text-forest-600 font-medium leading-tight">
+      <div className="text-sm text-forest-600 font-medium leading-tight">
         {label}
       </div>
     </div>
@@ -59,17 +61,18 @@ const FeatureCard: React.FC<{
   delay: number;
 }> = ({ icon: Icon, title, description, delay }) => (
   <motion.div
-    className="bg-white p-5 rounded-xl shadow-lg border border-sage-200"
+    className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-sage-200/50 hover:shadow-2xl hover:border-forest-300/50 transition-all duration-300"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
+    whileHover={{ y: -3, scale: 1.01 }}
   >
-    <div className="flex items-start space-x-3">
-      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
-        <Icon className="w-5 h-5 text-white" />
+    <div className="flex items-start space-x-4">
+      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-400 rounded-xl flex items-center justify-center shadow-lg">
+        <Icon className="w-6 h-6 text-white" />
       </div>
       <div className="flex-1">
-        <h3 className="text-base font-bold text-forest-800 mb-2">{title}</h3>
+        <h3 className="text-lg font-bold text-forest-800 mb-3">{title}</h3>
         <p className="text-forest-600 text-sm leading-relaxed">{description}</p>
       </div>
     </div>
@@ -113,28 +116,29 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-sage-50 to-white pt-24">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+    <section className="relative min-h-[85vh] flex items-center justify-center bg-gradient-to-br from-white via-sage-50 to-white pt-24 sm:pt-28 lg:pt-32">
+      <EnhancedDecorations section="hero" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-20 xl:gap-24 items-center">
           {/* Left Content */}
           <motion.div
-            className="text-center lg:text-left"
+            className="text-center lg:text-left pt-10"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
             <motion.div
-              className="inline-flex items-center gap-2 px-3 py-1.5 bg-forest-500/10 border border-forest-500/20 rounded-full text-forest-700 text-sm font-medium mb-6"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-forest-500/10 border border-forest-500/20 rounded-full text-forest-700 text-sm sm:text-base font-medium mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <Zap className="w-3 h-3" />
+              <Zap className="w-3 h-3 sm:w-4 sm:h-4" />
               Transform Your Construction Management
             </motion.div>
 
             <motion.h1
-              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight"
+              className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-extrabold mb-4 sm:mb-6 leading-tight"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
@@ -145,7 +149,7 @@ const HeroSection: React.FC = () => {
             </motion.h1>
 
             <motion.p
-              className="text-base sm:text-lg lg:text-xl text-forest-600 mb-4 sm:mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+              className="text-sm sm:text-base lg:text-lg text-forest-600 mb-4 sm:mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -161,9 +165,9 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               The complete construction management platform built specifically
-              for precast concrete companies. End data fragmentation, eliminate
-              manual errors, and accelerate project delivery with our proven
-              cloud solution.
+              for precast concrete companies. End data fragmentation,
+              eliminatemanual errors, and accelerate project delivery with
+              proven cloud solution.
             </motion.p>
 
             <motion.div
@@ -189,7 +193,7 @@ const HeroSection: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right Content - Simple Globe Icon */}
+          {/* Right Content - Futuristic Construction Animation */}
           <motion.div
             className="flex justify-center lg:justify-end"
             initial={{ opacity: 0, x: 30 }}
@@ -197,16 +201,14 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
           >
             <div className="relative">
-              <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 flex items-center justify-center">
-                <Globe className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 text-forest-500" />
-              </div>
+              <HeroAnimation />
             </div>
           </motion.div>
         </div>
 
         {/* Key Statistics */}
         <motion.div
-          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-10 sm:mb-12 lg:mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
@@ -264,7 +266,7 @@ const HeroSection: React.FC = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {features.map((feature, index) => (
               <FeatureCard
                 key={index}

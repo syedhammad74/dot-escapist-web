@@ -11,6 +11,7 @@ import {
   Users,
   BarChart3,
 } from "lucide-react";
+import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
 const ProblemCard: React.FC<{
   icon: React.ElementType;
@@ -20,23 +21,24 @@ const ProblemCard: React.FC<{
   delay: number;
 }> = ({ icon: Icon, title, description, impact, delay }) => (
   <motion.div
-    className="bg-white p-5 rounded-xl shadow-lg border border-sage-200"
+    className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-sage-200/50 hover:shadow-2xl hover:border-forest-300/50 transition-all duration-300"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5, delay }}
+    whileHover={{ y: -3, scale: 1.01 }}
   >
-    <div className="flex items-start space-x-3">
-      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
-        <Icon className="w-5 h-5 text-white" />
+    <div className="flex items-start space-x-4">
+      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-400 rounded-xl flex items-center justify-center shadow-lg">
+        <Icon className="w-6 h-6 text-white" />
       </div>
       <div className="flex-1">
-        <h3 className="text-base font-bold text-forest-800 mb-2">{title}</h3>
-        <p className="text-forest-600 text-sm leading-relaxed mb-3">
+        <h3 className="text-lg font-bold text-forest-800 mb-3">{title}</h3>
+        <p className="text-forest-600 text-sm leading-relaxed mb-4">
           {description}
         </p>
-        <div className="inline-flex items-center gap-1 px-2 py-1 bg-forest-50 border border-forest-200 rounded-md">
-          <AlertTriangle className="w-3 h-3 text-forest-500" />
-          <span className="text-xs font-medium text-forest-700">{impact}</span>
+        <div className="inline-flex items-center gap-2 px-3 py-2 bg-forest-50/80 border border-forest-200/50 rounded-lg backdrop-blur-sm">
+          <AlertTriangle className="w-4 h-4 text-forest-500" />
+          <span className="text-sm font-medium text-forest-700">{impact}</span>
         </div>
       </div>
     </div>
@@ -123,8 +125,12 @@ const Problems = () => {
   ];
 
   return (
-    <section className="w-full py-16 sm:py-20 bg-gradient-to-br from-sage-50 via-white to-forest-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    <section
+      id="problems"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-sage-50 via-white to-forest-50"
+    >
+      <EnhancedDecorations section="problems" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
         <motion.div
           className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
@@ -157,7 +163,7 @@ const Problems = () => {
 
         {/* Problems Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
@@ -176,12 +182,12 @@ const Problems = () => {
 
         {/* Cost Impact Section */}
         <motion.div
-          className="mb-12"
+          className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <div className="text-center mb-8">
+          <div className="text-center mb-10">
             <motion.h3
               className="text-2xl sm:text-3xl font-bold text-forest-800 mb-3"
               initial={{ opacity: 0, y: 20 }}
@@ -200,7 +206,7 @@ const Problems = () => {
             </motion.p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8">
             {costImpacts.map((impact, index) => (
               <CostImpactCard
                 key={index}

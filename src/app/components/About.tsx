@@ -1,21 +1,22 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { motion } from "framer-motion";
 import {
   FileSpreadsheet,
-  AlertTriangle,
-  Clock,
-  Shield,
-  Users,
-  TrendingDown,
   Database,
+  Shield,
+  Clock,
   MessageSquare,
+  TrendingDown,
   Calendar,
+  AlertTriangle,
   DollarSign,
+  Users,
+  BarChart3,
+  CheckCircle,
 } from "lucide-react";
 
-// Custom Components
 const ProblemCard = ({
   icon: Icon,
   title,
@@ -30,21 +31,23 @@ const ProblemCard = ({
   className?: string;
 }) => (
   <motion.div
-    className={`p-4 rounded-xl shadow-elegant border border-sage-200/50 backdrop-blur-lg bg-white/90 hover:shadow-luxury transition-all duration-300 ${className}`}
-    whileHover={{ y: -5, scale: 1.02 }}
+    className={`bg-white p-6 rounded-xl shadow-lg border border-sage-200 ${className}`}
+    whileHover={{ y: -5 }}
+    transition={{ duration: 0.3 }}
   >
-    <div className="flex items-start space-x-3">
-      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg">
-        <Icon className="w-5 h-5 text-white" />
+    <div className="flex items-start space-x-4">
+      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
+        <Icon className="w-6 h-6 text-white" />
       </div>
       <div className="flex-1">
-        <h3 className="text-base font-bold text-forest-800 mb-2">{title}</h3>
-        <p className="text-forest-600 text-sm leading-relaxed mb-2">
+        <h3 className="text-lg font-bold text-forest-800 mb-2">{title}</h3>
+        <p className="text-forest-600 text-sm leading-relaxed mb-3">
           {description}
         </p>
         {stats && (
-          <div className="bg-red-50 border border-red-200 rounded-lg p-2">
-            <p className="text-red-700 font-semibold text-xs">{stats}</p>
+          <div className="inline-flex items-center gap-1 px-2 py-1 bg-forest-50 border border-forest-200 rounded-md">
+            <BarChart3 className="w-3 h-3 text-forest-500" />
+            <span className="text-xs font-medium text-forest-700">{stats}</span>
           </div>
         )}
       </div>
@@ -64,16 +67,20 @@ const CostImpactCard = ({
   icon: React.ElementType;
 }) => (
   <motion.div
-    className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-xl p-4 text-center"
-    whileHover={{ scale: 1.05 }}
-    transition={{ type: "spring", stiffness: 300 }}
+    className="bg-gradient-to-br from-forest-50 to-sage-50 border border-forest-200 p-4 rounded-xl shadow-lg"
+    whileHover={{ y: -3 }}
+    transition={{ duration: 0.3 }}
   >
-    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
-      <Icon className="w-6 h-6 text-white" />
+    <div className="flex items-center space-x-3">
+      <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
+        <Icon className="w-4 h-4 text-white" />
+      </div>
+      <div className="flex-1">
+        <h4 className="text-sm font-semibold text-forest-800">{title}</h4>
+        <div className="text-lg font-bold text-forest-700">{value}</div>
+        <p className="text-forest-600 text-sm">{description}</p>
+      </div>
     </div>
-    <h3 className="text-lg font-bold text-forest-800 mb-2">{title}</h3>
-    <div className="text-2xl font-extrabold text-red-600 mb-2">{value}</div>
-    <p className="text-forest-600 text-sm">{description}</p>
   </motion.div>
 );
 
@@ -137,14 +144,14 @@ const costImpacts = [
   },
   {
     title: "Resource Waste",
-    value: "60%",
-    description: "Time spent on non-productive activities",
-    icon: Users,
+    value: "14+ hours/week",
+    description: "Per employee on non-productive activities",
+    icon: Clock,
   },
   {
-    title: "Financial Impact",
-    value: "$50K+",
-    description: "Annual cost per project in inefficiencies",
+    title: "Error Costs",
+    value: "$10K-50K",
+    description: "Per error due to manual data entry",
     icon: DollarSign,
   },
 ];
@@ -181,7 +188,7 @@ export default function ProblemsSection() {
           className="text-center mb-8"
         >
           <motion.h4
-            className="uppercase text-sm sm:text-base text-red-500 font-semibold tracking-widest mb-3"
+            className="uppercase text-sm sm:text-base text-forest-500 font-semibold tracking-widest mb-3"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
@@ -194,7 +201,7 @@ export default function ProblemsSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-700 to-red-600">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-700 to-sage-500">
               Your Current Reality
             </span>
           </motion.h1>
@@ -207,7 +214,7 @@ export default function ProblemsSection() {
             The Hidden Costs of Fragmented Project Management
           </motion.p>
           <motion.div
-            className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-500 to-forest-500 mx-auto mb-4 rounded-full"
+            className="w-16 sm:w-24 h-1 bg-gradient-to-r from-forest-500 to-sage-400 mx-auto mb-4 rounded-full"
             initial={{ width: 0 }}
             animate={{ width: "6rem" }}
             transition={{ duration: 1, delay: 0.8 }}
@@ -249,37 +256,9 @@ export default function ProblemsSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-8"
-        >
-          <div className="text-center mb-6">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-forest-800 mb-3">
-              The True Cost Impact
-            </h2>
-            <p className="text-forest-600 text-lg max-w-2xl mx-auto">
-              These inefficiencies translate directly to your bottom line
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {costImpacts.map((impact, index) => (
-              <CostImpactCard
-                key={index}
-                title={impact.title}
-                value={impact.value}
-                description={impact.description}
-                icon={impact.icon}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-red-50 to-forest-50 border border-red-200/50 rounded-2xl p-6 max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-forest-50 to-sage-50 border border-forest-200 rounded-2xl p-6 max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-forest-800 mb-3">
               Ready to Break Free from the Excel Nightmare?
             </h3>
@@ -289,9 +268,9 @@ export default function ProblemsSection() {
               accelerate your project delivery.
             </p>
             <motion.button
-              className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
               See the Solution
             </motion.button>

@@ -22,6 +22,7 @@ import {
   ArrowRight,
   Target,
 } from "lucide-react";
+import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
 const CTA = () => {
   const [formData, setFormData] = useState({
@@ -71,9 +72,10 @@ const CTA = () => {
   return (
     <section
       id="CTA"
-      className="w-full py-16 sm:py-20 bg-gradient-to-br from-white via-sage-50 to-white"
+      className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-sage-50 to-white"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <EnhancedDecorations section="cta" />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Panel - Content */}
           <motion.div

@@ -3,22 +3,22 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Building2,
   Database,
   Cloud,
   Shield,
-  BarChart3,
-  Users,
-  Clock,
-  Target,
-  CheckCircle,
+  Globe,
   Zap,
   Layers,
-  Globe,
+  Cpu,
+  Wifi,
+  Smartphone,
+  Lock,
+  RefreshCw,
+  BarChart3,
 } from "lucide-react";
 import { EnhancedDecorations } from "@/components/ui/enhanced-decorations";
 
-const ServiceCard: React.FC<{
+const TechCard: React.FC<{
   icon: React.ElementType;
   title: string;
   description: string;
@@ -41,7 +41,7 @@ const ServiceCard: React.FC<{
           <h3 className="text-xl font-bold text-forest-800 mb-3 leading-tight">
             {title}
           </h3>
-          <p className="text-forest-600 text-sm sm:text-base leading-relaxed">
+          <p className="text-forest-600 text-sm sm:text-base leading-relaxed mb-6">
             {description}
           </p>
         </div>
@@ -56,7 +56,7 @@ const ServiceCard: React.FC<{
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.3, delay: delay + 0.1 * (index + 1) }}
           >
-            <CheckCircle className="w-4 h-4 text-forest-500 flex-shrink-0 mt-0.5" />
+            <div className="w-2 h-2 bg-forest-500 rounded-full flex-shrink-0 mt-2" />
             <span className="text-sm sm:text-base text-forest-700 leading-relaxed">
               {feature}
             </span>
@@ -67,88 +67,64 @@ const ServiceCard: React.FC<{
   </motion.div>
 );
 
-const Services = () => {
-  const services = [
-    {
-      icon: Building2,
-      title: "Project Management",
-      description:
-        "Complete lifecycle management for precast concrete projects with real-time tracking and collaboration.",
-      features: [
-        "Real-time project tracking",
-        "Team collaboration tools",
-        "Automated workflows",
-        "Progress monitoring",
-      ],
-    },
+const Technology = () => {
+  const techStack = [
     {
       icon: Database,
-      title: "Data Management",
+      title: "Cloud-Native Foundation",
       description:
-        "Centralized data storage with advanced search, version control, and automated backups.",
+        "Built on enterprise-grade infrastructure with PostgreSQL database and auto-scaling cloud architecture.",
       features: [
-        "Centralized data storage",
-        "Version control",
-        "Advanced search",
-        "Automated backups",
+        "PostgreSQL Database for reliability",
+        "Auto-scaling with 99.9% uptime",
+        "Global access with internet connectivity",
+        "Mobile responsive across all devices",
       ],
     },
     {
       icon: Cloud,
-      title: "Cloud Platform",
+      title: "Integration Capabilities",
       description:
-        "Secure cloud-based platform accessible from anywhere with enterprise-grade security.",
+        "Seamless integration with existing systems through REST API and webhook support.",
       features: [
-        "24/7 accessibility",
-        "Enterprise security",
-        "Automatic updates",
-        "Scalable infrastructure",
+        "Complete REST API access",
+        "Real-time webhook notifications",
+        "ERP system integration",
+        "Multiple export formats",
+      ],
+    },
+    {
+      icon: Smartphone,
+      title: "Modern User Experience",
+      description:
+        "Intuitive interface designed for non-technical users with advanced search and real-time updates.",
+      features: [
+        "Responsive design for all devices",
+        "Intuitive interface design",
+        "Advanced search capabilities",
+        "Real-time data synchronization",
       ],
     },
     {
       icon: Shield,
       title: "Security & Compliance",
       description:
-        "Bank-level security with role-based access control and comprehensive audit trails.",
+        "Enterprise-grade security with JWT authentication, encrypted data, and comprehensive audit trails.",
       features: [
-        "Role-based access",
-        "Audit trails",
-        "Data encryption",
-        "Compliance ready",
-      ],
-    },
-    {
-      icon: BarChart3,
-      title: "Advanced Analytics",
-      description:
-        "Powerful reporting and analytics tools for data-driven decision making.",
-      features: [
-        "Custom dashboards",
-        "Real-time reports",
-        "Performance metrics",
-        "Predictive analytics",
-      ],
-    },
-    {
-      icon: Users,
-      title: "Team Collaboration",
-      description:
-        "Seamless collaboration tools for teams across different locations and time zones.",
-      features: [
-        "Real-time messaging",
-        "File sharing",
-        "Task assignment",
-        "Mobile access",
+        "JWT Token Authentication",
+        "Encrypted data in transit and at rest",
+        "Automated daily backups",
+        "Complete activity logging",
       ],
     },
   ];
 
   return (
     <section
-      id="services"
+      id="technology"
       className="relative w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-sage-50 to-white"
     >
-      <EnhancedDecorations section="services" />
+      <EnhancedDecorations section="technology" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 max-w-7xl">
         <motion.div
           className="text-center mb-12"
@@ -162,11 +138,10 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            Complete{" "}
+            Built on{" "}
             <span className="bg-gradient-to-r from-forest-500 to-sage-400 text-transparent bg-clip-text">
-              Construction Management
-            </span>{" "}
-            Platform
+              Modern, Scalable Architecture
+            </span>
           </motion.h2>
           <motion.p
             className="text-lg text-forest-600 max-w-3xl mx-auto"
@@ -174,25 +149,26 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            Everything you need to manage your precast concrete projects
-            efficiently, from initial planning to final delivery.
+            ICS is built on enterprise-grade technology that ensures
+            reliability, security, and scalability for your growing business
+            needs.
           </motion.p>
         </motion.div>
 
-        {/* Services Grid */}
+        {/* Technology Grid */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          {services.map((service, index) => (
-            <ServiceCard
+          {techStack.map((tech, index) => (
+            <TechCard
               key={index}
-              icon={service.icon}
-              title={service.title}
-              description={service.description}
-              features={service.features}
+              icon={tech.icon}
+              title={tech.title}
+              description={tech.description}
+              features={tech.features}
               delay={0.1 * (index + 1)}
             />
           ))}
@@ -211,7 +187,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.9 }}
           >
-            Ready to Experience the Full Platform?
+            Ready to Experience Enterprise-Grade Technology?
           </motion.h3>
           <motion.p
             className="text-forest-600 mb-6 max-w-2xl mx-auto"
@@ -219,8 +195,8 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.0 }}
           >
-            See all these features in action with a personalized demo tailored
-            to your specific workflows.
+            See how our modern architecture can transform your construction
+            management and scale with your business growth.
           </motion.p>
           <motion.button
             className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"
@@ -230,7 +206,7 @@ const Services = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
           >
-            Schedule Full Platform Demo
+            Schedule Technical Demo
           </motion.button>
         </motion.div>
       </div>
@@ -238,4 +214,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default Technology;

@@ -1,143 +1,105 @@
 "use client";
 
-import React, { forwardRef } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { usePerformance } from "@/lib/performance";
 
-interface EnhancedButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface EnhancedButtonProps {
+  children: React.ReactNode;
   variant?:
     | "default"
-    | "glass"
+    | "secondary"
     | "outline"
     | "ghost"
     | "destructive"
     | "luxury";
   size?: "sm" | "default" | "lg" | "icon";
-  loading?: boolean;
-  icon?: React.ReactNode;
-  iconPosition?: "left" | "right";
   animated?: boolean;
   glassEffect?: boolean;
   spotlight?: boolean;
+  className?: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
-const buttonVariants = {
-  default:
-    "bg-primary-green text-white hover:bg-primary-green/90 shadow-primary hover:shadow-primary/50",
-  glass:
-    "glass bg-white/80 text-primary-green hover:bg-white/90 backdrop-blur-md",
-  outline:
-    "border-2 border-primary-green text-primary-green hover:bg-primary-green hover:text-white",
-  ghost:
-    "text-primary-green hover:bg-primary-green/10 hover:text-primary-green/80",
-  destructive: "bg-red-500 text-white hover:bg-red-600 shadow-red-500/30",
+const variantStyles = {
+  default: "bg-forest-500 text-white hover:bg-forest-600 shadow-forest-500/30",
+  secondary: "bg-sage-400 text-white hover:bg-sage-500 shadow-sage-400/30",
+  outline: "border-2 border-forest-500 text-forest-500 hover:bg-forest-50",
+  ghost: "text-forest-600 hover:bg-forest-50",
+  destructive:
+    "bg-forest-600 text-white hover:bg-forest-700 shadow-forest-600/30",
   luxury:
-    "luxury-card bg-gradient-to-r from-primary-green to-medium-green text-white hover:from-medium-green hover:to-primary-green",
+    "bg-gradient-to-r from-forest-500 to-sage-400 text-white hover:from-forest-600 hover:to-sage-500 shadow-forest-500/30",
 };
 
-const buttonSizes = {
-  sm: "h-9 px-3 text-sm rounded-md",
-  default: "h-10 px-4 py-2 rounded-lg",
-  lg: "h-11 px-8 py-3 text-lg rounded-xl",
-  icon: "h-10 w-10 rounded-lg",
+const sizeStyles = {
+  sm: "px-3 py-1.5 text-sm",
+  default: "px-4 py-2 text-base",
+  lg: "px-6 py-3 text-lg",
+  icon: "p-2 w-10 h-10",
 };
 
-export const EnhancedButton = forwardRef<
-  HTMLButtonElement,
-  EnhancedButtonProps
->(
-  (
-    {
-      className,
-      variant = "default",
-      size = "default",
-      loading = false,
-      icon,
-      iconPosition = "left",
-      animated = true,
-      glassEffect = false,
-      spotlight = false,
-      children,
-      disabled,
-      ...props
-    },
-    ref
-  ) => {
-    const { measureRender } = usePerformance();
+export const EnhancedButton: React.FC<EnhancedButtonProps> = ({
+  children,
+  variant = "default",
+  size = "default",
+  animated = true,
+  glassEffect = false,
+  spotlight = false,
+  className,
+  onClick,
+  disabled = false,
+  type = "button",
+}) => {
+  const baseClasses = cn(
+    "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-forest-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed",
+    variantStyles[variant],
+    sizeStyles[size],
+    glassEffect && "backdrop-blur-sm bg-white/80 border border-white/20",
+    spotlight && "relative overflow-hidden",
+    className
+  );
 
-    React.useEffect(() => {
-      return measureRender("EnhancedButton");
-    }, [measureRender]);
+  const buttonContent = (
+    <>
+      {spotlight && (
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+          initial={{ x: "-100%" }}
+          whileHover={{ x: "100%" }}
+          transition={{ duration: 0.6 }}
+        />
+      )}
+      <span className="relative z-10">{children}</span>
+    </>
+  );
 
-    const baseClasses = cn(
-      "inline-flex items-center justify-center whitespace-nowrap font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-green focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
-      buttonVariants[variant],
-      buttonSizes[size],
-      {
-        glass: glassEffect,
-        spotlight: spotlight,
-        "animate-pulse": loading,
-      },
-      className
-    );
-
-    const buttonContent = (
-      <>
-        {loading && (
-          <motion.div
-            className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-          />
-        )}
-        {icon && iconPosition === "left" && !loading && (
-          <span className="mr-2">{icon}</span>
-        )}
-        {children}
-        {icon && iconPosition === "right" && (
-          <span className="ml-2">{icon}</span>
-        )}
-      </>
-    );
-
-    if (animated) {
-      return (
-        <motion.button
-          ref={ref}
-          className={baseClasses}
-          disabled={disabled || loading}
-          whileHover={{
-            scale: 1.02,
-            y: -2,
-          }}
-          whileTap={{
-            scale: 0.98,
-          }}
-          transition={{
-            type: "spring",
-            stiffness: 400,
-            damping: 17,
-          }}
-          {...props}
-        >
-          {buttonContent}
-        </motion.button>
-      );
-    }
-
+  if (animated) {
     return (
-      <button
-        ref={ref}
+      <motion.button
+        type={type}
         className={baseClasses}
-        disabled={disabled || loading}
-        {...props}
+        onClick={onClick}
+        disabled={disabled}
+        whileHover={{ scale: 1.02, y: -1 }}
+        whileTap={{ scale: 0.98 }}
+        transition={{ duration: 0.2 }}
       >
         {buttonContent}
-      </button>
+      </motion.button>
     );
   }
-);
 
-EnhancedButton.displayName = "EnhancedButton";
+  return (
+    <button
+      type={type}
+      className={baseClasses}
+      onClick={onClick}
+      disabled={disabled}
+    >
+      {buttonContent}
+    </button>
+  );
+};

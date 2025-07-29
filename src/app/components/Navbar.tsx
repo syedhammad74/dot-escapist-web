@@ -3,15 +3,26 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 import { navItems } from "@/constants/nav";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, X, Search, Bell, Globe } from "lucide-react";
+import { Menu, X, Search, Bell } from "lucide-react";
+import CustomLogo from "@/components/ui/custom-logo";
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
   const [isHovered, setIsHovered] = useState(false);
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   return (
     <motion.div
@@ -24,6 +35,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
     >
       <Link
         href={href}
+        onClick={handleClick}
         className={cn(
           "px-3 py-2 text-sm font-medium transition-all duration-300 relative",
           "hover:text-forest-500 hover:bg-forest-500/5 rounded-lg",
@@ -126,61 +138,31 @@ export default function Navbar() {
               damping: 40,
             }}
           >
-            <div className="px-6 py-3">
-              <div className="flex items-center justify-between h-14">
+            <div className="px-4 sm:px-6 lg:px-8 py-3">
+              <div className="flex items-center justify-between h-14 sm:h-16">
                 {/* Logo */}
                 <Link
                   href="/"
-                  className="flex items-center space-x-3 hover:scale-105 transition-transform duration-200 ease-in-out"
+                  className="hover:scale-105 transition-transform duration-200 ease-in-out"
                   aria-label="Home"
                 >
                   <motion.div
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.2 }}
-                    className="flex items-center space-x-3"
                   >
-                    <div className="relative">
-                      <Image
-                        src="/ics.png"
-                        alt="ICS - Integrated Construction Solutions Logo"
-                        width={36}
-                        height={36}
-                        className="w-9 h-9"
-                        loading="lazy"
-                      />
-                      <motion.div
-                        className="absolute -inset-1 bg-gradient-to-r from-forest-500 to-sage-400 rounded-full opacity-20 blur-sm"
-                        animate={{
-                          scale: [1, 1.1, 1],
-                          opacity: [0.2, 0.3, 0.2],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </div>
-                    <div className="hidden sm:block">
-                      <div className="text-lg font-bold text-forest-800">
-                        ICS
-                      </div>
-                      <div className="text-xs text-forest-600 -mt-1">
-                        Integrated Construction Solutions
-                      </div>
-                    </div>
+                    <CustomLogo size="md" />
                   </motion.div>
                 </Link>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden lg:flex items-center space-x-1">
                   {navItems.map((navItem, index) => (
-            <motion.div
+                    <motion.div
                       key={`link-${index}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
+                      transition={{
+                        duration: 0.5,
                         delay: index * 0.1,
                         ease: "easeOut",
                       }}
@@ -280,7 +262,7 @@ export default function Navbar() {
                                 transition={{ duration: 0.2 }}
                               >
                                 <X className="h-4 w-4" />
-              </motion.div>
+                              </motion.div>
                             ) : (
                               <motion.div
                                 key="menu"
@@ -290,9 +272,9 @@ export default function Navbar() {
                                 transition={{ duration: 0.2 }}
                               >
                                 <Menu className="h-4 w-4" />
-            </motion.div>
-          )}
-        </AnimatePresence>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
                         </Button>
                       </motion.div>
                     </SheetTrigger>
@@ -312,23 +294,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: 0.1 }}
                         >
-                          <div className="flex items-center gap-3">
-                            <Image
-                              src="/ics.png"
-                              alt="ICS Logo"
-                              width={28}
-                              height={28}
-                              className="w-7 h-7"
-                            />
-                            <div>
-                              <div className="text-base font-bold text-forest-800">
-                                ICS
-                              </div>
-                              <div className="text-xs text-forest-600">
-                                Integrated Construction Solutions
-                              </div>
-                            </div>
-                          </div>
+                          <CustomLogo size="sm" />
                         </motion.div>
                         <nav className="flex-1">
                           <div className="space-y-2">
@@ -388,7 +354,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-      </motion.header>
+          </motion.header>
         </motion.div>
       )}
     </AnimatePresence>
