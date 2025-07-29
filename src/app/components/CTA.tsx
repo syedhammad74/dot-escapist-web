@@ -16,13 +16,10 @@ import {
 import {
   Mail,
   Phone,
-  MessageSquare,
   Building2,
   Calendar,
   CheckCircle,
   ArrowRight,
-  Users,
-  Clock,
   Target,
 } from "lucide-react";
 
@@ -80,9 +77,9 @@ const CTA = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Left Panel - Content */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="space-y-6"
           >
@@ -91,7 +88,7 @@ const CTA = () => {
                 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-800 leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 viewport={{ once: true }}
               >
                 Ready to Transform Your{" "}
@@ -104,7 +101,7 @@ const CTA = () => {
                 className="text-lg text-forest-600 leading-relaxed"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 viewport={{ once: true }}
               >
                 Take the first step towards eliminating Excel chaos and
@@ -118,7 +115,7 @@ const CTA = () => {
               className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
             >
               <h3 className="text-xl font-semibold text-forest-800">
@@ -131,7 +128,7 @@ const CTA = () => {
                     className="flex items-start space-x-3"
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                    transition={{ duration: 0.4, delay: 0.5 + index * 0.1 }}
                     viewport={{ once: true }}
                   >
                     <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
@@ -155,7 +152,7 @@ const CTA = () => {
               className="space-y-4"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
               viewport={{ once: true }}
             >
               <h3 className="text-xl font-semibold text-forest-800">
@@ -191,12 +188,12 @@ const CTA = () => {
 
           {/* Right Panel - Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
+            initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-white/95 backdrop-blur-lg border border-sage-200/50 shadow-xl">
+            <Card className="bg-white border border-sage-200 shadow-lg">
               <CardHeader className="space-y-2">
                 <CardTitle className="text-2xl font-bold text-forest-800">
                   Schedule Your Personalized Demo
@@ -342,7 +339,7 @@ const CTA = () => {
 
                   <motion.button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                    className="w-full bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 flex items-center justify-center space-x-2"
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -356,7 +353,7 @@ const CTA = () => {
                   className="mt-6 p-4 bg-gradient-to-r from-forest-50 to-sage-50 border border-forest-200 rounded-lg"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.8 }}
+                  transition={{ duration: 0.5, delay: 0.8 }}
                   viewport={{ once: true }}
                 >
                   <div className="flex items-start space-x-3">
