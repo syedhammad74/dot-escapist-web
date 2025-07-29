@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 // Lazy load components for better performance
 const Hero = lazy(() => import("./components/Hero"));
+const VideoDemo = lazy(() => import("./components/VideoDemo"));
 const Problems = lazy(() => import("./components/Problems"));
 const Services = lazy(() => import("./components/Services"));
 const Technology = lazy(() => import("./components/Technology"));
@@ -44,6 +45,11 @@ const HomePage: React.FC = React.memo(() => {
         {/* Hero Section */}
         <Suspense fallback={<LoadingSpinner />}>
           <Hero />
+        </Suspense>
+
+        {/* Video Demo Section */}
+        <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+          <VideoDemo />
         </Suspense>
 
         {/* Problems Section */}
