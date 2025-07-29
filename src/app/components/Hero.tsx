@@ -112,10 +112,10 @@ const Hero: React.FC = () => {
             className="flex-1 max-w-2xl lg:max-w-3xl space-y-8 lg:space-y-10"
             variants={itemVariants}
           >
-            {/* Perfect Typography Hierarchy */}
+            {/* Perfect Typography Hierarchy - Smaller Text */}
             <div className="space-y-6">
               <motion.h1
-                className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight"
+                className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight"
                 variants={itemVariants}
               >
                 <span className="text-forest-900">Stop Managing</span>
@@ -128,7 +128,7 @@ const Hero: React.FC = () => {
               </motion.h1>
 
               <motion.p
-                className="text-lg sm:text-xl lg:text-2xl text-neutral-600 leading-relaxed max-w-3xl"
+                className="text-base sm:text-lg lg:text-xl text-neutral-600 leading-relaxed max-w-3xl"
                 variants={itemVariants}
               >
                 Transform your construction management with our AI-powered
@@ -180,7 +180,7 @@ const Hero: React.FC = () => {
                   <div className="flex items-center justify-center w-12 h-12 mx-auto bg-forest-100 rounded-xl">
                     <stat.icon className="w-6 h-6 text-forest-600" />
                   </div>
-                  <div className="text-2xl lg:text-3xl font-bold text-forest-900">
+                  <div className="text-xl lg:text-2xl font-bold text-forest-900">
                     {stat.value}
                   </div>
                   <div className="text-sm lg:text-base text-neutral-600 font-medium">
@@ -205,7 +205,7 @@ const Hero: React.FC = () => {
                     <div className="flex-shrink-0 w-5 h-5 bg-forest-500 rounded-full flex items-center justify-center">
                       <CheckCircle className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-neutral-700 font-medium">
+                    <span className="text-neutral-700 font-medium text-sm lg:text-base">
                       {feature}
                     </span>
                   </motion.div>

@@ -11,17 +11,17 @@
   --golden-ratio-small: 1.618;
   --golden-ratio-large: 2.618;
 
-  /* 8px Grid System */
-  --grid-unit: 0.5rem; /* 8px base unit */
+  /* 8px Grid System - 10% Bigger */
+  --grid-unit: 0.55rem; /* 8.8px base unit - 10% bigger */
 
-  /* Perfect Spacing Scale (Golden Ratio Progression) */
-  --space-xs: 0.25rem; /* 4px */
-  --space-sm: 0.5rem; /* 8px */
-  --space-md: 0.809rem; /* 12.944px - Golden ratio of 8px */
-  --space-lg: 1.309rem; /* 20.944px - Golden ratio of 12.944px */
-  --space-xl: 2.118rem; /* 33.888px - Golden ratio of 20.944px */
-  --space-2xl: 3.427rem; /* 54.832px - Golden ratio of 33.888px */
-  --space-3xl: 5.545rem; /* 88.72px - Golden ratio of 54.832px */
+  /* Perfect Spacing Scale (Golden Ratio Progression) - 10% Bigger */
+  --space-xs: 0.275rem; /* 4.4px - 10% bigger */
+  --space-sm: 0.55rem; /* 8.8px - 10% bigger */
+  --space-md: 0.89rem; /* 14.24px - Golden ratio of 8.8px */
+  --space-lg: 1.44rem; /* 23.04px - Golden ratio of 14.24px */
+  --space-xl: 2.33rem; /* 37.28px - Golden ratio of 23.04px */
+  --space-2xl: 3.77rem; /* 60.32px - Golden ratio of 37.28px */
+  --space-3xl: 6.1rem; /* 97.6px - Golden ratio of 60.32px */
 
   /* Perfect Typography Scale */
   --font-size-xs: 0.75rem; /* 12px */
@@ -69,22 +69,22 @@
 
 /* ===== BASE STYLES ===== */
 @layer base {
-html {
+  html {
     font-size: 16px;
     line-height: var(--line-height-normal);
     text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
-}
+  }
 
-body {
+  body {
     font-family: "GeistSans", -apple-system, BlinkMacSystemFont, "Segoe UI",
       Roboto, sans-serif;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
-  color: var(--text-primary);
-  background-color: var(--background);
+    color: var(--text-primary);
+    background-color: var(--background);
     overflow-x: hidden;
   }
 
@@ -102,21 +102,21 @@ body {
   }
 
   /* Perfect Scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-    height: 8px;
-}
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
 
-::-webkit-scrollbar-track {
+  ::-webkit-scrollbar-track {
     background: var(--neutral-100);
-}
+  }
 
-::-webkit-scrollbar-thumb {
+  ::-webkit-scrollbar-thumb {
     background: var(--neutral-300);
     border-radius: var(--radius-full);
-}
+  }
 
-::-webkit-scrollbar-thumb:hover {
+  ::-webkit-scrollbar-thumb:hover {
     background: var(--neutral-400);
   }
 }
@@ -124,43 +124,43 @@ body {
 /* ===== COMPONENT STYLES ===== */
 @layer components {
   /* Perfect Container */
-.container {
-  width: 100%;
+  .container {
+    width: 100%;
     margin: 0 auto;
-    padding: 0 var(--space-md);
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
+    padding: 0 var(--space-lg);
   }
-}
 
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
     }
   }
 
-  /* Perfect Button System */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+    }
+  }
+
+  /* Perfect Button System - 10% Bigger */
   .btn {
     display: inline-flex;
     align-items: center;
@@ -174,41 +174,41 @@ body {
   }
 
   .btn-xs {
-    height: 32px;
-    padding: 0 12px;
+    height: 35px;
+    padding: 0 13px;
     font-size: var(--font-size-xs);
-    line-height: 16px;
+    line-height: 18px;
   }
 
   .btn-sm {
-    height: 36px;
-    padding: 0 16px;
+    height: 40px;
+    padding: 0 18px;
     font-size: var(--font-size-sm);
-    line-height: 20px;
+    line-height: 22px;
   }
 
   .btn-md {
-    height: 40px;
-    padding: 0 20px;
+    height: 44px;
+    padding: 0 22px;
     font-size: var(--font-size-base);
-    line-height: 24px;
+    line-height: 26px;
   }
 
   .btn-lg {
-    height: 48px;
-    padding: 0 24px;
+    height: 53px;
+    padding: 0 26px;
     font-size: var(--font-size-lg);
-    line-height: 28px;
+    line-height: 31px;
   }
 
   .btn-xl {
-    height: 56px;
-    padding: 0 32px;
+    height: 62px;
+    padding: 0 35px;
     font-size: var(--font-size-xl);
-    line-height: 32px;
+    line-height: 35px;
   }
 
-  /* Perfect Card System */
+  /* Perfect Card System - 10% Bigger */
   .card {
     background: white;
     border-radius: var(--radius-xl);
@@ -218,29 +218,29 @@ body {
   }
 
   .card-sm {
-    padding: var(--space-md);
-    min-height: 120px;
+    padding: var(--space-lg);
+    min-height: 132px;
   }
 
   .card-md {
-    padding: var(--space-lg);
-    min-height: 160px;
+    padding: var(--space-xl);
+    min-height: 176px;
   }
 
   .card-lg {
-    padding: var(--space-xl);
-    min-height: 200px;
+    padding: var(--space-2xl);
+    min-height: 220px;
   }
 
   .card-xl {
-    padding: var(--space-2xl);
-    min-height: 240px;
+    padding: var(--space-3xl);
+    min-height: 264px;
   }
 
   /* Perfect Grid System */
   .grid-perfect {
     display: grid;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
   }
 
   .grid-cols-1 {
