@@ -15,11 +15,6 @@ const FAQ = lazy(() => import("./components/FAQ"));
 const CTA = lazy(() => import("./components/CTA"));
 const Navbar = lazy(() => import("./components/Navbar"));
 const Footer = lazy(() => import("./components/Footer"));
-const BackgroundPattern = lazy(() =>
-  import("@/components/ui/enhanced-decorations").then((module) => ({
-    default: module.BackgroundPattern,
-  }))
-);
 
 // Loading component
 const LoadingSpinner = () => (
@@ -28,13 +23,10 @@ const LoadingSpinner = () => (
   </div>
 );
 
-// Optimized page component
+// Optimized page component - Updated
 const HomePage: React.FC = React.memo(() => {
   return (
     <div className="min-h-screen bg-white">
-      {/* Global Background Pattern */}
-      <BackgroundPattern />
-
       {/* Navigation */}
       <Suspense fallback={<div className="h-16 bg-white" />}>
         <Navbar />

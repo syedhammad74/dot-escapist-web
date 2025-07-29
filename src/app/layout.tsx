@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#235347",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+};
 
 export const metadata: Metadata = {
   title: "ICS - Integrated Construction Solutions",
@@ -63,7 +71,6 @@ export const metadata: Metadata = {
     icon: "/favicon.ico",
     apple: "/logo.png",
   },
-  themeColor: "#235347",
   manifest: "/manifest.json",
 };
 
@@ -73,10 +80,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body
-        className={`${GeistSans.className} antialiased bg-white text-forest-900`}
-      >
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable} scroll-smooth`}
+    >
+      <body className="antialiased min-h-screen bg-forest-50 text-forest-900 selection:bg-forest-200/60">
         {children}
       </body>
     </html>

@@ -81,13 +81,18 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
 
   // Optimized animation variants
   const nodeVariants = {
-    hidden: { opacity: 0, scale: 0 },
+    hidden: { opacity: 0, scale: 0.5 },
     visible: { opacity: 1, scale: 1 },
   };
 
   const connectionVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    hidden: { opacity: 0, pathLength: 0 },
+    visible: { opacity: 1, pathLength: 1 },
+  };
+
+  const dataFlowVariants = {
+    hidden: { opacity: 0, pathLength: 0 },
+    visible: { opacity: 1, pathLength: 1 },
   };
 
   return (
@@ -113,62 +118,55 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
           return (
             <motion.div
               key={`connection-${index}`}
-              className="absolute inset-0 pointer-events-none"
+              className="absolute"
               variants={connectionVariants}
               initial="hidden"
               animate="visible"
-              transition={{ duration: 1, delay: index * 0.03 }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: "easeOut",
+              }}
             >
-              {/* Static connection line with weight-based styling */}
-              <div
-                className="absolute bg-gradient-to-r from-teal-500/30 to-blue-400/30 rounded-full"
+              <motion.div
+                className="absolute bg-forest-500/30"
                 style={{
                   left: fromNode.x,
                   top: fromNode.y,
                   width: `calc(${toNode.x} - ${fromNode.x})`,
-                  height: connectionStyle.width,
-                  transform: `rotate(${
-                    (Math.atan2(
-                      parseFloat(toNode.y) - parseFloat(fromNode.y),
-                      parseFloat(toNode.x) - parseFloat(fromNode.x)
-                    ) *
-                      180) /
-                    Math.PI
-                  }deg)`,
-                  transformOrigin: "0 0",
-                  opacity: connectionStyle.opacity,
+                  height: "2px",
+                  transformOrigin: "left center",
+                }}
+                animate={{
+                  scaleX: [0, 1],
+                  opacity: [0, 0.3],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
                 }}
               />
 
               {/* Optimized data flow animation */}
               <motion.div
-                className="absolute bg-gradient-to-r from-teal-500 via-blue-400 to-teal-500 rounded-full"
+                className="absolute"
                 style={{
                   left: fromNode.x,
                   top: fromNode.y,
-                  width: `calc(${toNode.x} - ${fromNode.x})`,
-                  height: connectionStyle.width,
-                  transform: `rotate(${
-                    (Math.atan2(
-                      parseFloat(toNode.y) - parseFloat(fromNode.y),
-                      parseFloat(toNode.x) - parseFloat(fromNode.x)
-                    ) *
-                      180) /
-                    Math.PI
-                  }deg)`,
-                  transformOrigin: "0 0",
                 }}
                 animate={{
-                  scaleX: [0, 1, 0],
-                  opacity: [0, connectionStyle.opacity * 1.2, 0],
+                  x: [0, parseFloat(toNode.x) - parseFloat(fromNode.x)],
+                  opacity: [0, 1, 0],
                 }}
                 transition={{
-                  duration: 2 + connection.weight * 1.5,
+                  duration: 2,
                   repeat: Infinity,
-                  delay: index * 0.1 + Math.random() * 2,
-                  ease: "easeInOut",
+                  ease: "linear",
                 }}
-              />
+              >
+                <div className="w-2 h-2 bg-forest-500 rounded-full" />
+              </motion.div>
 
               {/* Optimized data packets - reduced count for performance */}
               {[...Array(2)].map((_, packetIndex) => (
@@ -178,26 +176,18 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
                   style={{
                     left: fromNode.x,
                     top: fromNode.y,
-                    transform: `rotate(${
-                      (Math.atan2(
-                        parseFloat(toNode.y) - parseFloat(fromNode.y),
-                        parseFloat(toNode.x) - parseFloat(fromNode.x)
-                      ) *
-                        180) /
-                      Math.PI
-                    }deg)`,
                     transformOrigin: "0 0",
                   }}
                   animate={{
-                    x: [0, `calc(${toNode.x} - ${fromNode.x})`],
+                    x: [0, parseFloat(toNode.x) - parseFloat(fromNode.x)],
+                    y: [0, parseFloat(toNode.y) - parseFloat(fromNode.y)],
                     opacity: [0, 1, 0],
                   }}
                   transition={{
-                    duration: 2.5 + connection.weight * 1.5,
+                    duration: 2,
                     repeat: Infinity,
-                    delay:
-                      index * 0.2 + packetIndex * 0.3 + Math.random() * 1.5,
-                    ease: "easeInOut",
+                    delay: index * 0.2 + packetIndex * 0.3,
+                    ease: "linear",
                   }}
                 />
               ))}
@@ -208,180 +198,111 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
         {/* Optimized Neural Nodes */}
         {nodes.map((node) => (
           <motion.div
-            key={node.id}
+            key={`node-${node.id}`}
             className="absolute"
             style={{ left: node.x, top: node.y }}
             variants={nodeVariants}
             initial="hidden"
             animate="visible"
             transition={{
-              duration: 0.8,
+              duration: 0.5,
               delay: node.delay,
-              type: "spring",
-              stiffness: 100,
+              ease: "easeOut",
             }}
           >
-            {/* Node Container */}
+            {/* Node core */}
             <motion.div
-              className="relative"
+              className={`w-5 h-5 rounded-full ${
+                node.type === "input"
+                  ? "bg-forest-500"
+                  : node.type === "output"
+                  ? "bg-forest-600"
+                  : "bg-forest-500"
+              }`}
               animate={{
-                scale: [1, 1.05, 1],
-                opacity: [0.9, 1, 0.9],
+                scale: [1, 1.1, 1],
+                opacity: [0.8, 1, 0.8],
               }}
               transition={{
-                duration: 3,
+                duration: 2,
                 repeat: Infinity,
-                delay: node.delay,
                 ease: "easeInOut",
               }}
-            >
-              {/* Optimized outer rings - reduced count for performance */}
-              {[...Array(2)].map((_, ringIndex) => (
-                <motion.div
-                  key={`ring-${node.id}-${ringIndex}`}
-                  className={`absolute rounded-full border ${
-                    ringIndex === 0
-                      ? "border-teal-500/40"
-                      : "border-blue-400/30"
-                  }`}
-                  style={{
-                    inset: `-${(ringIndex + 1) * 2}px`,
-                  }}
-                  animate={{
-                    scale: [1, 1.15 + ringIndex * 0.05, 1],
-                    opacity: [
-                      0.3 - ringIndex * 0.1,
-                      0.1 - ringIndex * 0.05,
-                      0.3 - ringIndex * 0.1,
-                    ],
-                    rotate: [0, 180, 360],
-                  }}
-                  transition={{
-                    duration: 2.5 + ringIndex * 0.3,
-                    repeat: Infinity,
-                    delay: node.delay + ringIndex * 0.2,
-                    ease: "easeInOut",
-                  }}
-                />
-              ))}
+            />
 
-              {/* Node core with type-based styling using teal/blue colors */}
+            {/* Inner core dot */}
+            <motion.div
+              className="absolute inset-1 bg-white rounded-full opacity-80"
+              animate={{
+                scale: [1, 1.15, 1],
+                opacity: [0.8, 1, 0.8],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                delay: node.delay + 0.3,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Optimized data particles - reduced orbits for performance */}
+            {[...Array(2)].map((_, orbitIndex) => (
               <motion.div
-                className={`w-5 h-5 rounded-full shadow-lg ${
-                  node.type === "input"
-                    ? "bg-gradient-to-br from-teal-500 to-teal-600"
-                    : node.type === "output"
-                    ? "bg-gradient-to-br from-blue-700 to-blue-400"
-                    : "bg-gradient-to-br from-teal-600 to-blue-400"
-                }`}
+                key={`orbit-${node.id}-${orbitIndex}`}
+                className="absolute inset-0"
                 animate={{
-                  scale: [1, 1.1, 1],
-                  boxShadow: [
-                    `0 0 12px ${
-                      node.type === "input"
-                        ? "rgba(12, 150, 156, 0.4)"
-                        : node.type === "output"
-                        ? "rgba(39, 77, 96, 0.4)"
-                        : "rgba(10, 112, 117, 0.4)"
-                    }`,
-                    `0 0 20px ${
-                      node.type === "input"
-                        ? "rgba(12, 150, 156, 0.6)"
-                        : node.type === "output"
-                        ? "rgba(39, 77, 96, 0.6)"
-                        : "rgba(10, 112, 117, 0.6)"
-                    }`,
-                    `0 0 12px ${
-                      node.type === "input"
-                        ? "rgba(12, 150, 156, 0.4)"
-                        : node.type === "output"
-                        ? "rgba(39, 77, 96, 0.4)"
-                        : "rgba(10, 112, 117, 0.4)"
-                    }`,
-                  ],
+                  rotate: 360,
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 12 + orbitIndex * 3,
                   repeat: Infinity,
-                  delay: node.delay,
-                  ease: "easeInOut",
+                  delay: node.delay + orbitIndex * 0.3,
+                  ease: "linear",
                 }}
-              />
-
-              {/* Inner core dot */}
-              <motion.div
-                className="absolute inset-1 bg-white rounded-full opacity-80"
-                animate={{
-                  scale: [1, 1.15, 1],
-                  opacity: [0.8, 1, 0.8],
-                }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  delay: node.delay + 0.3,
-                  ease: "easeInOut",
-                }}
-              />
-
-              {/* Optimized data particles - reduced orbits for performance */}
-              {[...Array(2)].map((_, orbitIndex) => (
-                <motion.div
-                  key={`orbit-${node.id}-${orbitIndex}`}
-                  className="absolute inset-0"
-                  animate={{
-                    rotate: 360,
-                  }}
-                  transition={{
-                    duration: 12 + orbitIndex * 3,
-                    repeat: Infinity,
-                    delay: node.delay + orbitIndex * 0.3,
-                    ease: "linear",
-                  }}
-                >
-                  {[...Array(3)].map((_, particleIndex) => (
-                    <motion.div
-                      key={`particle-${node.id}-${orbitIndex}-${particleIndex}`}
-                      className={`absolute w-1 h-1 rounded-full ${
-                        orbitIndex === 0 ? "bg-blue-400" : "bg-teal-400"
-                      }`}
-                      style={{
-                        left: "50%",
-                        top: "50%",
-                        transform: `rotate(${
-                          particleIndex * 120
-                        }deg) translateY(-${6 + orbitIndex * 2}px)`,
-                      }}
-                      animate={{
-                        scale: [0, 1, 0],
-                        opacity: [0, 0.8, 0],
-                      }}
-                      transition={{
-                        duration: 1.5 + orbitIndex * 0.3,
-                        repeat: Infinity,
-                        delay:
-                          node.delay + orbitIndex * 0.2 + particleIndex * 0.15,
-                        ease: "easeInOut",
-                      }}
-                    />
-                  ))}
-                </motion.div>
-              ))}
-
-              {/* Node type indicator */}
-              <motion.div
-                className={`absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-medium ${
-                  node.type === "input"
-                    ? "text-teal-500"
-                    : node.type === "output"
-                    ? "text-blue-700"
-                    : "text-teal-600"
-                }`}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: node.delay + 0.8 }}
               >
-                {node.type.toUpperCase()}
+                {[...Array(3)].map((_, particleIndex) => (
+                  <motion.div
+                    key={`particle-${node.id}-${orbitIndex}-${particleIndex}`}
+                    className={`absolute w-1 h-1 rounded-full ${
+                      orbitIndex === 0 ? "bg-blue-400" : "bg-teal-400"
+                    }`}
+                    style={{
+                      left: "50%",
+                      top: "50%",
+                      transform: `rotate(${
+                        particleIndex * 120
+                      }deg) translateY(-${6 + orbitIndex * 2}px)`,
+                    }}
+                    animate={{
+                      scale: [0, 1, 0],
+                      opacity: [0, 0.8, 0],
+                    }}
+                    transition={{
+                      duration: 1.5 + orbitIndex * 0.3,
+                      repeat: Infinity,
+                      delay:
+                        node.delay + orbitIndex * 0.2 + particleIndex * 0.15,
+                      ease: "easeInOut",
+                    }}
+                  />
+                ))}
               </motion.div>
+            ))}
+
+            {/* Node type indicator */}
+            <motion.div
+              className={`absolute -top-6 left-1/2 transform -translate-x-1/2 text-xs font-medium ${
+                node.type === "input"
+                  ? "text-teal-500"
+                  : node.type === "output"
+                  ? "text-blue-700"
+                  : "text-teal-600"
+              }`}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: node.delay + 0.8 }}
+            >
+              {node.type.toUpperCase()}
             </motion.div>
           </motion.div>
         ))}
@@ -398,10 +319,9 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
             animate={{
               y: [0, -25, 0],
               opacity: [0.2, 0.8, 0.2],
-              scaleY: [0.3, 1.3, 0.3],
             }}
             transition={{
-              duration: 4 + index * 0.2,
+              duration: 4,
               repeat: Infinity,
               delay: index * 0.5,
               ease: "easeInOut",
@@ -409,7 +329,7 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
           />
         ))}
 
-        {/* Optimized data clusters - reduced count */}
+        {/* Optimized data clusters */}
         {[...Array(3)].map((_, index) => (
           <motion.div
             key={`cluster-${index}`}
@@ -421,10 +341,9 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
             animate={{
               x: [0, 15, 0],
               y: [0, -10, 0],
-              rotate: [0, 180, 360],
             }}
             transition={{
-              duration: 6 + index * 0.5,
+              duration: 6,
               repeat: Infinity,
               delay: index * 0.6,
               ease: "easeInOut",
@@ -439,7 +358,6 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
                   top: `${dotIndex * 3}px`,
                 }}
                 animate={{
-                  scale: [0, 1, 0],
                   opacity: [0, 0.7, 0],
                 }}
                 transition={{
@@ -453,13 +371,11 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
           </motion.div>
         ))}
 
-        {/* Optimized ambient glow effects - reduced count */}
+        {/* Ambient glow effects */}
         <motion.div
           className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-teal-500/12 to-blue-400/12 rounded-full blur-xl"
           animate={{
-            scale: [1, 1.3, 1],
             opacity: [0.15, 0.5, 0.15],
-            rotate: [0, 180, 360],
           }}
           transition={{
             duration: 6,
@@ -471,9 +387,7 @@ const NeuralNetworkHero: React.FC = React.memo(() => {
         <motion.div
           className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-br from-blue-400/12 to-teal-500/12 rounded-full blur-xl"
           animate={{
-            scale: [1, 1.4, 1],
             opacity: [0.1, 0.4, 0.1],
-            rotate: [0, -180, -360],
           }}
           transition={{
             duration: 8,

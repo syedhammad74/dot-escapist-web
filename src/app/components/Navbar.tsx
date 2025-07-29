@@ -2,10 +2,10 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, Bell, Menu, X, ChevronDown } from "lucide-react";
+import { Search, Bell, Menu, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { navItems } from "@/constants/nav";
-import CustomLogo from "@/components/ui/custom-logo";
+import Image from "next/image";
 
 const Navbar: React.FC = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -40,10 +40,10 @@ const Navbar: React.FC = () => {
     <a
       href={href}
       onClick={(e) => handleSmoothScroll(e, href)}
-      className="px-3 py-2 text-sm font-medium text-teal-700 hover:text-teal-600 hover:bg-teal-50/80 rounded-lg transition-all duration-200 relative group"
+      className="px-3 py-2 text-sm font-medium text-forest-700 hover:text-forest-900 hover:bg-forest-50/80 rounded-lg transition-all duration-200 relative group"
     >
       {children}
-      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-teal-500 to-blue-400 rounded-full transition-all duration-300 group-hover:w-full"></span>
+      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-forest-500 to-forest-600 rounded-full transition-all duration-300 group-hover:w-full"></span>
     </a>
   );
 
@@ -51,36 +51,33 @@ const Navbar: React.FC = () => {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isSticky
-          ? "bg-white/98 backdrop-blur-2xl border-b border-teal-200/60 shadow-2xl"
-          : "bg-white/95 backdrop-blur-xl border-b border-teal-200/50 shadow-lg"
+          ? "bg-white/98 backdrop-blur-2xl border-b border-forest-200/60 shadow-lg"
+          : "bg-white/95 backdrop-blur-xl border-b border-forest-200/50 shadow-md"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between px-6 sm:px-8 lg:px-10 py-4 h-16 sm:h-18">
+        <div className="flex items-center justify-between px-4 sm:px-6 lg:px-8 py-4">
           {/* Logo */}
           <motion.a
             href="#"
             className="flex items-center space-x-3 group"
-            whileHover={{ scale: 1.05, y: -1 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.2 }}
           >
-            <div className="relative">
-              <motion.div
-                className="absolute inset-0 bg-teal-500/20 rounded-full blur-lg"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0.8, 0.5],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
+            <div className="relative w-10 h-10">
+              <Image
+                src="/logo.png"
+                alt="ICS Logo"
+                fill
+                className="object-contain"
+                sizes="40px"
               />
-              <CustomLogo size="md" />
+            </div>
+            <div>
+              <span className="text-xl font-bold text-forest-900">ICS</span>
             </div>
           </motion.a>
 
@@ -97,7 +94,7 @@ const Navbar: React.FC = () => {
           <div className="hidden lg:flex items-center space-x-3">
             {/* Search Button */}
             <motion.button
-              className="relative h-10 w-10 flex items-center justify-center hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 hover:text-teal-600 transition-all duration-300 rounded-xl border border-transparent hover:border-teal-200/50"
+              className="relative h-10 w-10 flex items-center justify-center hover:bg-forest-50 text-forest-600 hover:text-forest-700 transition-all duration-200 rounded-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -106,34 +103,22 @@ const Navbar: React.FC = () => {
 
             {/* Notification Button */}
             <motion.button
-              className="relative h-10 w-10 flex items-center justify-center hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 hover:text-teal-600 transition-all duration-300 rounded-xl border border-transparent hover:border-teal-200/50"
+              className="relative h-10 w-10 flex items-center justify-center hover:bg-forest-50 text-forest-600 hover:text-forest-700 transition-all duration-200 rounded-lg"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               <Bell className="h-5 w-5" />
-              <motion.div
-                className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-teal-500 to-blue-400 rounded-full shadow-lg"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.8, 1, 0.8],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-forest-500 rounded-full" />
             </motion.button>
 
             {/* Separator */}
-            <div className="h-8 w-px bg-gradient-to-b from-transparent via-teal-300 to-transparent" />
+            <div className="h-8 w-px bg-forest-200" />
 
             {/* Schedule Demo Button */}
             <motion.button
-              className="bg-gradient-to-r from-teal-500 via-blue-400 to-teal-600 hover:from-teal-600 hover:via-blue-500 hover:to-teal-700 text-white font-semibold py-3 px-6 text-sm transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl border border-teal-400/20"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="bg-forest-600 hover:bg-forest-700 text-white font-semibold py-2.5 px-5 text-sm transition-all duration-200 rounded-lg shadow-md hover:shadow-lg"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => {
                 const element = document.getElementById("CTA");
                 if (element) {
@@ -149,7 +134,7 @@ const Navbar: React.FC = () => {
           <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild>
               <motion.button
-                className="lg:hidden h-10 w-10 flex items-center justify-center hover:bg-gradient-to-r hover:from-teal-50 hover:to-blue-50 hover:text-teal-600 transition-all duration-300 rounded-xl border border-transparent hover:border-teal-200/50"
+                className="lg:hidden h-10 w-10 flex items-center justify-center hover:bg-forest-50 text-forest-600 hover:text-forest-700 transition-all duration-200 rounded-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -158,22 +143,33 @@ const Navbar: React.FC = () => {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[300px] sm:w-[350px] bg-white/98 backdrop-blur-2xl border-l border-teal-200/60"
+              className="w-[300px] sm:w-[350px] bg-white/98 backdrop-blur-2xl border-l border-forest-200/60"
             >
               <div className="flex flex-col h-full">
                 {/* Mobile Header */}
                 <div className="flex items-center justify-between mb-8">
-                  <CustomLogo size="sm" />
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src="/logo.png"
+                      alt="ICS Logo"
+                      width={32}
+                      height={32}
+                      className="w-8 h-8 object-contain"
+                    />
+                    <span className="text-lg font-bold text-forest-900">
+                      ICS
+                    </span>
+                  </div>
                   <button
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="h-8 w-8 flex items-center justify-center hover:bg-teal-50 rounded-lg transition-colors"
+                    className="h-8 w-8 flex items-center justify-center hover:bg-forest-50 rounded-lg transition-colors text-forest-600 hover:text-forest-700"
                   >
-                    <X className="h-4 w-4 text-teal-700" />
+                    <X className="h-4 w-4" />
                   </button>
                 </div>
 
                 {/* Mobile Navigation */}
-                <nav className="flex-1 space-y-2">
+                <nav className="flex-1 space-y-1">
                   {navItems.map((item) => (
                     <a
                       key={item.name}
@@ -182,7 +178,7 @@ const Navbar: React.FC = () => {
                         handleSmoothScroll(e, item.link);
                         setIsMobileMenuOpen(false);
                       }}
-                      className="block px-4 py-3 text-teal-700 hover:bg-teal-50 rounded-lg transition-colors"
+                      className="block px-4 py-3 text-forest-700 hover:text-forest-900 hover:bg-forest-50 rounded-lg transition-colors"
                     >
                       {item.name}
                     </a>
@@ -190,9 +186,9 @@ const Navbar: React.FC = () => {
                 </nav>
 
                 {/* Mobile Actions */}
-                <div className="space-y-4 pt-8 border-t border-teal-200/50">
+                <div className="space-y-4 pt-6 border-t border-forest-200/50">
                   <button
-                    className="w-full bg-gradient-to-r from-teal-500 to-blue-400 hover:from-teal-600 hover:to-blue-500 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300"
+                    className="w-full bg-forest-600 hover:bg-forest-700 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-200"
                     onClick={() => {
                       const element = document.getElementById("CTA");
                       if (element) {
