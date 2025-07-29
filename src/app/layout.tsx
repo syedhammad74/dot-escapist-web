@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import { MetaTags } from "@/components/seo/meta-tags";
 
 export const metadata: Metadata = {
   title: "ICS - Integrated Construction Solutions",
@@ -60,6 +59,12 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/logo.png",
+  },
+  themeColor: "#235347",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -69,28 +74,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, maximum-scale=5"
-        />
-        <meta name="theme-color" content="#235347" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" href="/logo.png" />
-        <link rel="manifest" href="/manifest.json" />
-      </head>
       <body
         className={`${GeistSans.className} antialiased bg-white text-forest-900`}
       >
-        <MetaTags />
         {children}
       </body>
     </html>

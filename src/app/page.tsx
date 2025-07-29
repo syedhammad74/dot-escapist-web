@@ -5,12 +5,12 @@ import { motion } from "framer-motion";
 
 // Lazy load components for better performance
 const Hero = lazy(() => import("./components/Hero"));
-const VideoDemo = lazy(() => import("./components/VideoDemo"));
 const Problems = lazy(() => import("./components/Problems"));
 const Services = lazy(() => import("./components/Services"));
 const Technology = lazy(() => import("./components/Technology"));
 const ROI = lazy(() => import("./components/ROI"));
 const SuccessStories = lazy(() => import("./components/SuccessStories"));
+const VideoDemo = lazy(() => import("./components/VideoDemo"));
 const FAQ = lazy(() => import("./components/FAQ"));
 const CTA = lazy(() => import("./components/CTA"));
 const Navbar = lazy(() => import("./components/Navbar"));
@@ -47,11 +47,6 @@ const HomePage: React.FC = React.memo(() => {
           <Hero />
         </Suspense>
 
-        {/* Video Demo Section */}
-        <Suspense fallback={<div className="h-96 bg-gray-50" />}>
-          <VideoDemo />
-        </Suspense>
-
         {/* Problems Section */}
         <Suspense fallback={<div className="h-96 bg-gray-50" />}>
           <Problems />
@@ -75,6 +70,11 @@ const HomePage: React.FC = React.memo(() => {
         {/* Success Stories Section */}
         <Suspense fallback={<div className="h-96 bg-gray-50" />}>
           <SuccessStories />
+        </Suspense>
+
+        {/* Video Demo Section */}
+        <Suspense fallback={<div className="h-96 bg-gray-50" />}>
+          <VideoDemo />
         </Suspense>
 
         {/* FAQ Section */}
