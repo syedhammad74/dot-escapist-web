@@ -1,60 +1,39 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import Navbar from "./components/Navbar";
-import { performanceMonitor } from "@/lib/performance";
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-  display: "swap",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-  display: "swap",
-});
+import { MetaTags } from "@/components/seo/meta-tags";
 
 export const metadata: Metadata = {
-  title:
-    "ICS - Integrated Construction Solutions | Construction Management Platform",
+  title: "ICS - Integrated Construction Solutions",
   description:
-    "Transform your precast concrete projects from Excel chaos to cloud control. The complete construction management platform built specifically for precast concrete companies.",
-  keywords: [
-    "construction management",
-    "precast concrete",
-    "project management",
-    "cloud platform",
-    "construction software",
-    "building management",
-    "construction technology",
-    "project tracking",
-    "construction automation",
-    "building industry software",
-  ],
+    "Transform your precast concrete projects from Excel chaos to cloud control. Complete construction management platform for precast concrete companies.",
+  keywords:
+    "construction management, precast concrete, project management, cloud solution, ICS",
   authors: [{ name: "ICS Team" }],
-  creator: "ICS - Integrated Construction Solutions",
-  publisher: "ICS - Integrated Construction Solutions",
+  creator: "ICS Integrated Construction Solutions",
+  publisher: "ICS Integrated Construction Solutions",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   metadataBase: new URL("https://ics-construction.com"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "ICS - Integrated Construction Solutions",
     description:
-      "Stop managing Excel sheets. Start managing projects. Transform your construction management with our cloud-based platform.",
+      "Transform your precast concrete projects from Excel chaos to cloud control.",
     url: "https://ics-construction.com",
-    siteName: "ICS - Integrated Construction Solutions",
+    siteName: "ICS Integrated Construction Solutions",
     images: [
       {
         url: "/logo.png",
         width: 1200,
         height: 630,
-        alt: "ICS - Integrated Construction Solutions Logo",
+        alt: "ICS Logo",
       },
     ],
     locale: "en_US",
@@ -64,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "ICS - Integrated Construction Solutions",
     description:
-      "Stop managing Excel sheets. Start managing projects. Transform your construction management with our cloud-based platform.",
+      "Transform your precast concrete projects from Excel chaos to cloud control.",
     images: ["/logo.png"],
   },
   robots: {
@@ -85,17 +64,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
-  // Initialize performance monitoring
-  if (typeof window !== "undefined") {
-    performanceMonitor.measurePageLoad();
-    performanceMonitor.measureCoreWebVitals();
-  }
-
+}) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -103,10 +76,8 @@ export default function RootLayout({
           href="https://fonts.gstatic.com"
           crossOrigin="anonymous"
         />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Manrope:wght@200;300;400;500;600;700;800&display=swap"
-          rel="stylesheet"
-        />
+        <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="//fonts.gstatic.com" />
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=5"
@@ -114,13 +85,13 @@ export default function RootLayout({
         <meta name="theme-color" content="#235347" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/logo.png" />
+        <link rel="manifest" href="/manifest.json" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        style={{ fontSize: "var(--scale-factor)" }}
+        className={`${GeistSans.className} antialiased bg-white text-forest-900`}
       >
-        <Navbar />
-        <main className="min-h-screen">{children}</main>
+        <MetaTags />
+        {children}
       </body>
     </html>
   );

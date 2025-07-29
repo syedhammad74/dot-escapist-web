@@ -1,11 +1,11 @@
 "use client";
 
-import React from "react";
+import React, { useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 
-const NeuralNetworkHero: React.FC = () => {
-  // Enhanced node positions for a more complex neural network layout
-  const nodes = [
+const NeuralNetworkHero: React.FC = React.memo(() => {
+  // Memoized node positions for better performance
+  const nodes = useMemo(() => [
     { id: 1, x: "15%", y: "20%", delay: 0, type: "input" },
     { id: 2, x: "30%", y: "15%", delay: 0.1, type: "hidden" },
     { id: 3, x: "45%", y: "25%", delay: 0.2, type: "hidden" },
@@ -23,10 +23,10 @@ const NeuralNetworkHero: React.FC = () => {
     { id: 15, x: "55%", y: "75%", delay: 1.4, type: "hidden" },
     { id: 16, x: "70%", y: "85%", delay: 1.5, type: "hidden" },
     { id: 17, x: "85%", y: "80%", delay: 1.6, type: "output" },
-  ];
+  ], []);
 
-  // Enhanced connections with weights and types
-  const connections = [
+  // Memoized connections for better performance
+  const connections = useMemo(() => [
     // Input layer connections
     { from: 1, to: 2, weight: 0.8, type: "strong" },
     { from: 1, to: 3, weight: 0.6, type: "medium" },
@@ -63,23 +63,35 @@ const NeuralNetworkHero: React.FC = () => {
     { from: 5, to: 11, weight: 0.4, type: "weak" },
     { from: 8, to: 14, weight: 0.3, type: "weak" },
     { from: 9, to: 15, weight: 0.4, type: "weak" },
-  ];
+  ], []);
 
-  const getConnectionStyle = (weight: number, type: string) => {
+  // Memoized connection style function
+  const getConnectionStyle = useCallback((weight: number, type: string) => {
     const opacity = weight * 0.8 + 0.2;
     const width = type === "strong" ? "2px" : type === "medium" ? "1px" : "0.5px";
     return { opacity, width };
+  }, []);
+
+  // Optimized animation variants
+  const nodeVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1 }
+  };
+
+  const connectionVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 }
   };
 
   return (
     <div className="relative w-full h-full min-h-[450px] lg:min-h-[550px]">
-      {/* Enhanced background with multiple layers */}
+      {/* Optimized background with CSS gradients */}
       <div className="absolute inset-0 bg-gradient-to-br from-forest-500/8 via-sage-400/5 to-transparent rounded-3xl" />
       <div className="absolute inset-0 bg-gradient-to-tl from-forest-600/6 via-transparent to-sage-500/4 rounded-3xl" />
       
       {/* Neural Network Container */}
       <div className="relative w-full h-full">
-        {/* Enhanced Connection Lines */}
+        {/* Optimized Connection Lines */}
         {connections.map((connection, index) => {
           const fromNode = nodes.find(n => n.id === connection.from);
           const toNode = nodes.find(n => n.id === connection.to);
@@ -92,9 +104,10 @@ const NeuralNetworkHero: React.FC = () => {
             <motion.div
               key={`connection-${index}`}
               className="absolute inset-0 pointer-events-none"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5, delay: index * 0.05 }}
+              variants={connectionVariants}
+              initial="hidden"
+              animate="visible"
+              transition={{ duration: 1, delay: index * 0.03 }}
             >
               {/* Static connection line with weight-based styling */}
               <div
@@ -113,7 +126,7 @@ const NeuralNetworkHero: React.FC = () => {
                 }}
               />
               
-              {/* Animated data flow with weight-based intensity */}
+              {/* Optimized data flow animation */}
               <motion.div
                 className="absolute bg-gradient-to-r from-forest-400 via-sage-300 to-forest-400 rounded-full"
                 style={{
@@ -132,15 +145,15 @@ const NeuralNetworkHero: React.FC = () => {
                   opacity: [0, connectionStyle.opacity * 1.2, 0],
                 }}
                 transition={{
-                  duration: 2 + connection.weight * 2,
+                  duration: 2 + connection.weight * 1.5,
                   repeat: Infinity,
-                  delay: index * 0.2 + Math.random() * 3,
+                  delay: index * 0.1 + Math.random() * 2,
                   ease: "easeInOut",
                 }}
               />
 
-              {/* Data packets flowing along connections */}
-              {[...Array(3)].map((_, packetIndex) => (
+              {/* Optimized data packets - reduced count for performance */}
+              {[...Array(2)].map((_, packetIndex) => (
                 <motion.div
                   key={`packet-${index}-${packetIndex}`}
                   className="absolute w-1 h-1 bg-sage-200 rounded-full"
@@ -158,9 +171,9 @@ const NeuralNetworkHero: React.FC = () => {
                     opacity: [0, 1, 0],
                   }}
                   transition={{
-                    duration: 3 + connection.weight * 2,
+                    duration: 2.5 + connection.weight * 1.5,
                     repeat: Infinity,
-                    delay: index * 0.3 + packetIndex * 0.5 + Math.random() * 2,
+                    delay: index * 0.2 + packetIndex * 0.3 + Math.random() * 1.5,
                     ease: "easeInOut",
                   }}
                 />
@@ -169,52 +182,50 @@ const NeuralNetworkHero: React.FC = () => {
           );
         })}
 
-        {/* Enhanced Neural Nodes */}
+        {/* Optimized Neural Nodes */}
         {nodes.map((node) => (
           <motion.div
             key={node.id}
             className="absolute"
             style={{ left: node.x, top: node.y }}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: node.delay, type: "spring", stiffness: 100 }}
+            variants={nodeVariants}
+            initial="hidden"
+            animate="visible"
+            transition={{ duration: 0.8, delay: node.delay, type: "spring", stiffness: 100 }}
           >
             {/* Node Container */}
             <motion.div
               className="relative"
               animate={{
-                scale: [1, 1.1, 1],
-                opacity: [0.8, 1, 0.8],
+                scale: [1, 1.05, 1],
+                opacity: [0.9, 1, 0.9],
               }}
               transition={{
-                duration: 4,
+                duration: 3,
                 repeat: Infinity,
                 delay: node.delay,
                 ease: "easeInOut",
               }}
             >
-              {/* Multiple outer rings for depth */}
-              {[...Array(4)].map((_, ringIndex) => (
+              {/* Optimized outer rings - reduced count for performance */}
+              {[...Array(2)].map((_, ringIndex) => (
                 <motion.div
                   key={`ring-${node.id}-${ringIndex}`}
                   className={`absolute rounded-full border ${
-                    ringIndex === 0 ? "border-forest-500/40" :
-                    ringIndex === 1 ? "border-sage-400/30" :
-                    ringIndex === 2 ? "border-forest-400/20" :
-                    "border-sage-300/15"
+                    ringIndex === 0 ? "border-forest-500/40" : "border-sage-400/30"
                   }`}
                   style={{
                     inset: `-${(ringIndex + 1) * 2}px`,
                   }}
                   animate={{
-                    scale: [1, 1.2 + ringIndex * 0.1, 1],
-                    opacity: [0.3 - ringIndex * 0.05, 0.1 - ringIndex * 0.02, 0.3 - ringIndex * 0.05],
+                    scale: [1, 1.15 + ringIndex * 0.05, 1],
+                    opacity: [0.3 - ringIndex * 0.1, 0.1 - ringIndex * 0.05, 0.3 - ringIndex * 0.1],
                     rotate: [0, 180, 360],
                   }}
                   transition={{
-                    duration: 3 + ringIndex * 0.5,
+                    duration: 2.5 + ringIndex * 0.3,
                     repeat: Infinity,
-                    delay: node.delay + ringIndex * 0.3,
+                    delay: node.delay + ringIndex * 0.2,
                     ease: "easeInOut",
                   }}
                 />
@@ -228,21 +239,21 @@ const NeuralNetworkHero: React.FC = () => {
                   "bg-gradient-to-br from-forest-400 to-sage-300"
                 }`}
                 animate={{
-                  scale: [1, 1.15, 1],
+                  scale: [1, 1.1, 1],
                   boxShadow: [
-                    `0 0 15px ${node.type === "input" ? "rgba(16, 185, 129, 0.4)" : 
+                    `0 0 12px ${node.type === "input" ? "rgba(16, 185, 129, 0.4)" : 
                     node.type === "output" ? "rgba(59, 130, 246, 0.4)" : 
                     "rgba(35, 83, 71, 0.4)"}`,
-                    `0 0 25px ${node.type === "input" ? "rgba(16, 185, 129, 0.7)" : 
-                    node.type === "output" ? "rgba(59, 130, 246, 0.7)" : 
-                    "rgba(35, 83, 71, 0.7)"}`,
-                    `0 0 15px ${node.type === "input" ? "rgba(16, 185, 129, 0.4)" : 
+                    `0 0 20px ${node.type === "input" ? "rgba(16, 185, 129, 0.6)" : 
+                    node.type === "output" ? "rgba(59, 130, 246, 0.6)" : 
+                    "rgba(35, 83, 71, 0.6)"}`,
+                    `0 0 12px ${node.type === "input" ? "rgba(16, 185, 129, 0.4)" : 
                     node.type === "output" ? "rgba(59, 130, 246, 0.4)" : 
                     "rgba(35, 83, 71, 0.4)"}`,
                   ],
                 }}
                 transition={{
-                  duration: 2.5,
+                  duration: 2,
                   repeat: Infinity,
                   delay: node.delay,
                   ease: "easeInOut",
@@ -253,19 +264,19 @@ const NeuralNetworkHero: React.FC = () => {
               <motion.div
                 className="absolute inset-1 bg-white rounded-full opacity-80"
                 animate={{
-                  scale: [1, 1.2, 1],
+                  scale: [1, 1.15, 1],
                   opacity: [0.8, 1, 0.8],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1.5,
                   repeat: Infinity,
-                  delay: node.delay + 0.5,
+                  delay: node.delay + 0.3,
                   ease: "easeInOut",
                 }}
               />
               
-              {/* Enhanced data particles with multiple orbits */}
-              {[...Array(3)].map((_, orbitIndex) => (
+              {/* Optimized data particles - reduced orbits for performance */}
+              {[...Array(2)].map((_, orbitIndex) => (
                 <motion.div
                   key={`orbit-${node.id}-${orbitIndex}`}
                   className="absolute inset-0"
@@ -273,33 +284,31 @@ const NeuralNetworkHero: React.FC = () => {
                     rotate: 360,
                   }}
                   transition={{
-                    duration: 15 + orbitIndex * 5,
+                    duration: 12 + orbitIndex * 3,
                     repeat: Infinity,
-                    delay: node.delay + orbitIndex * 0.5,
+                    delay: node.delay + orbitIndex * 0.3,
                     ease: "linear",
                   }}
                 >
-                  {[...Array(4)].map((_, particleIndex) => (
+                  {[...Array(3)].map((_, particleIndex) => (
                     <motion.div
                       key={`particle-${node.id}-${orbitIndex}-${particleIndex}`}
                       className={`absolute w-1 h-1 rounded-full ${
-                        orbitIndex === 0 ? "bg-sage-200" :
-                        orbitIndex === 1 ? "bg-forest-200" :
-                        "bg-emerald-200"
+                        orbitIndex === 0 ? "bg-sage-200" : "bg-forest-200"
                       }`}
                       style={{
                         left: "50%",
                         top: "50%",
-                        transform: `rotate(${particleIndex * 90}deg) translateY(-${8 + orbitIndex * 3}px)`,
+                        transform: `rotate(${particleIndex * 120}deg) translateY(-${6 + orbitIndex * 2}px)`,
                       }}
                       animate={{
                         scale: [0, 1, 0],
-                        opacity: [0, 0.9, 0],
+                        opacity: [0, 0.8, 0],
                       }}
                       transition={{
-                        duration: 2 + orbitIndex * 0.5,
+                        duration: 1.5 + orbitIndex * 0.3,
                         repeat: Infinity,
-                        delay: node.delay + orbitIndex * 0.3 + particleIndex * 0.2,
+                        delay: node.delay + orbitIndex * 0.2 + particleIndex * 0.15,
                         ease: "easeInOut",
                       }}
                     />
@@ -316,7 +325,7 @@ const NeuralNetworkHero: React.FC = () => {
                 }`}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: node.delay + 1 }}
+                transition={{ duration: 0.5, delay: node.delay + 0.8 }}
               >
                 {node.type.toUpperCase()}
               </motion.div>
@@ -324,66 +333,66 @@ const NeuralNetworkHero: React.FC = () => {
           </motion.div>
         ))}
 
-        {/* Enhanced floating data streams */}
-        {[...Array(8)].map((_, index) => (
+        {/* Optimized floating data streams - reduced count */}
+        {[...Array(4)].map((_, index) => (
           <motion.div
             key={`stream-${index}`}
-            className="absolute w-0.5 h-12 bg-gradient-to-b from-forest-400/70 via-sage-300/90 to-transparent rounded-full"
+            className="absolute w-0.5 h-10 bg-gradient-to-b from-forest-400/70 via-sage-300/90 to-transparent rounded-full"
             style={{
-              left: `${15 + index * 10}%`,
-              top: `${25 + index * 8}%`,
+              left: `${20 + index * 15}%`,
+              top: `${30 + index * 12}%`,
             }}
             animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.9, 0.2],
-              scaleY: [0.3, 1.5, 0.3],
+              y: [0, -25, 0],
+              opacity: [0.2, 0.8, 0.2],
+              scaleY: [0.3, 1.3, 0.3],
             }}
             transition={{
-              duration: 5 + index * 0.3,
+              duration: 4 + index * 0.2,
               repeat: Infinity,
-              delay: index * 0.6,
+              delay: index * 0.5,
               ease: "easeInOut",
             }}
           />
         ))}
 
-        {/* Data clusters floating around */}
-        {[...Array(6)].map((_, index) => (
+        {/* Optimized data clusters - reduced count */}
+        {[...Array(3)].map((_, index) => (
           <motion.div
             key={`cluster-${index}`}
             className="absolute"
             style={{
-              left: `${20 + index * 12}%`,
-              top: `${35 + index * 10}%`,
+              left: `${25 + index * 20}%`,
+              top: `${40 + index * 15}%`,
             }}
             animate={{
-              x: [0, 20, 0],
-              y: [0, -15, 0],
+              x: [0, 15, 0],
+              y: [0, -10, 0],
               rotate: [0, 180, 360],
             }}
             transition={{
-              duration: 8 + index,
+              duration: 6 + index * 0.5,
               repeat: Infinity,
-              delay: index * 0.8,
+              delay: index * 0.6,
               ease: "easeInOut",
             }}
           >
-            {[...Array(3)].map((_, dotIndex) => (
+            {[...Array(2)].map((_, dotIndex) => (
               <motion.div
                 key={`dot-${index}-${dotIndex}`}
                 className="absolute w-1 h-1 bg-sage-300 rounded-full"
                 style={{
-                  left: `${dotIndex * 4}px`,
-                  top: `${dotIndex * 4}px`,
+                  left: `${dotIndex * 3}px`,
+                  top: `${dotIndex * 3}px`,
                 }}
                 animate={{
                   scale: [0, 1, 0],
-                  opacity: [0, 0.8, 0],
+                  opacity: [0, 0.7, 0],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1.5,
                   repeat: Infinity,
-                  delay: index * 0.2 + dotIndex * 0.3,
+                  delay: index * 0.15 + dotIndex * 0.2,
                   ease: "easeInOut",
                 }}
               />
@@ -391,58 +400,45 @@ const NeuralNetworkHero: React.FC = () => {
           </motion.div>
         ))}
 
-        {/* Enhanced ambient glow effects */}
+        {/* Optimized ambient glow effects - reduced count */}
         <motion.div
-          className="absolute top-1/4 left-1/4 w-40 h-40 bg-gradient-to-br from-forest-500/15 to-sage-400/15 rounded-full blur-2xl"
+          className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-forest-500/12 to-sage-400/12 rounded-full blur-xl"
           animate={{
-            scale: [1, 1.4, 1],
-            opacity: [0.2, 0.6, 0.2],
+            scale: [1, 1.3, 1],
+            opacity: [0.15, 0.5, 0.15],
             rotate: [0, 180, 360],
           }}
           transition={{
-            duration: 8,
+            duration: 6,
             repeat: Infinity,
             ease: "easeInOut",
           }}
         />
         
         <motion.div
-          className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-gradient-to-br from-sage-400/15 to-forest-500/15 rounded-full blur-2xl"
+          className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-br from-sage-400/12 to-forest-500/12 rounded-full blur-xl"
           animate={{
-            scale: [1, 1.5, 1],
-            opacity: [0.15, 0.5, 0.15],
+            scale: [1, 1.4, 1],
+            opacity: [0.1, 0.4, 0.1],
             rotate: [0, -180, -360],
           }}
           transition={{
-            duration: 10,
+            duration: 8,
             repeat: Infinity,
             ease: "easeInOut",
-            delay: 3,
-          }}
-        />
-
-        <motion.div
-          className="absolute top-1/2 left-1/2 w-24 h-24 bg-gradient-to-br from-emerald-400/10 to-blue-400/10 rounded-full blur-xl"
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.1, 0.4, 0.1],
-            rotate: [0, 90, 180],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 1.5,
+            delay: 2,
           }}
         />
 
         {/* Neural network grid overlay */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="w-full h-full bg-[radial-gradient(circle_at_1px_1px,rgba(35,83,71,0.3)_1px,transparent_0)] bg-[length:20px_20px]" />
+        <div className="absolute inset-0 opacity-3">
+          <div className="w-full h-full bg-[radial-gradient(circle_at_1px_1px,rgba(35,83,71,0.2)_1px,transparent_0)] bg-[length:25px_25px]" />
         </div>
       </div>
     </div>
   );
-};
+});
+
+NeuralNetworkHero.displayName = 'NeuralNetworkHero';
 
 export default NeuralNetworkHero; 

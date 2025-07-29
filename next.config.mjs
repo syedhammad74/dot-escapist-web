@@ -7,6 +7,25 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+
+  // Performance optimizations
+  experimental: {
+    optimizeCss: false, // Disabled to avoid critters issues
+    optimizePackageImports: ["lucide-react", "framer-motion"],
+    turbo: {
+      rules: {
+        "*.svg": {
+          loaders: ["@svgr/webpack"],
+          as: "*.js",
+        },
+      },
+    },
+    // Enable modern optimizations
+    modern: true,
+    scrollRestoration: true,
+    legacyBrowsers: false,
+  },
+
   // Image optimization
   images: {
     formats: ["image/webp", "image/avif"],
@@ -25,20 +44,6 @@ const nextConfig = {
     ],
   },
 
-  // Experimental features for performance
-  experimental: {
-    optimizeCss: false, // Disabled to avoid critters issues
-    optimizePackageImports: ["lucide-react", "framer-motion"],
-    turbo: {
-      rules: {
-        "*.svg": {
-          loaders: ["@svgr/webpack"],
-          as: "*.js",
-        },
-      },
-    },
-  },
-
   // Webpack optimization
   webpack: (config, { dev, isServer }) => {
     // Optimize bundle size
@@ -50,16 +55,41 @@ const nextConfig = {
             test: /[\\/]node_modules[\\/]/,
             name: "vendors",
             chunks: "all",
+            priority: 10,
           },
           common: {
             name: "common",
             minChunks: 2,
             chunks: "all",
             enforce: true,
+            priority: 5,
+          },
+          framer: {
+            test: /[\\/]node_modules[\\/]framer-motion[\\/]/,
+            name: "framer-motion",
+            chunks: "all",
+            priority: 20,
+          },
+          lucide: {
+            test: /[\\/]node_modules[\\/]lucide-react[\\/]/,
+            name: "lucide-react",
+            chunks: "all",
+            priority: 20,
           },
         },
       };
+
+      // Enable tree shaking
+      config.optimization.usedExports = true;
+      config.optimization.sideEffects = false;
     }
+
+    // Performance optimizations
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react: "react",
+      "react-dom": "react-dom",
+    };
 
     return config;
   },
@@ -67,7 +97,7 @@ const nextConfig = {
   // Compression
   compress: true,
 
-  // Headers for performance
+  // Performance headers
   async headers() {
     return [
       {
@@ -85,6 +115,10 @@ const nextConfig = {
             key: "X-XSS-Protection",
             value: "1; mode=block",
           },
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
         ],
       },
       {
@@ -96,8 +130,29 @@ const nextConfig = {
           },
         ],
       },
+      {
+        source: "/_next/static/(.*)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
     ];
   },
+
+  // Output optimization
+  output: "standalone",
+
+  // Powered by header
+  poweredByHeader: false,
+
+  // React strict mode for better performance
+  reactStrictMode: true,
+
+  // Swc minification
+  swcMinify: true,
 };
 
 export default nextConfig;
