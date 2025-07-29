@@ -1,196 +1,231 @@
 "use client";
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import React from "react";
+import { motion } from "framer-motion";
 import {
-  Stethoscope,
-  Cpu,
-  Globe,
+  Building2,
+  Database,
   Cloud,
-  Settings,
-  Brush,
-  ChevronDown,
+  Shield,
+  BarChart3,
+  Users,
+  Clock,
+  Target,
+  CheckCircle,
+  Zap,
+  Layers,
+  Globe,
 } from "lucide-react";
 
-// Define the type for a service
-interface Service {
+const ServiceCard: React.FC<{
   icon: React.ElementType;
   title: string;
   description: string;
-  details: string[];
-}
-
-// Define the services array with proper types
-const services: Service[] = [
-  {
-    icon: Cpu,
-    title: "Full Stack Development",
-    description:
-      "Comprehensive development across both frontend and backend layers",
-    details: [
-      "Customized, secure, and scalable solutions built with the latest technologies",
-      "Complete development services from frontend to backend for smooth, reliable user experiences.",
-      "Crafting seamless integration between powerful APIs and dynamic databases.",
-    ],
-  },
-  {
-    icon: Globe,
-    title: "Web Applications",
-    description: "Development of responsive and dynamic web applications",
-    details: [
-      "React, Angular, and Vue.js for dynamic user interfaces",
-      "Next.js for server-side rendering and static site generation",
-      "Progressive Web Apps (PWA) for enhanced user experience",
-    ],
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Engineering",
-    description: "Cloud solutions for scalable and secure infrastructure",
-    details: [
-      "Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP)",
-      "Cloud architecture design and deployment",
-      "Serverless computing and container orchestration",
-    ],
-  },
-  {
-    icon: Settings,
-    title: "DevOps",
-    description:
-      "Efficient development and deployment through DevOps practices",
-    details: [
-      "Continuous Integration and Continuous Deployment (CI/CD)",
-      "Tools like Docker, Kubernetes, Jenkins, and GitHub Actions",
-      "Infrastructure as Code with Terraform and Ansible",
-    ],
-  },
-  {
-    icon: Stethoscope,
-    title: "Healthcare Compliance Experts",
-    description:
-      "HIPAA, HL7, HITECH—we handle the toughest compliance needs, so you don’t have to.",
-    details: [
-      "Extensive Health Care Certifications in HIPPA, CERHT, HL7, HITECH",
-      "Integration with third-party services",
-      "User-friendly interfaces for non-technical users",
-    ],
-  },
-  {
-    icon: Brush,
-    title: "Designing",
-    description: "Creative design solutions for web and mobile applications",
-    details: [
-      "UI/UX design for enhanced user experiences",
-      "Graphic design for branding and marketing",
-      "Custom, creative, and brand-focused designs.",
-    ],
-  },
-];
-
-// Define types for the component props
-interface ServiceCardProps {
-  service: Service;
-}
-
-const ServiceCard: React.FC<ServiceCardProps> = ({ service }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  return (
-    <motion.div
-      layout
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -20 }}
-      transition={{ duration: 0.5 }}
-      className="relative group h-full"
-    >
-      <div className="absolute flex justify-center items-center inset-0 bg-white/10 rounded-2xl blur opacity-25 group-hover:opacity-100 transition duration-300" />
-      <div className="relative p-4 sm:p-6 md:p-8 bg-gray-900 border border-gray-800 rounded-2xl h-full flex flex-col">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 mb-4 bg-white rounded-full flex items-center justify-center">
-          <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900" />
+  features: string[];
+  delay: number;
+}> = ({ icon: Icon, title, description, features, delay }) => (
+  <motion.div
+    className="bg-white p-6 rounded-xl shadow-lg border border-sage-200"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+  >
+    <div className="relative">
+      <div className="flex items-start space-x-4 mb-4">
+        <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
+          <Icon className="w-6 h-6 text-white" />
         </div>
-        <h3 className="text-lg sm:text-xl font-semibold mb-2 text-white">
-          {service.title}
-        </h3>
-        <p className="text-gray-300 mb-4 flex-grow text-sm sm:text-base">
-          {service.description}
-        </p>
-        <button
-          onClick={() => setIsExpanded(!isExpanded)}
-          className="flex items-center text-white hover:text-gray-300 transition-colors duration-200 text-sm sm:text-base"
-          aria-expanded={isExpanded}
-        >
-          <span className="mr-2">
-            {isExpanded ? "Hide Details" : "Show Details"}
-          </span>
-          <ChevronDown
-            className={`w-4 h-4 transition-transform duration-200 ${
-              isExpanded ? "transform rotate-180" : ""
-            }`}
-          />
-        </button>
-
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.ul
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="mt-4 space-y-2 text-gray-400"
-            >
-              {service.details.map((detail, index) => (
-                <motion.li
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex items-start text-sm sm:text-base"
-                >
-                  <span className="mr-2 mt-1 text-white">•</span>
-                  {detail}
-                </motion.li>
-              ))}
-            </motion.ul>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
-  );
-};
-
-export default function FuturisticServices() {
-  return (
-    <section
-      id="services"
-      className="w-full  flex justify-center items-center py-10 xs:py-16 tmd:py-24 lg:py-32 relative overflow-hidden bg-gradient-to-bl from-orange-900 via-black to-gray-900"
-    >
-      <div className="container px-4 xs:px-6 tsm:px-8 tmd:px-10 relative z-10 lg:mx-16">
-        <div className="text-center mb-10 xs:mb-16">
-          {/* Decorative line above the heading */}
-          <div className="flex justify-center items-center mb-4">
-            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
-          </div>
-
-          {/* Main heading with serious and impactful effect */}
-          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6">
-            Our Escape Routes
-          </h2>
-
-          {/* Decorative line below the heading */}
-          <div className="flex justify-center items-center mt-2 mb-4">
-            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
-          </div>
-
-          <p className="text-sm xs:text-base md:text-lg lg:text-xl text-gray-300 max-w-lg xs:max-w-2xl md:max-w-3xl mx-auto mt-4">
-            Escaping Norms with Every Service We Offer
+        <div className="flex-1">
+          <h3 className="text-lg font-bold text-forest-800 mb-2">{title}</h3>
+          <p className="text-forest-600 text-sm leading-relaxed">
+            {description}
           </p>
         </div>
-        <div className="grid grid-cols-1 xs:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 xs:gap-8 md:gap-10">
+      </div>
+
+      <div className="space-y-2">
+        {features.map((feature, index) => (
+          <motion.div
+            key={index}
+            className="flex items-center space-x-2"
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.3, delay: delay + 0.1 * (index + 1) }}
+          >
+            <CheckCircle className="w-4 h-4 text-forest-500 flex-shrink-0" />
+            <span className="text-sm text-forest-700">{feature}</span>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </motion.div>
+);
+
+const Services = () => {
+  const services = [
+    {
+      icon: Building2,
+      title: "Project Management",
+      description:
+        "Complete lifecycle management for precast concrete projects with real-time tracking and collaboration.",
+      features: [
+        "Real-time project tracking",
+        "Team collaboration tools",
+        "Automated workflows",
+        "Progress monitoring",
+      ],
+    },
+    {
+      icon: Database,
+      title: "Data Management",
+      description:
+        "Centralized data storage with advanced search, version control, and automated backups.",
+      features: [
+        "Centralized data storage",
+        "Version control",
+        "Advanced search",
+        "Automated backups",
+      ],
+    },
+    {
+      icon: Cloud,
+      title: "Cloud Platform",
+      description:
+        "Secure cloud-based platform accessible from anywhere with enterprise-grade security.",
+      features: [
+        "24/7 accessibility",
+        "Enterprise security",
+        "Automatic updates",
+        "Scalable infrastructure",
+      ],
+    },
+    {
+      icon: Shield,
+      title: "Security & Compliance",
+      description:
+        "Bank-level security with role-based access control and comprehensive audit trails.",
+      features: [
+        "Role-based access",
+        "Audit trails",
+        "Data encryption",
+        "Compliance ready",
+      ],
+    },
+    {
+      icon: BarChart3,
+      title: "Advanced Analytics",
+      description:
+        "Powerful reporting and analytics tools for data-driven decision making.",
+      features: [
+        "Custom dashboards",
+        "Real-time reports",
+        "Performance metrics",
+        "Predictive analytics",
+      ],
+    },
+    {
+      icon: Users,
+      title: "Team Collaboration",
+      description:
+        "Seamless collaboration tools for teams across different locations and time zones.",
+      features: [
+        "Real-time messaging",
+        "File sharing",
+        "Task assignment",
+        "Mobile access",
+      ],
+    },
+  ];
+
+  return (
+    <section className="w-full py-16 sm:py-20 bg-gradient-to-br from-white via-sage-50 to-white">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <motion.h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-forest-800 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Complete{" "}
+            <span className="bg-gradient-to-r from-forest-500 to-sage-400 text-transparent bg-clip-text">
+              Construction Management
+            </span>{" "}
+            Platform
+          </motion.h2>
+          <motion.p
+            className="text-lg text-forest-600 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            Everything you need to manage your precast concrete projects
+            efficiently, from initial planning to final delivery.
+          </motion.p>
+        </motion.div>
+
+        {/* Services Grid */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <ServiceCard
+              key={index}
+              icon={service.icon}
+              title={service.title}
+              description={service.description}
+              features={service.features}
+              delay={0.1 * (index + 1)}
+            />
           ))}
-        </div>
+        </motion.div>
+
+        {/* Bottom CTA */}
+        <motion.div
+          className="text-center mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <motion.h3
+            className="text-xl sm:text-2xl font-bold text-forest-800 mb-4"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.9 }}
+          >
+            Ready to Experience the Full Platform?
+          </motion.h3>
+          <motion.p
+            className="text-forest-600 mb-6 max-w-2xl mx-auto"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.0 }}
+          >
+            See all these features in action with a personalized demo tailored
+            to your specific workflows.
+          </motion.p>
+          <motion.button
+            className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 1.1 }}
+          >
+            Schedule Full Platform Demo
+          </motion.button>
+        </motion.div>
       </div>
     </section>
   );
-}
+};
+
+export default Services;

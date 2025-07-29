@@ -9,332 +9,244 @@ import {
   AnimatePresence,
 } from "framer-motion";
 import {
-  FaNetworkWired,
-  FaCloud,
-  FaProjectDiagram,
-  FaLock,
-  FaPython,
-  FaJs,
-  FaNode,
-  FaReact,
-  FaAngular,
-  FaHtml5,
-  FaCss3Alt,
-  FaVuejs,
-  FaBootstrap,
-  FaDatabase,
-  FaDocker,
-  FaJenkins,
-  FaAws,
-  FaMicrosoft,
-  FaGoogle,
-  FaDigitalOcean,
-  FaGithub,
-  FaServer,
-  FaStream,
-} from "react-icons/fa";
-import {
-  SiDjango,
-  SiFastapi,
-  SiFlask,
-  SiKubernetes,
-  SiTerraform,
-  SiAnsible,
-  SiPostgresql,
-  SiMongodb,
-  SiMysql,
-  SiRedis,
-  SiMariadb,
-  SiApachekafka,
-  SiRabbitmq,
-  SiGraphql,
-  SiGo,
-} from "react-icons/si";
+  LayoutDashboard,
+  Users,
+  FileText,
+  BarChart3,
+  Settings,
+  Shield,
+  Database,
+  Zap,
+  Globe,
+  Smartphone,
+  Workflow,
+  CheckCircle,
+  Calendar,
+  Truck,
+  MapPin,
+  ClipboardCheck,
+  TrendingUp,
+  Download,
+  Upload,
+  Search,
+  Bell,
+  Lock,
+  Eye,
+  Activity,
+} from "lucide-react";
 
-interface ExpertiseDetail {
+interface FeatureDetail {
   name: string;
   icon: JSX.Element;
   description: string;
 }
 
-interface Expertise {
+interface Feature {
   title: string;
   description: string;
   icon: JSX.Element;
-  details: ExpertiseDetail[];
+  details: FeatureDetail[];
+  benefits: string[];
 }
 
-const expertiseData: Expertise[] = [
+const featuresData: Feature[] = [
   {
-    title: "Programming Languages & Frameworks",
-    description:
-      "Expertise in various programming languages and frameworks for full-stack development.",
-    icon: <FaJs className="h-6 w-6 xs:h-8 xs:w-8 text-yellow-400" />,
+    title: "Project Management Hub",
+    description: "Complete project oversight with multi-project dashboards and client portals for real-time collaboration.",
+    icon: <LayoutDashboard className="h-6 w-6 xs:h-8 xs:w-8 text-forest-500" />,
     details: [
       {
-        name: "Python",
-        icon: <FaPython className="text-blue-500" />,
-        description:
-          "Versatile programming language used in web development and data analysis.",
+        name: "Multi-Project Dashboard",
+        icon: <BarChart3 className="text-forest-500" />,
+        description: "Monitor all active projects from one comprehensive screen with real-time updates and status tracking.",
       },
       {
-        name: "Django",
-        icon: <SiDjango className="text-green-600" />,
-        description: "High-level Python framework for rapid development.",
+        name: "Client Portal",
+        icon: <Users className="text-sage-500" />,
+        description: "Dedicated access for clients with real-time project updates, progress tracking, and communication tools.",
       },
       {
-        name: "Flask",
-        icon: <SiFlask className="text-black" />,
-        description:
-          "Lightweight Python web framework for small to medium-sized applications.",
+        name: "Stakeholder Management",
+        icon: <Users className="text-forest-500" />,
+        description: "Track all project participants and their roles with permission-based access and activity monitoring.",
       },
       {
-        name: "FastAPI",
-        icon: <SiFastapi className="text-teal-500" />,
-        description: "Modern web framework for building APIs with Python.",
-      },
-      {
-        name: "JavaScript",
-        icon: <FaJs className="text-yellow-400" />,
-        description: "Popular language for web development.",
-      },
-      {
-        name: "Node.js",
-        icon: <FaNode className="text-green-500" />,
-        description: "JavaScript runtime for scalable network applications.",
-      },
-      {
-        name: "React",
-        icon: <FaReact className="text-blue-400" />,
-        description: "JavaScript library for building user interfaces.",
-      },
-      {
-        name: "Angular",
-        icon: <FaAngular className="text-red-600" />,
-        description: "Framework for building dynamic web applications.",
-      },
-      {
-        name: "Next.js",
-        icon: <FaReact className="text-black" />,
-        description: "React framework for server-side rendering.",
-      },
-      {
-        name: "HTML",
-        icon: <FaHtml5 className="text-orange-500" />,
-        description: "Fundamental technology for web page structure.",
-      },
-      {
-        name: "CSS",
-        icon: <FaCss3Alt className="text-blue-500" />,
-        description: "Styling language for web page design.",
-      },
-      {
-        name: "Vue.js",
-        icon: <FaVuejs className="text-green-500" />,
-        description: "Progressive framework for building user interfaces.",
-      },
-      {
-        name: "Bootstrap",
-        icon: <FaBootstrap className="text-purple-500" />,
-        description: "CSS framework for responsive development.",
-      },
-      {
-        name: "Golang",
-        icon: <SiGo className="text-blue-300" />,
-        description: "Scalable and efficient language for software systems.",
+        name: "Project Templates",
+        icon: <FileText className="text-sage-500" />,
+        description: "Accelerate setup with predefined workflows and standardized project structures for consistency.",
       },
     ],
+    benefits: [
+      "Real-time project visibility",
+      "Improved client communication",
+      "Streamlined stakeholder coordination",
+      "Faster project setup"
+    ]
   },
   {
-    title: "Cloud Platforms",
-    description:
-      "Leveraging cloud platforms to build scalable and resilient systems.",
-    icon: <FaCloud className="h-6 w-6 xs:h-8 xs:w-8 text-blue-300" />,
+    title: "Element Lifecycle Management",
+    description: "Track every precast element from design to installation with intelligent workflow automation.",
+    icon: <Workflow className="h-6 w-6 xs:h-8 xs:w-8 text-forest-500" />,
     details: [
       {
-        name: "AWS",
-        icon: <FaAws className="text-orange-500" />,
-        description:
-          "Comprehensive cloud services including computing and storage.",
+        name: "Design Phase",
+        icon: <FileText className="text-forest-500" />,
+        description: "Unique element identification, technical drawing management, revision control with complete change history.",
       },
       {
-        name: "Microsoft Azure",
-        icon: <FaMicrosoft className="text-blue-500" />,
-        description: "Integration with Microsoft products for cloud computing.",
+        name: "Production Control",
+        icon: <Settings className="text-sage-500" />,
+        description: "Advanced mix design laboratory, production scheduling, quality control workflows with digital approvals.",
       },
       {
-        name: "Google Cloud Platform",
-        icon: <FaGoogle className="text-red-500" />,
-        description: "Data analytics and machine learning capabilities.",
+        name: "Logistics Coordination",
+        icon: <Truck className="text-forest-500" />,
+        description: "Delivery optimization with route planning, transporter management, and digital delivery order system.",
       },
       {
-        name: "IBM Cloud",
-        icon: <FaCloud className="text-blue-600" />,
-        description: "AI, blockchain, and data analytics solutions.",
-      },
-      {
-        name: "Oracle Cloud",
-        icon: <FaCloud className="text-red-600" />,
-        description:
-          "Focus on database management and enterprise applications.",
-      },
-      {
-        name: "DigitalOcean",
-        icon: <FaDigitalOcean className="text-blue-500" />,
-        description: "Simple cloud infrastructure popular with developers.",
-      },
-      {
-        name: "Atlantic.Net",
-        icon: <FaCloud className="text-blue-400" />,
-        description:
-          "Managed cloud solutions including VPS and HIPAA-compliant hosting.",
+        name: "Site Operations",
+        icon: <MapPin className="text-sage-500" />,
+        description: "Material inspection reports, multi-stage inspection processes, and zone installation mapping.",
       },
     ],
+    benefits: [
+      "Complete element tracking",
+      "Automated workflow triggers",
+      "Quality control integration",
+      "Real-time production analytics"
+    ]
   },
   {
-    title: "DevOps & Infrastructure Tools",
-    description:
-      "Tools and platforms used for containerization, orchestration, and CI/CD.",
-    icon: <FaNetworkWired className="h-6 w-6 xs:h-8 xs:w-8 text-green-500" />,
+    title: "Advanced Reporting & Analytics",
+    description: "Professional report generation with dual-language support and automated distribution capabilities.",
+    icon: <BarChart3 className="h-6 w-6 xs:h-8 xs:w-8 text-forest-500" />,
     details: [
       {
-        name: "Docker",
-        icon: <FaDocker className="text-blue-500" />,
-        description:
-          "Container platform for developing and running applications.",
+        name: "Technical Transmittal Reports",
+        icon: <FileText className="text-forest-500" />,
+        description: "Automatic numbering and professional formatting with company branding and dual-language support.",
       },
       {
-        name: "Kubernetes",
-        icon: <SiKubernetes className="text-blue-600" />,
-        description: "Orchestrating containerized applications.",
+        name: "Production Reports",
+        icon: <TrendingUp className="text-sage-500" />,
+        description: "Date range analysis with performance metrics and production efficiency tracking.",
       },
       {
-        name: "Jenkins",
-        icon: <FaJenkins className="text-red-500" />,
-        description: "Automation server for CI/CD.",
+        name: "Delivery & Logistics Reports",
+        icon: <Truck className="text-forest-500" />,
+        description: "Performance metrics with route optimization and delivery tracking analytics.",
       },
       {
-        name: "GitHub Actions",
-        icon: <FaGithub className="text-gray-700" />,
-        description: "Automate workflows in GitHub repositories.",
-      },
-      {
-        name: "Terraform",
-        icon: <SiTerraform className="text-purple-600" />,
-        description:
-          "Infrastructure as Code (IaC) for data center provisioning.",
-      },
-      {
-        name: "Ansible",
-        icon: <SiAnsible className="text-red-600" />,
-        description: "Configuration management and task automation tool.",
+        name: "Financial Reports",
+        icon: <BarChart3 className="text-sage-500" />,
+        description: "Payment status tracking, cash flow analysis, and financial performance insights.",
       },
     ],
+    benefits: [
+      "60% faster report generation",
+      "Professional formatting",
+      "Multiple export formats",
+      "Automated distribution"
+    ]
   },
   {
-    title: "Database Technologies",
-    description:
-      "Expertise in SQL and NoSQL databases for robust and scalable data management.",
-    icon: <FaDatabase className="h-6 w-6 xs:h-8 xs:w-8 text-blue-400" />,
+    title: "User Management & Security",
+    description: "Enterprise-grade security with role-based permissions and complete audit trails for compliance.",
+    icon: <Shield className="h-6 w-6 xs:h-8 xs:w-8 text-forest-500" />,
     details: [
       {
-        name: "MongoDB",
-        icon: <SiMongodb className="text-green-500" />,
-        description: "NoSQL database for unstructured data storage.",
+        name: "Department-Based Permissions",
+        icon: <Users className="text-forest-500" />,
+        description: "Role-specific dashboard views and access controls based on organizational hierarchy.",
       },
       {
-        name: "PostgreSQL",
-        icon: <SiPostgresql className="text-blue-500" />,
-        description:
-          "Open-source relational database known for its reliability.",
+        name: "Activity Audit Trails",
+        icon: <Activity className="text-sage-500" />,
+        description: "Complete user activity logging with timestamp tracking and compliance reporting.",
       },
       {
-        name: "MySQL",
-        icon: <SiMysql className="text-blue-600" />,
-        description: "Relational database management system using SQL.",
-      },
-      {
-        name: "Redis",
-        icon: <SiRedis className="text-red-500" />,
-        description: "In-memory key-value store used for caching.",
-      },
-      {
-        name: "MariaDB",
-        icon: <SiMariadb className="text-brown-500" />,
-        description: "Fork of MySQL with improved performance.",
-      },
-    ],
-  },
-  {
-    title: "Messaging & API Frameworks",
-    description:
-      "Designing communication between services using messaging frameworks and APIs.",
-    icon: <FaStream className="h-6 w-6 xs:h-8 xs:w-8 text-purple-500" />,
-    details: [
-      {
-        name: "REST API",
-        icon: <FaServer className="text-gray-500" />,
-        description: "Architectural style using HTTP requests to access data.",
-      },
-      {
-        name: "GraphQL",
-        icon: <SiGraphql className="text-pink-600" />,
-        description:
-          "Query language for APIs, providing specific data as requested.",
-      },
-      {
-        name: "Apache Kafka",
-        icon: <SiApachekafka className="text-black" />,
-        description: "Distributed event streaming platform for real-time data.",
-      },
-      {
-        name: "RabbitMQ",
-        icon: <SiRabbitmq className="text-orange-500" />,
-        description:
-          "Message broker for communication between different parts of an application.",
-      },
-      {
-        name: "gRPC",
-        icon: <FaProjectDiagram className="text-blue-500" />,
-        description:
-          "High-performance RPC framework for cross-language services.",
-      },
-    ],
-  },
-  {
-    title: "Cybersecurity & Compliance",
-    description:
-      "Ensuring security measures and compliance with industry standards.",
-    icon: <FaLock className="h-6 w-6 xs:h-8 xs:w-8 text-red-500" />,
-    details: [
-      {
-        name: "Penetration Testing",
-        icon: <FaLock className="text-yellow-500" />,
-        description: "Identifying and exploiting vulnerabilities in systems.",
+        name: "Secure Authentication",
+        icon: <Lock className="text-forest-500" />,
+        description: "JWT token authentication with session management and secure login protocols.",
       },
       {
         name: "Data Encryption",
-        icon: <FaLock className="text-green-500" />,
-        description:
-          "Protecting sensitive information through encryption techniques.",
-      },
-      {
-        name: "GDPR Compliance",
-        icon: <FaLock className="text-blue-500" />,
-        description: "Ensuring adherence to EU data protection regulations.",
-      },
-      {
-        name: "HIPAA Compliance",
-        icon: <FaLock className="text-red-500" />,
-        description:
-          "Maintaining compliance with healthcare data privacy standards.",
-      },
-      {
-        name: "Security Policy Development",
-        icon: <FaLock className="text-purple-500" />,
-        description: "Creating comprehensive security policies and procedures.",
+        icon: <Shield className="text-sage-500" />,
+        description: "All data encrypted in transit and at rest with automated backup systems.",
       },
     ],
+    benefits: [
+      "Role-based access control",
+      "Complete audit trails",
+      "Enterprise-grade security",
+      "Compliance ready"
+    ]
+  },
+  {
+    title: "Data Integration Engine",
+    description: "Bulk Excel import capabilities with intelligent field mapping and error detection workflows.",
+    icon: <Database className="h-6 w-6 xs:h-8 xs:w-8 text-forest-500" />,
+    details: [
+      {
+        name: "Bulk Excel Import",
+        icon: <Upload className="text-forest-500" />,
+        description: "Import large datasets from Excel files with intelligent field mapping and validation.",
+      },
+      {
+        name: "Error Detection",
+        icon: <CheckCircle className="text-sage-500" />,
+        description: "Automated error detection and correction workflows with data validation rules.",
+      },
+      {
+        name: "Template System",
+        icon: <FileText className="text-forest-500" />,
+        description: "Standardized import templates for consistent data structure and formatting.",
+      },
+      {
+        name: "Data Validation",
+        icon: <CheckCircle className="text-sage-500" />,
+        description: "Real-time data validation with error reporting and correction suggestions.",
+      },
+    ],
+    benefits: [
+      "Faster data migration",
+      "Reduced import errors",
+      "Standardized processes",
+      "Data integrity assurance"
+    ]
+  },
+  {
+    title: "Mobile & Cloud Access",
+    description: "Anywhere, anytime access with mobile-responsive design and offline capabilities for field operations.",
+    icon: <Smartphone className="h-6 w-6 xs:h-8 xs:w-8 text-forest-500" />,
+    details: [
+      {
+        name: "Mobile Responsive",
+        icon: <Smartphone className="text-forest-500" />,
+        description: "Full functionality across all devices with optimized mobile interface for field operations.",
+      },
+      {
+        name: "Offline Capability",
+        icon: <Globe className="text-sage-500" />,
+        description: "Critical functions available offline with automatic synchronization when connectivity returns.",
+      },
+      {
+        name: "Real-Time Sync",
+        icon: <Zap className="text-forest-500" />,
+        description: "Live data synchronization across all users with instant updates and notifications.",
+      },
+      {
+        name: "Cloud Infrastructure",
+        icon: <Globe className="text-sage-500" />,
+        description: "99.9% uptime guarantee with auto-scaling and global accessibility.",
+      },
+    ],
+    benefits: [
+      "Field-ready mobile access",
+      "Offline functionality",
+      "Real-time collaboration",
+      "Global accessibility"
+    ]
   },
 ];
 
@@ -355,7 +267,7 @@ function HexagonBackground() {
               fill="none"
               stroke="currentColor"
               strokeWidth="0.5"
-              className="text-orange-500"
+              className="text-forest-500"
             />
           </pattern>
         </defs>
@@ -365,13 +277,13 @@ function HexagonBackground() {
   );
 }
 
-interface ExpertiseCardProps {
-  expertise: Expertise;
+interface FeatureCardProps {
+  feature: Feature;
   index: number;
-  onClick: (expertise: Expertise) => void;
+  onClick: (feature: Feature) => void;
 }
 
-function ExpertiseCard({ expertise, index, onClick }: ExpertiseCardProps) {
+function FeatureCard({ feature, index, onClick }: FeatureCardProps) {
   const controls = useAnimation();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -385,7 +297,7 @@ function ExpertiseCard({ expertise, index, onClick }: ExpertiseCardProps) {
   return (
     <motion.div
       ref={ref}
-      className="group relative p-4 sm:p-6  bg-gray-800/80 backdrop-blur rounded-xl shadow-lg transition-all duration-500 hover:shadow-orange-500/20 border border-gray-700 overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-105"
+      className="group relative p-6 bg-white/90 backdrop-blur-md rounded-xl shadow-elegant hover:shadow-luxury transition-all duration-500 hover:shadow-forest-500/20 border border-sage-200/50 overflow-hidden cursor-pointer hover:-translate-y-2 hover:scale-105"
       variants={{
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -396,40 +308,48 @@ function ExpertiseCard({ expertise, index, onClick }: ExpertiseCardProps) {
       }}
       initial="hidden"
       animate={controls}
-      onClick={() => onClick(expertise)}
+      onClick={() => onClick(feature)}
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-forest-500/10 to-sage-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative z-10">
         <motion.div
           className="flex items-center justify-center mb-4"
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <div className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gray-900 rounded-full shadow-inner shadow-orange-500/20 group-hover:shadow-orange-500/40 transition-all duration-500">
-            {expertise.icon}
+          <div className="flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-forest-500 to-sage-400 rounded-full shadow-inner shadow-forest-500/20 group-hover:shadow-forest-500/40 transition-all duration-500">
+            {feature.icon}
           </div>
         </motion.div>
-        <h3 className="text-lg sm:text-xl font-bold text-white text-center mb-2 group-hover:text-orange-400 transition-colors duration-500">
-          {expertise.title}
+        <h3 className="text-lg sm:text-xl font-bold text-forest-700 text-center mb-2 group-hover:text-forest-600 transition-colors duration-500">
+          {feature.title}
         </h3>
-        <p className="text-gray-300 text-center text-sm sm:text-base mb-4 line-clamp-3">
-          {expertise.description}
+        <p className="text-forest-600 text-center text-sm sm:text-base mb-4 line-clamp-3">
+          {feature.description}
         </p>
+        <div className="space-y-2">
+          {feature.benefits.slice(0, 2).map((benefit, idx) => (
+            <div key={idx} className="flex items-center text-xs text-forest-600">
+              <CheckCircle className="w-3 h-3 text-forest-500 mr-2" />
+              {benefit}
+            </div>
+          ))}
+        </div>
       </div>
     </motion.div>
   );
 }
 
-interface ExpertiseModalProps {
+interface FeatureModalProps {
   isOpen: boolean;
   onClose: () => void;
-  expertise: Expertise | null;
+  feature: Feature | null;
 }
 
-function ExpertiseModal({ isOpen, onClose, expertise }: ExpertiseModalProps) {
+function FeatureModal({ isOpen, onClose, feature }: FeatureModalProps) {
   return (
     <AnimatePresence>
-      {isOpen && expertise && (
+      {isOpen && feature && (
         <Transition.Root show={isOpen} as={React.Fragment}>
           <Dialog
             as={motion.div}
@@ -449,52 +369,72 @@ function ExpertiseModal({ isOpen, onClose, expertise }: ExpertiseModalProps) {
                 leave="ease-in duration-200"
               />
               <motion.div
-                className="inline-block w-full max-w-md sm:max-w-lg lg:max-w-3xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-900 rounded-3xl shadow-2xl border border-gray-800 text-white"
+                className="inline-block w-full max-w-md sm:max-w-lg lg:max-w-4xl p-6 my-8 overflow-hidden text-left align-middle transition-all transform bg-white rounded-3xl shadow-2xl border border-sage-200/50 text-forest-800"
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
               >
-                <div className="text-left text-gray-300 space-y-6 max-h-[65vh] overflow-y-auto pr-3">
+                <div className="text-left text-forest-600 space-y-6 max-h-[70vh] overflow-y-auto pr-3">
                   <div className="flex items-center space-x-6">
                     <motion.div
                       className="flex-shrink-0"
                       whileHover={{ scale: 1.1, rotate: 360 }}
                       transition={{ duration: 0.5 }}
                     >
-                      <div className="w-12 sm:w-16 sm:h-16 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center shadow-lg">
-                        {expertise.icon}
+                      <div className="w-12 sm:w-16 sm:h-16 bg-gradient-to-br from-forest-500 to-sage-400 rounded-full flex items-center justify-center shadow-lg">
+                        {feature.icon}
                       </div>
                     </motion.div>
-                    <Dialog.Title className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white">
-                      {expertise.title}
+                    <Dialog.Title className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-forest-800">
+                      {feature.title}
                     </Dialog.Title>
                   </div>
-                  <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-gray-400">
-                    {expertise.description}
+                  <p className="text-base sm:text-lg lg:text-xl leading-relaxed text-forest-600">
+                    {feature.description}
                   </p>
 
                   <div>
-                    <h3 className="text-xl sm:text-2xl font-semibold text-white mb-4">
-                      Key Expertise
+                    <h3 className="text-xl sm:text-2xl font-semibold text-forest-800 mb-4">
+                      Key Features
                     </h3>
-                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                      {expertise.details.map((detail, index) => (
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
+                      {feature.details.map((detail, index) => (
                         <motion.li
                           key={detail.name}
-                          className="bg-gray-800 p-4 rounded-lg hover:bg-gray-700 transition-colors duration-300"
+                          className="bg-sage-50 p-4 rounded-lg hover:bg-sage-100 transition-colors duration-300 border border-sage-200/50"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: index * 0.05 }}
                         >
                           <div className="flex items-center space-x-3 mb-2">
                             <span className="text-2xl">{detail.icon}</span>
-                            <span className="text-lg font-semibold text-white">
+                            <span className="text-lg font-semibold text-forest-700">
                               {detail.name}
                             </span>
                           </div>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-sm text-forest-600">
                             {detail.description}
                           </p>
+                        </motion.li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-semibold text-forest-800 mb-4">
+                      Benefits
+                    </h3>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {feature.benefits.map((benefit, index) => (
+                        <motion.li
+                          key={index}
+                          className="flex items-center space-x-3 bg-forest-50 p-3 rounded-lg border border-forest-200/50"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: index * 0.1 }}
+                        >
+                          <CheckCircle className="w-5 h-5 text-forest-500 flex-shrink-0" />
+                          <span className="text-forest-700 font-medium">{benefit}</span>
                         </motion.li>
                       ))}
                     </ul>
@@ -502,7 +442,7 @@ function ExpertiseModal({ isOpen, onClose, expertise }: ExpertiseModalProps) {
                 </div>
 
                 <motion.button
-                  className="top-4 right-10 absolute text-gray-400 hover:text-white rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors duration-200"
+                  className="top-4 right-10 absolute text-forest-400 hover:text-forest-600 rounded-full w-8 h-8 flex items-center justify-center focus:outline-none transition-colors duration-200"
                   onClick={onClose}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -531,26 +471,24 @@ function ExpertiseModal({ isOpen, onClose, expertise }: ExpertiseModalProps) {
   );
 }
 
-export default function Component() {
-  const [selectedExpertise, setSelectedExpertise] = useState<Expertise | null>(
-    null
-  );
+export default function FeaturesSection() {
+  const [selectedFeature, setSelectedFeature] = useState<Feature | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (expertise: Expertise) => {
-    setSelectedExpertise(expertise);
+  const openModal = (feature: Feature) => {
+    setSelectedFeature(feature);
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    setSelectedExpertise(null);
+    setSelectedFeature(null);
   };
 
   return (
     <section
-      id="expertise"
-      className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-gray-900 via-black to-orange-900 overflow-hidden min-h-screen flex flex-col items-center justify-center"
+      id="features"
+      className="relative py-16 sm:py-20 lg:py-28 bg-gradient-to-br from-white via-sage-50 to-white overflow-hidden min-h-screen flex flex-col items-center justify-center"
     >
       <HexagonBackground />
 
@@ -561,35 +499,35 @@ export default function Component() {
         transition={{ duration: 1, ease: "easeOut" }}
       >
         <motion.h4
-          className="uppercase text-sm sm:text-base text-orange-500 font-semibold tracking-widest mb-3 sm:mb-4"
+          className="uppercase text-sm sm:text-base text-forest-500 font-semibold tracking-widest mb-3 sm:mb-4"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-          Cutting-Edge Expertise
+          Core Features Showcase
         </motion.h4>
         <motion.h2
-          className="text-2xl sm:text-3xl lg:text-5xl font-extrabold text-white mb-4 sm:mb-6 leading-tight"
+          className="text-2xl sm:text-3xl lg:text-5xl font-extrabold text-forest-800 mb-4 sm:mb-6 leading-tight"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Our Expertise
+          Everything You Need. Nothing You Don't.
         </motion.h2>
         <motion.div
-          className="w-16 sm:w-24 h-1 bg-orange-500 mx-auto mb-4 sm:mb-6 rounded-full"
+          className="w-16 sm:w-24 h-1 bg-forest-500 mx-auto mb-4 sm:mb-6 rounded-full"
           initial={{ width: 0 }}
           animate={{ width: "6rem" }}
           transition={{ duration: 1, delay: 0.5 }}
         />
         <motion.p
-          className="text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl sm:max-w-3xl mx-auto text-gray-300"
+          className="text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl sm:max-w-3xl mx-auto text-forest-600"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          The Cutting-Edge Tools and Techniques We Use to Craft Your Perfect
-          Escape Experience
+          Comprehensive construction management features designed specifically for precast concrete companies. 
+          From project oversight to detailed analytics, every tool you need to succeed.
         </motion.p>
       </motion.div>
 
@@ -599,20 +537,20 @@ export default function Component() {
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8, duration: 0.8 }}
       >
-        {expertiseData.map((expertise, index) => (
-          <ExpertiseCard
-            key={expertise.title}
-            expertise={expertise}
+        {featuresData.map((feature, index) => (
+          <FeatureCard
+            key={feature.title}
+            feature={feature}
             index={index}
             onClick={openModal}
           />
         ))}
       </motion.div>
 
-      <ExpertiseModal
+      <FeatureModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        expertise={selectedExpertise}
+        feature={selectedFeature}
       />
     </section>
   );

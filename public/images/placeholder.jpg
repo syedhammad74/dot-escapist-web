@@ -1,0 +1,4 @@
+# This is a placeholder for the placeholder.jpg image
+# In a real implementation, you would create an actual JPG image file here
+# For now, the OptimizedImage component will handle missing images gracefully
+# with a fallback UI that shows an icon and "Image unavailable" message 

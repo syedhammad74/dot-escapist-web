@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Image from "next/image";
+import { OptimizedImage } from "./optimized-image";
 import Link from "next/link";
 import {
   motion,
@@ -8,15 +8,8 @@ import {
   useSpring,
   MotionValue,
 } from "framer-motion";
-import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  IconButton,
-  Button,
-} from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import { FiExternalLink } from "react-icons/fi";
 
 // Product interface
 interface Product {
@@ -111,8 +104,8 @@ const BigScreenHeroParallax = ({
   );
   const opacity = useTransform(scrollYProgress, [0, 0.2], [0.2, 1]);
 
-  const firstRow = products.slice(5,10)
-  const secondRow = products.slice(10, 15)
+  const firstRow = products.slice(5, 10);
+  const secondRow = products.slice(10, 15);
   return (
     <div
       ref={ref}
@@ -285,12 +278,12 @@ const ProductCard = ({
       className="group/product h-48 w-60 sm:h-72 sm:w-80 md:h-96 md:w-[30rem] relative flex-shrink-0 cursor-pointer"
       onClick={() => onThumbnailClick(product)}
     >
-      <Image
+      <OptimizedImage
         src={product.thumbnail}
-        height={600}
-        width={600}
-        className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
         alt={product.title}
+        fill
+        className="object-cover object-left-top absolute h-full w-full inset-0 rounded-lg"
+        fallbackSrc="/images/placeholder.jpg"
       />
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none transition-opacity duration-300"></div>
       <h2 className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 opacity-0 group-hover/product:opacity-100 text-white text-sm sm:text-base md:text-lg transition-opacity duration-300">
@@ -319,12 +312,12 @@ const MobileProductCard = ({
       onClick={() => onThumbnailClick(product)}
     >
       <Link href={product.link} className="block">
-        <Image
+        <OptimizedImage
           src={product.thumbnail}
-          height={500}
-          width={500}
-          className="object-cover object-center absolute h-full w-full inset-0 rounded-lg"
           alt={product.title}
+          fill
+          className="object-cover object-center absolute h-full w-full inset-0 rounded-lg"
+          fallbackSrc="/images/placeholder.jpg"
         />
       </Link>
       <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-75 bg-black transition-opacity duration-300 rounded-lg"></div>
@@ -360,12 +353,13 @@ const ProjectDetailDialog = ({
         <div className="grid sm:grid-cols gap-4">
           {/* Left Side - Image */}
           <div className="w-full sm:w-2/5 flex items-center justify-center p-4">
-            <Image
+            <OptimizedImage
               src={project.thumbnail}
               alt={project.title}
               width={300}
               height={200}
               className="w-full rounded-lg object-cover"
+              fallbackSrc="/images/placeholder.jpg"
             />
           </div>
           {/* Right Side - Content */}

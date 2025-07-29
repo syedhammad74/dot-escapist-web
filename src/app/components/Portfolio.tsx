@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { HeroParallax } from "@/components/ui/hero-parallax";
 
 // Define Product interface to match the HeroParallax expectations
@@ -18,19 +18,6 @@ interface Product {
 }
 
 export default function HeroParallaxDemo() {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-  const handleThumbnailClick = (product: Product) => {
-    setSelectedProduct(product);
-    setDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setDialogOpen(false);
-    setSelectedProduct(null);
-  };
-
   return (
     <div id="work">
       <HeroParallax
@@ -45,8 +32,7 @@ export const products: Product[] = [
     id: 1,
     title: "Moonbeam",
     link: "https://gomoonbeam.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/moonbeam.png",
+    thumbnail: "/images/portfolio/moonbeam.jpg",
     description:
       "A versatile product designed to help you build amazing projects.",
     features: [
@@ -62,8 +48,7 @@ export const products: Product[] = [
     id: 2,
     title: "Cursor",
     link: "https://cursor.so",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/cursor.png",
+    thumbnail: "/images/portfolio/cursor.jpg",
     description: "Cursor helps you navigate complex projects efficiently.",
     features: [
       "Feature 1: Interactive tutorials.",
@@ -78,8 +63,7 @@ export const products: Product[] = [
     id: 3,
     title: "Rogue",
     link: "https://userogue.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/rogue.png",
+    thumbnail: "/images/portfolio/rogue.jpg",
     description: "Rogue is designed for developers to explore and innovate.",
     features: [
       "Feature 1: Real-time multi-user support.",
@@ -94,8 +78,7 @@ export const products: Product[] = [
     id: 4,
     title: "Nimbus",
     link: "https://nimbusapp.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/nimbus.png",
+    thumbnail: "/images/portfolio/nimbus.jpg",
     description: "Nimbus helps you organize your notes and projects.",
     features: [
       "Feature 1: Cloud synchronization.",
@@ -110,8 +93,7 @@ export const products: Product[] = [
     id: 5,
     title: "Aether",
     link: "https://getaether.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/aether.png",
+    thumbnail: "/images/portfolio/aether.jpg",
     description: "Aether is a project management tool with real-time updates.",
     features: [
       "Feature 1: Real-time collaboration.",
@@ -126,8 +108,7 @@ export const products: Product[] = [
     id: 6,
     title: "Spark",
     link: "https://getspark.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/spark.png",
+    thumbnail: "/images/portfolio/spark.jpg",
     description: "Spark is an email client for productivity enthusiasts.",
     features: [
       "Feature 1: Smart inbox organization.",
@@ -142,8 +123,7 @@ export const products: Product[] = [
     id: 7,
     title: "Zenith",
     link: "https://zenithtools.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/zenith.png",
+    thumbnail: "/images/portfolio/zenith.jpg",
     description: "Zenith helps you track productivity with ease.",
     features: [
       "Feature 1: Time tracking.",
@@ -158,8 +138,7 @@ export const products: Product[] = [
     id: 8,
     title: "Orbit",
     link: "https://orbitapp.io",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/orbit.png",
+    thumbnail: "/images/portfolio/orbit.jpg",
     description:
       "Orbit allows you to manage customer relationships effectively.",
     features: [
@@ -175,8 +154,7 @@ export const products: Product[] = [
     id: 9,
     title: "Pulse",
     link: "https://getpulse.io",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/pulse.png",
+    thumbnail: "/images/portfolio/pulse.jpg",
     description:
       "Pulse helps you monitor your website's health and performance.",
     features: [
@@ -192,8 +170,7 @@ export const products: Product[] = [
     id: 10,
     title: "Flare",
     link: "https://flaretools.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/flare.png",
+    thumbnail: "/images/portfolio/flare.jpg",
     description: "Flare provides tools to enhance your team's communication.",
     features: [
       "Feature 1: Real-time messaging.",
@@ -208,8 +185,7 @@ export const products: Product[] = [
     id: 11,
     title: "Vortex",
     link: "https://vortexsuite.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/vortex.png",
+    thumbnail: "/images/portfolio/vortex.jpg",
     description: "Vortex is a suite of developer tools for cloud services.",
     features: [
       "Feature 1: Cloud integration testing.",
@@ -224,8 +200,7 @@ export const products: Product[] = [
     id: 12,
     title: "Prism",
     link: "https://prismdesign.io",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/prism.png",
+    thumbnail: "/images/portfolio/prism.jpg",
     description: "Prism helps designers collaborate on projects visually.",
     features: [
       "Feature 1: Real-time design feedback.",
@@ -240,7 +215,7 @@ export const products: Product[] = [
     id: 13,
     title: "Nova",
     link: "https://novaplatform.com",
-    thumbnail: "https://aceternity.com/images/products/thumbnails/new/nova.png",
+    thumbnail: "/images/portfolio/nova.jpg",
     description: "Nova provides a platform for building and scaling web apps.",
     features: [
       "Feature 1: Full-stack deployment.",
@@ -255,8 +230,7 @@ export const products: Product[] = [
     id: 14,
     title: "Phoenix",
     link: "https://phoenixlabs.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/phoenix.png",
+    thumbnail: "/images/portfolio/phoenix.jpg",
     description: "Phoenix is an automation tool for testing workflows.",
     features: [
       "Feature 1: Automated testing scripts.",
@@ -271,7 +245,7 @@ export const products: Product[] = [
     id: 15,
     title: "Luna",
     link: "https://lunatech.io",
-    thumbnail: "https://aceternity.com/images/products/thumbnails/new/luna.png",
+    thumbnail: "/images/portfolio/luna.jpg",
     description: "Luna is an AI assistant for boosting productivity.",
     features: [
       "Feature 1: Natural language understanding.",
@@ -286,8 +260,7 @@ export const products: Product[] = [
     id: 16,
     title: "Titan",
     link: "https://titansuite.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/titan.png",
+    thumbnail: "/images/portfolio/titan.jpg",
     description:
       "Titan offers a comprehensive suite for enterprise resource planning.",
     features: [
@@ -303,8 +276,7 @@ export const products: Product[] = [
     id: 17,
     title: "Blaze",
     link: "https://blazetech.com",
-    thumbnail:
-      "https://aceternity.com/images/products/thumbnails/new/blaze.png",
+    thumbnail: "/images/portfolio/blaze.jpg",
     description: "Blaze is a powerful tool for managing marketing campaigns.",
     features: [
       "Feature 1: Campaign analytics.",

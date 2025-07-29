@@ -2,256 +2,163 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Code, Globe, Users, Award } from "lucide-react";
-import { FaShoppingCart } from "react-icons/fa"; // E-commerce
-import { MdCloud } from "react-icons/md"; // Cloud Computing
-import { SiDocker } from "react-icons/si"; // DevOps
-import { FiEdit } from "react-icons/fi"; // Design
+import {
+  FileSpreadsheet,
+  AlertTriangle,
+  Clock,
+  Shield,
+  Users,
+  TrendingDown,
+  Database,
+  MessageSquare,
+  Calendar,
+  DollarSign,
+} from "lucide-react";
 
 // Custom Components
-const Card = ({
-  children,
+const ProblemCard = ({
+  icon: Icon,
+  title,
+  description,
+  stats,
   className = "",
 }: {
-  children: React.ReactNode;
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  stats?: string;
   className?: string;
 }) => (
-  <div
-    className={`p-4 sm:p-6 rounded-lg shadow-lg border border-gray-700 backdrop-blur-lg bg-gray-800/60 ${className}`}
+  <motion.div
+    className={`p-4 rounded-xl shadow-elegant border border-sage-200/50 backdrop-blur-lg bg-white/90 hover:shadow-luxury transition-all duration-300 ${className}`}
+    whileHover={{ y: -5, scale: 1.02 }}
   >
-    {children}
-  </div>
+    <div className="flex items-start space-x-3">
+      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center shadow-lg">
+        <Icon className="w-5 h-5 text-white" />
+      </div>
+      <div className="flex-1">
+        <h3 className="text-base font-bold text-forest-800 mb-2">{title}</h3>
+        <p className="text-forest-600 text-sm leading-relaxed mb-2">
+          {description}
+        </p>
+        {stats && (
+          <div className="bg-red-50 border border-red-200 rounded-lg p-2">
+            <p className="text-red-700 font-semibold text-xs">{stats}</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </motion.div>
 );
 
-const CardHeader = ({ children }: { children: React.ReactNode }) => (
-  <div className="mb-4 sm:mb-6 ">{children}</div>
-);
-
-const CardTitle = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <h3
-    className={`text-xl tsm:text-xl sm:text-xl lg:text-4xl font-extrabold text-white ${className}`}
-  >
-    {children}
-  </h3>
-);
-
-const CardDescription = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <p
-    className={`text-base tsm:text-lg sm:text-lg lg:text-xl text-gray-400 ${className}`}
-  >
-    {children}
-  </p>
-);
-
-const Badge = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <span
-    className={`inline-block px-2 py-1 sm:px-3 sm:py-2 rounded-full bg-orange-500/20 text-orange-300 text-xs tsm:text-sm sm:text-sm font-semibold ${className}`}
-  >
-    {children}
-  </span>
-);
-
-const Progress = ({
+const CostImpactCard = ({
+  title,
   value,
-  className = "",
+  description,
+  icon: Icon,
 }: {
-  value: number;
-  className?: string;
+  title: string;
+  value: string;
+  description: string;
+  icon: React.ElementType;
 }) => (
-  <div className={`w-full bg-gray-700 rounded ${className}`}>
-    <motion.div
-      className="h-2 sm:h-3 bg-gradient-to-r from-orange-400 to-orange-600 rounded"
-      initial={{ width: "0%" }}
-      animate={{ width: `${value}%` }}
-      transition={{ duration: 1, ease: "easeInOut" }}
-    ></motion.div>
-  </div>
-);
-
-const Tabs = ({ children }: { children: React.ReactNode }) => (
-  <div>{children}</div>
-);
-
-const TabsList = ({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) => (
-  <div className={`flex flex-wrap gap-2 tsm:gap-3 sm:gap-4 ${className}`}>
-    {children}
-  </div>
-);
-
-const TabsTrigger = ({
-  children,
-  isActive,
-  onClick,
-}: {
-  children: React.ReactNode;
-  isActive: boolean;
-  onClick: () => void;
-}) => (
-  <button
-    className={`flex items-center px-3 py-1 sm:px-4 sm:py-2 lg:px-5 lg:py-3 rounded-lg transition-colors duration-300 font-medium text-xs tsm:text-sm sm:text-sm ${
-      isActive
-        ? "bg-orange-500 text-white hover:bg-orange-600"
-        : "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700"
-    }`}
-    onClick={onClick}
+  <motion.div
+    className="bg-gradient-to-br from-red-50 to-red-100 border border-red-200 rounded-xl p-4 text-center"
+    whileHover={{ scale: 1.05 }}
+    transition={{ type: "spring", stiffness: 300 }}
   >
-    <span className="flex items-center gap-2">{children}</span>
-  </button>
+    <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg">
+      <Icon className="w-6 h-6 text-white" />
+    </div>
+    <h3 className="text-lg font-bold text-forest-800 mb-2">{title}</h3>
+    <div className="text-2xl font-extrabold text-red-600 mb-2">{value}</div>
+    <p className="text-forest-600 text-sm">{description}</p>
+  </motion.div>
 );
 
-const TabsContent = ({ children }: { children: React.ReactNode }) => (
-  <div className="mt-4 tsm:mt-6 sm:mt-6">{children}</div>
-);
-
-const expertiseAreas = [
+const problemsData = [
   {
-    name: "Full Stack",
-    icon: Code,
+    icon: FileSpreadsheet,
+    title: "Excel Sheet Chaos",
     description:
-      "Creating both the front and back ends of web applications for a seamless experience.",
-    progress: 90,
-    technologies: [
-      "React",
-      "Next.js",
-      "Vue 3",
-      "Typescript",
-      "Python",
-      "Django",
-      "FastAPI",
-    ],
-    features: [
-      "Responsive interfaces",
-      "Secure back-end",
-      "Database handling",
-      "API Integration",
-    ],
+      "Multiple versions floating across different teams with no real-time collaboration. Manual data entry consuming hours every day with version control nightmares leading to costly mistakes.",
+    stats: "15+ Excel files per project",
   },
   {
-    name: "Cloud",
-    icon: MdCloud,
+    icon: Database,
+    title: "Data Fragmentation Crisis",
     description:
-      "Delivering on-demand internet services like storage, servers, and apps for scalability and flexibility.",
-    progress: 85,
-    technologies: ["AWS", "Azure", "GCP", "Google Cloud Functions"],
-    features: [
-      "Scalable resources",
-      "Cost efficiency",
-      "Remote access",
-      "Cloud Security",
-    ],
+      "Design team works in isolation from production. Quality control data stored separately from project files. Delivery schedules disconnected from production reality.",
+    stats: "5+ different communication channels",
   },
   {
-    name: "Ecommerce",
-    icon: FaShoppingCart,
+    icon: Shield,
+    title: "Security & Integrity Risks",
     description:
-      "Building online stores and tools that make buying and selling easy and secure.",
-    progress: 80,
-    technologies: ["Bigcommerce", "Woocommerce", "Shopify Plus"],
-    features: [
-      "Product management",
-      "Secure payments",
-      "Customer analytics",
-      "Inventory tracking",
-    ],
+      "Sensitive project data shared via email and OneDrive. No user role management - everyone sees everything. No audit trails for quality control decisions.",
+    stats: "No centralized security controls",
   },
   {
-    name: "DevOps",
-    icon: SiDocker,
+    icon: Clock,
+    title: "Time Waste Reality",
     description:
-      "Streamlining software development and operations for faster, more reliable updates.",
-    progress: 88,
-    technologies: ["Docker", "Kubernetes", "Jenkins", "GitHub Actions"],
-    features: [
-      "CI/CD automation",
-      "Code-based infrastructure",
-      "Monitoring tools",
-      "Team collaboration",
-    ],
+      "Teams constantly searching for the latest project information. End-of-day data compilation taking 2-3 hours. Recreating reports because files can't be found.",
+    stats: "14+ hours per week per employee on non-productive activities",
   },
   {
-    name: "Designing",
-    icon: FiEdit,
+    icon: MessageSquare,
+    title: "Communication Breakdown",
     description:
-      "Crafting visually appealing and easy-to-use digital interfaces for a great user experience.",
-    progress: 85,
-    technologies: ["Figma", "Canva", "Blender", "Sketch"],
-    features: [
-      "Prototyping and testing",
-      "Team collaboration",
-      "Responsive layouts",
-      "User insights",
-    ],
+      "Information silos between departments. Delayed updates causing project delays. Inconsistent data across teams leading to rework.",
+    stats: "25-40% timeline extensions due to manual processes",
+  },
+  {
+    icon: TrendingDown,
+    title: "Growth Limitations",
+    description:
+      "Unable to scale operations efficiently. Manual processes don't scale with business growth. Limited visibility into project performance.",
+    stats: "Unable to handle multiple projects simultaneously",
   },
 ];
 
-const achievements = [
+const costImpacts = [
   {
-    title: "Global Reach",
-    value: 30,
-    suffix: "+",
-    description: "Countries served with our solutions.",
-    icon: Globe,
+    title: "Project Delays",
+    value: "25-40%",
+    description: "Timeline extensions due to manual processes",
+    icon: Calendar,
   },
   {
-    title: "Client Base",
-    value: 500,
-    suffix: "+",
-    description: "Happy clients across the globe.",
+    title: "Quality Issues",
+    value: "35%",
+    description: "Improvement needed in on-time delivery",
+    icon: AlertTriangle,
+  },
+  {
+    title: "Resource Waste",
+    value: "60%",
+    description: "Time spent on non-productive activities",
     icon: Users,
   },
   {
-    title: "Recognition",
-    value: 15,
-    suffix: "+",
-    description: "Industry awards and recognitions.",
-    icon: Award,
+    title: "Financial Impact",
+    value: "$50K+",
+    description: "Annual cost per project in inefficiencies",
+    icon: DollarSign,
   },
 ];
 
-export default function AboutSection() {
-  const [activeExpertise, setActiveExpertise] = useState<string>("Full Stack");
-  const [animatedProgress, setAnimatedProgress] = useState<number>(
-    expertiseAreas.find((area) => area.name === "Full Stack")?.progress || 0
-  );
-  const [animatedCount, setAnimatedCount] = useState<{ [key: string]: number }>(
-    {
-      "Global Reach": 0,
-      "Client Base": 0,
-      Recognition: 0,
-    }
-  );
-  const achievementsRef = useRef<HTMLDivElement | null>(null);
+export default function ProblemsSection() {
+  const [activeProblem, setActiveProblem] = useState(0);
+  const problemsRef = useRef<HTMLDivElement>(null);
   const [isInView, setIsInView] = useState(false);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const handleScroll = () => {
-        if (achievementsRef.current) {
-          const rect = achievementsRef.current.getBoundingClientRect();
+        if (problemsRef.current) {
+          const rect = problemsRef.current.getBoundingClientRect();
           setIsInView(rect.top < window.innerHeight);
         }
       };
@@ -261,281 +168,134 @@ export default function AboutSection() {
     }
   }, []);
 
-  useEffect(() => {
-    if (activeExpertise) {
-      const targetProgress = expertiseAreas.find(
-        (area) => area.name === activeExpertise
-      )?.progress;
-      if (targetProgress !== undefined) {
-        const duration = 1000; // Animation duration in ms
-        const startTime = performance.now();
-
-        const updateProgress = (currentTime: number) => {
-          const elapsedTime = currentTime - startTime;
-          const progress = Math.min(
-            (elapsedTime / duration) * targetProgress,
-            targetProgress
-          );
-          setAnimatedProgress(progress);
-          if (elapsedTime < duration) {
-            requestAnimationFrame(updateProgress);
-          }
-        };
-
-        requestAnimationFrame(updateProgress);
-      }
-    }
-  }, [activeExpertise]);
-
-  useEffect(() => {
-    if (isInView) {
-      const interval = setInterval(() => {
-        setAnimatedCount((prev) => {
-          const newCounts = { ...prev };
-          let allCompleted = true;
-          achievements.forEach((achievement) => {
-            if (newCounts[achievement.title] < achievement.value) {
-              newCounts[achievement.title] +=
-                achievement.title === "Client Base" ? 5 : 1;
-              allCompleted = false;
-            }
-          });
-          if (allCompleted) clearInterval(interval);
-          return newCounts;
-        });
-      }, 30);
-      return () => clearInterval(interval);
-    }
-  }, [isInView]);
-
   return (
     <section
-      id="About"
-      className="min-h-screen w-full text-white bg-gradient-to-tr from-orange-900 via-black to-orange-900 py-8 tsm:py-12 sm:py-16 px-4 tsm:px-6 sm:px-8 overflow-hidden"
+      id="problems"
+      className="w-full text-forest-800 bg-gradient-to-tr from-white via-sage-50 to-white py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
     >
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-8 sm:mb-12 "
+          className="text-center mb-8"
         >
-          <h1 className="text-3xl sm:text-4xl lg:text-7xl font-extrabold mb-6 sm:mb-8">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-50">
-              What Makes Us Escapists?
+          <motion.h4
+            className="uppercase text-sm sm:text-base text-red-500 font-semibold tracking-widest mb-3"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            The Excel Nightmare
+          </motion.h4>
+          <motion.h1
+            className="text-3xl sm:text-4xl lg:text-6xl font-extrabold mb-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+          >
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-forest-700 to-red-600">
+              Your Current Reality
             </span>
-          </h1>
-          <p className="text-xl sm:text-xl lg:text-4xl text-orange-500 font-semibold mb-4 sm:mb-6">
-            Why We’re Not Just Another Tech Company
-          </p>
-          <p className="text-base tsm:text-base sm:text-base lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            At Dot Escapists, we specialize in breaking barriers and escaping
-            the limitations of traditional software and cloud solutions. Whether
-            you need to scale with Full Stack Development, navigate the
-            complexities of Cloud Architecture, streamline operations with
-            DevOps, or craft stunning, user-centered designs, we deliver bespoke
-            solutions that push boundaries and exceed expectations.
-          </p>
+          </motion.h1>
+          <motion.p
+            className="text-xl sm:text-xl lg:text-2xl text-forest-600 font-semibold mb-3"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.8 }}
+          >
+            The Hidden Costs of Fragmented Project Management
+          </motion.p>
+          <motion.div
+            className="w-16 sm:w-24 h-1 bg-gradient-to-r from-red-500 to-forest-500 mx-auto mb-4 rounded-full"
+            initial={{ width: 0 }}
+            animate={{ width: "6rem" }}
+            transition={{ duration: 1, delay: 0.8 }}
+          />
+          <motion.p
+            className="text-base sm:text-lg lg:text-xl text-forest-600 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+          >
+            Every day, your teams struggle with disconnected systems, manual
+            processes, and data fragmentation. The result? Delayed projects,
+            costly errors, and frustrated teams. Here's what's really happening
+            in your organization.
+          </motion.p>
         </motion.div>
 
         <motion.div
+          ref={problemsRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-8 tsm:mb-12 sm:mb-16"
+          className="mb-8"
         >
-          <Card>
-            <CardHeader>
-              <CardTitle>What we do?</CardTitle>
-              <CardDescription>
-                Discover our technical capabilities
-              </CardDescription>
-            </CardHeader>
-            <Tabs>
-              <TabsList className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-5 gap-2 tsm:gap-2 sm:gap-2 mb-6 tsm:mb-6">
-                {expertiseAreas.map((area) => (
-                  <TabsTrigger
-                    key={area.name}
-                    isActive={activeExpertise === area.name}
-                    onClick={() => setActiveExpertise(area.name)}
-                  >
-                    <area.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                    <span>{area.name}</span>
-                  </TabsTrigger>
-                ))}
-              </TabsList>
-              <AnimatePresence mode="wait">
-                {expertiseAreas.map(
-                  (area) =>
-                    activeExpertise === area.name && (
-                      <TabsContent key={area.name}>
-                        <motion.div
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, y: -20 }}
-                          transition={{ duration: 0.4 }}
-                          className="grid gap-4 tsm:gap-6 sm:gap-6 lg:grid-cols-2 items-center"
-                        >
-                          <div className="space-y-3 tsm:space-y-6 sm:space-y-6">
-                            <div>
-                              <h3 className="text-lg tsm:text-xl sm:text-xl lg:text-3xl font-extrabold text-orange-500 mb-3 tsm:mb-3">
-                                {area.name}
-                              </h3>
-                              <p className="text-sm tsm:text-base sm:text-base text-gray-300 leading-relaxed">
-                                {area.description}
-                              </p>
-                            </div>
-                            <div>
-                              <div className="flex justify-between items-center mb-2 sm:mb-3">
-                                <span className="text-xs tsm:text-sm font-medium text-gray-400">
-                                  Expertise Level
-                                </span>
-                                <motion.span
-                                  className="text-xs tsm:text-sm font-bold text-orange-500"
-                                  initial={{ opacity: 0 }}
-                                  animate={{ opacity: 1 }}
-                                  transition={{
-                                    duration: 1,
-                                    ease: "easeInOut",
-                                  }}
-                                >
-                                  {Math.round(animatedProgress)}%
-                                </motion.span>
-                              </div>
-                              <Progress value={animatedProgress} />
-                            </div>
-                            <div className="space-y-3 tsm:space-y-6 sm:space-y-6">
-                              <div>
-                                <h4 className="text-xs tsm:text-xs font-medium text-gray-400 mb-1">
-                                  Key Technologies
-                                </h4>
-                                <div className="flex flex-wrap gap-1 tsm:gap-2 sm:gap-2">
-                                  {area.technologies.map((tech: string) => (
-                                    <Badge key={tech}>{tech}</Badge>
-                                  ))}
-                                </div>
-                              </div>
-                              <div>
-                                <h4 className="text-xs tsm:text-sm font-medium text-gray-400 mb-1">
-                                  Core Features
-                                </h4>
-                                <ul className="grid grid-cols-1 sm:grid-cols-1 gap-1 tsm:gap-2 sm:gap-3 text-xs tsm:text-sm text-gray-300">
-                                  {area.features.map((feature: string) => (
-                                    <li
-                                      key={feature}
-                                      className="flex items-center gap-1 tsm:gap-2"
-                                    >
-                                      <div className="w-2 h-2 tsm:w-2.5 tsm:h-2.5 sm:w-3 sm:h-3 rounded-full bg-orange-500" />
-                                      {feature}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="hidden lg:flex justify-center items-center">
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{
-                                duration: 20,
-                                repeat: Infinity,
-                                ease: "linear",
-                              }}
-                              className="relative w-40 h-40 sm:w-64 sm:h-64 lg:w-80 lg:h-80"
-                            >
-                              <div className="absolute inset-0 rounded-full border-2 border-orange-500/20"></div>
-                              <div className="absolute inset-4 rounded-full border-2 border-orange-400/20"></div>
-                              <div className="absolute inset-8 rounded-full border-2 border-orange-300/20"></div>
-                              <div className="absolute inset-0 flex items-center justify-center">
-                                <area.icon className="w-20 h-20 sm:w-28 sm:h-28 text-orange-500" />
-                              </div>
-                            </motion.div>
-                          </div>
-                        </motion.div>
-                      </TabsContent>
-                    )
-                )}
-              </AnimatePresence>
-            </Tabs>
-          </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-8">
+            {problemsData.map((problem, index) => (
+              <ProblemCard
+                key={index}
+                icon={problem.icon}
+                title={problem.title}
+                description={problem.description}
+                stats={problem.stats}
+              />
+            ))}
+          </div>
         </motion.div>
 
         <motion.div
-          ref={achievementsRef}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-8 tsm:mb-12 sm:mb-12"
+          className="mb-8"
         >
-          <Card>
-            <CardHeader>
-              <CardTitle>Global Impact</CardTitle>
-              <CardDescription>Our achievements and milestones</CardDescription>
-            </CardHeader>
-            <div className="p-4 tsm:p-6 sm:p-6">
-              <div className="grid gap-8 tsm:gap-10 sm:gap-10 lg:grid-cols-3">
-                {achievements.map((achievement, index) => (
-                  <motion.div
-                    key={achievement.title}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="text-center"
-                  >
-                    <div className="relative w-28 h-28 tsm:w-36 tsm:h-36 sm:w-36 sm:h-36 mx-auto mb-3 tsm:mb-4 sm:mb-6">
-                      <svg
-                        className="w-full h-full -rotate-90"
-                        viewBox="0 0 100 100"
-                      >
-                        <circle
-                          className="text-gray-700 stroke-current"
-                          strokeWidth="8"
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          fill="transparent"
-                        ></circle>
-                        <motion.circle
-                          className="text-orange-500 stroke-current"
-                          strokeWidth="8"
-                          strokeLinecap="round"
-                          cx="50"
-                          cy="50"
-                          r="40"
-                          fill="transparent"
-                          initial={{ pathLength: 0 }}
-                          animate={{
-                            pathLength:
-                              animatedCount[achievement.title] /
-                              achievement.value,
-                          }}
-                          transition={{ duration: 1, ease: "easeInOut" }}
-                        ></motion.circle>
-                      </svg>
-                      <div className="absolute inset-0 flex flex-col items-center justify-center">
-                        <achievement.icon className="w-10 h-10 tsm:w-12 tsm:h-12 sm:w-12 sm:h-12 mb-1 text-orange-500" />
-                        <motion.span
-                          className="text-xl tsm:text-2xl sm:text-2xl font-extrabold"
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          transition={{ duration: 1, ease: "easeInOut" }}
-                        >
-                          {animatedCount[achievement.title]}
-                        </motion.span>
-                        {achievement.suffix}
-                      </div>
-                    </div>
-                    <h3 className="text-xs tsm:text-sm sm:text-sm font-semibold text-orange-500 mb-1">
-                      {achievement.title}
-                    </h3>
-                    <p className="text-xs tsm:text-sm sm:text-sm text-gray-400">
-                      {achievement.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </Card>
+          <div className="text-center mb-6">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-forest-800 mb-3">
+              The True Cost Impact
+            </h2>
+            <p className="text-forest-600 text-lg max-w-2xl mx-auto">
+              These inefficiencies translate directly to your bottom line
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {costImpacts.map((impact, index) => (
+              <CostImpactCard
+                key={index}
+                title={impact.title}
+                value={impact.value}
+                description={impact.description}
+                icon={impact.icon}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center"
+        >
+          <div className="bg-gradient-to-r from-red-50 to-forest-50 border border-red-200/50 rounded-2xl p-6 max-w-4xl mx-auto">
+            <h3 className="text-2xl font-bold text-forest-800 mb-3">
+              Ready to Break Free from the Excel Nightmare?
+            </h3>
+            <p className="text-forest-600 text-lg mb-4">
+              It's time to transform your construction management from chaos to
+              control. Discover how ICS can eliminate these problems and
+              accelerate your project delivery.
+            </p>
+            <motion.button
+              className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              See the Solution
+            </motion.button>
+          </div>
         </motion.div>
       </div>
     </section>

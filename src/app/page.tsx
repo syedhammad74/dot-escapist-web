@@ -1,25 +1,15 @@
-import Hero from "../app/components/Hero";
-import Services from "../app/components/Services";
-import Expertise from "./components/Expertise";
-import Portfolio from "./components/Portfolio";
-import Testimonials from "./components/Testimonials";
-import Footer from "./components/Footer";
-import Pricing from "./components/Pricing";
+import Hero from "./components/Hero";
+import Problems from "./components/Problems";
+import Services from "./components/Services";
 import CTA from "./components/CTA";
-import Careers from "./components/About";
 
 export default function Home() {
   return (
-    <div>
+    <div className="relative">
       <Hero />
-      <Careers />
-      <Portfolio />
-      <Expertise />
+      <Problems />
       <Services />
-      <Testimonials />
-      <Pricing />
       <CTA />
-      <Footer />
     </div>
   );
 }

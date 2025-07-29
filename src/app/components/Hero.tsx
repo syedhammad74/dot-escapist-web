@@ -1,218 +1,323 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Loader2, Zap, Globe, Shield, Cpu, ArrowRight } from "lucide-react";
-import NeuralNetworkBackground from "@/components/ui/NeuralNetworkBackground";
+import { motion } from "framer-motion";
+import {
+  TrendingUp,
+  Clock,
+  CheckCircle,
+  BarChart3,
+  Building2,
+  Shield,
+  Database,
+  Cloud,
+  Globe,
+  Zap,
+} from "lucide-react";
 
-const OrangeGradientText: React.FC<{
+const ForestGradientText: React.FC<{
   children: React.ReactNode;
   className?: string;
 }> = ({ children, className = "" }) => (
   <span
-    className={`bg-gradient-to-r from-orange-400 via-orange-500 to-orange-600 text-transparent bg-clip-text ${className}`}
+    className={`bg-gradient-to-r from-forest-500 via-sage-400 to-forest-600 text-transparent bg-clip-text ${className}`}
   >
     {children}
   </span>
 );
 
-const FeatureItem: React.FC<{ icon: React.ElementType; text: string }> = ({
-  icon: Icon,
-  text,
-}) => (
+const StatCard: React.FC<{
+  icon: React.ElementType;
+  value: string;
+  label: string;
+  delay: number;
+}> = ({ icon: Icon, value, label, delay }) => (
   <motion.div
-    className="flex items-center justify-between space-x-2 bg-gradient-to-br from-black/30 to-black/10 backdrop-blur-sm p-3 lg:w-[16vw] rounded-md shadow-lg hover:shadow-xl transition-all duration-300"
+    className="flex flex-col items-center justify-center space-y-3 bg-white p-5 rounded-xl shadow-lg border border-sage-200"
     initial={{ opacity: 0, y: 20 }}
     animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, ease: "easeOut" }}
-    whileHover={{ scale: 1.1 }}
+    transition={{ duration: 0.5, delay }}
   >
-    <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-orange-400" />
-    <span className="text-xs sm:text-sm lg:text-base text-white font-medium">
-      {text}
-    </span>
+    <div className="p-2.5 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg">
+      <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+    </div>
+    <div className="text-center">
+      <div className="text-xl sm:text-2xl font-bold text-forest-700">
+        {value}
+      </div>
+      <div className="text-xs sm:text-sm text-forest-600 font-medium leading-tight">
+        {label}
+      </div>
+    </div>
   </motion.div>
 );
 
-const DotescapistInterface: React.FC = () => {
+const FeatureCard: React.FC<{
+  icon: React.ElementType;
+  title: string;
+  description: string;
+  delay: number;
+}> = ({ icon: Icon, title, description, delay }) => (
+  <motion.div
+    className="bg-white p-5 rounded-xl shadow-lg border border-sage-200"
+    initial={{ opacity: 0, y: 20 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.5, delay }}
+  >
+    <div className="flex items-start space-x-3">
+      <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-forest-500 to-sage-400 rounded-lg flex items-center justify-center">
+        <Icon className="w-5 h-5 text-white" />
+      </div>
+      <div className="flex-1">
+        <h3 className="text-base font-bold text-forest-800 mb-2">{title}</h3>
+        <p className="text-forest-600 text-sm leading-relaxed">{description}</p>
+      </div>
+    </div>
+  </motion.div>
+);
+
+const HeroSection: React.FC = () => {
   const [mounted, setMounted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [gameState, setGameState] = useState<string | null>(null);
-  const [targetNumber, setTargetNumber] = useState<number>(
-    Math.floor(Math.random() * 100) + 1
-  );
-  const [attempts, setAttempts] = useState<number>(0);
-  const [score, setScore] = useState<number>(100);
-  const [hint, setHint] = useState<string | null>(null);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  useEffect(() => {
-    if (gameState || hint) {
-      const timer = setTimeout(() => {
-        setGameState(null);
-        setHint(null);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [gameState, hint]);
-
   if (!mounted) return null;
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setInputValue(e.target.value);
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
-    setAttempts((prev) => prev + 1);
-    setTimeout(() => {
-      setLoading(false);
-      const guess = parseInt(inputValue);
-      if (isNaN(guess)) {
-        setGameState("Please enter a valid number.");
-      } else if (guess < targetNumber) {
-        setGameState("Too low! Try a higher number.");
-        setScore((prev) => prev - 5);
-        setHint(`Hint: The number is greater than ${guess}`);
-      } else if (guess > targetNumber) {
-        setGameState("Too high! Try a lower number.");
-        setScore((prev) => prev - 5);
-        setHint(`Hint: The number is less than ${guess}`);
-      } else {
-        setGameState(
-          `🎉 Congratulations! You guessed the number in ${
-            attempts + 1
-          } attempts! 🎉 Your final score is ${score}`
-        );
-        setTargetNumber(Math.floor(Math.random() * 100) + 1);
-        setAttempts(0);
-        setScore(100);
-        setHint(null);
-      }
-      setInputValue("");
-    }, 1000);
-  };
+  const features = [
+    {
+      icon: Database,
+      title: "Centralized Data Management",
+      description:
+        "Single source of truth for all project information, eliminating data silos and version conflicts.",
+    },
+    {
+      icon: Cloud,
+      title: "Real-time Collaboration",
+      description:
+        "Teams work together seamlessly with instant updates and shared project visibility.",
+    },
+    {
+      icon: Shield,
+      title: "Enterprise Security",
+      description:
+        "Bank-level security with role-based access control and comprehensive audit trails.",
+    },
+    {
+      icon: Building2,
+      title: "Industry-Specific Workflows",
+      description:
+        "Built specifically for precast concrete with optimized processes and best practices.",
+    },
+  ];
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-900 via-black to-orange-900 text-white overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDYwIEwgNjAgMCIgc3Ryb2tlPSJyZ2JhKDI1NSwgMTI1LCAwLCAwLjEpIiBzdHJva2Utd2lkdGg9IjAuNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
-      </div>
-
-      <div className="hidden lg:block absolute inset-0 z-0">
-        <NeuralNetworkBackground />
-      </div>
-
-      <div className="relative z-10 flex flex-col justify-center items-center min-h-screen text-center px-4 sm:px-6 md:px-8 lg:px-10 lg:mt-[2vw] lg:mb-6 xl:px-16 py-8 sm:py-12 md:py-16 lg:py-24">
-        <motion.div
-          className="w-full max-w-[100vh] xs:max-w-xs sm:max-w-sm md:max-w-3xl lg:max-w-3xl xl:max-w-3xl 2xl:max-w-3xl mx-auto mt-4 sm:mt-8 lg:mt-16"
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-        >
-          <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl font-extrabold leading-tight mb-2 sm:mb-4 lg:mb-6 tracking-tight">
-            Escape the
-            <OrangeGradientText className="text-xl ml-3 xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-7xl mt-1 sm:mt-2">
-              Ordinary.
-            </OrangeGradientText>
-            <br />
-            Embrace the innovation.
-            <br />
-          </h1>
-
-          <motion.p
-            className="text-xs xs:text-sm sm:text-base md:text-base lg:text-lg xl:text-xl mb-4 sm:mb-6 lg:mb-8 max-w-prose mx-auto text-white/90 font-light"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-sage-50 to-white pt-24">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Content */}
+          <motion.div
+            className="text-center lg:text-left"
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            We&apos;re not just developers, We&apos;re architects of your tech
-            escape plan.
-          </motion.p>
+            <motion.div
+              className="inline-flex items-center gap-2 px-3 py-1.5 bg-forest-500/10 border border-forest-500/20 rounded-full text-forest-700 text-sm font-medium mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <Zap className="w-3 h-3" />
+              Transform Your Construction Management
+            </motion.div>
 
-          <motion.form
-            className="flex flex-col xs:flex-col lg:flex-row gap-2 xs:gap-3 mb-6 sm:mb-8 lg:mb-12 mt-2 xs:mt-3 w-full max-w-[280px] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-4xl mx-auto"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-            onSubmit={handleSubmit}
-          >
-            <div className="relative w-full">
-              <input
-                type="text"
-                placeholder="Guess the number (1-100)"
-                value={inputValue}
-                onChange={handleInputChange}
-                required
-                className={`w-full bg-white/10 border-orange-500/50 text-white placeholder-white/70 focus:ring-2 focus:ring-orange-400 rounded-lg px-3 xs:px-4 py-2 xs:py-3 transition-all duration-300 ease-in-out focus:border-orange-600 text-xs xs:text-sm lg:text-base`}
-              />
-              <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-yellow-400 font-bold text-xs xs:text-sm lg:text-base">
-                Score: {score}
-              </span>
-            </div>
-            <AnimatePresence mode="wait">
+            <motion.h1
+              className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Stop Managing Excel Sheets.
+              <br />
+              <ForestGradientText>Start Managing Projects.</ForestGradientText>
+            </motion.h1>
+
+            <motion.p
+              className="text-base sm:text-lg lg:text-xl text-forest-600 mb-4 sm:mb-6 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              Transform Your Precast Concrete Projects from Excel Chaos to Cloud
+              Control
+            </motion.p>
+
+            <motion.p
+              className="text-sm sm:text-base text-forest-700 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              The complete construction management platform built specifically
+              for precast concrete companies. End data fragmentation, eliminate
+              manual errors, and accelerate project delivery with our proven
+              cloud solution.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center mb-8 sm:mb-10"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
               <motion.button
-                key={loading ? "loading" : "submit"}
-                type="submit"
-                className="w-full xs:w-full lg:w-auto bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold px-4 xs:px-6 py-2 xs:py-3 rounded-lg shadow-md transition-all duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-orange-400 text-xs xs:text-sm lg:text-base whitespace-nowrap"
-                disabled={loading}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+                className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
-                {loading ? (
-                  <Loader2 className="mr-2 h-4 w-4 xs:h-5 xs:w-5 animate-spin inline" />
-                ) : (
-                  <div className="flex items-center justify-center gap-1 xs:gap-2">
-                    Make a Guess
-                    <Zap className="h-4 w-4 xs:h-5 xs:w-5" />
-                  </div>
-                )}
+                Schedule Your Live Demo
               </motion.button>
-            </AnimatePresence>
-          </motion.form>
-          {gameState && (
-            <motion.p
-              className="text-lg xs:text-xl sm:text-2xl mt-4 animate-bounce"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              {gameState}
-            </motion.p>
-          )}
-          {hint && (
-            <motion.p
-              className="text-sm xs:text-base sm:text-lg mt-2 text-orange-400 animate-pulse"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              {hint}
-            </motion.p>
-          )}
+              <motion.button
+                className="bg-white border border-forest-500 text-forest-600 hover:bg-forest-50 font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                Download Case Study
+              </motion.button>
+            </motion.div>
+          </motion.div>
+
+          {/* Right Content - Simple Globe Icon */}
+          <motion.div
+            className="flex justify-center lg:justify-end"
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <div className="relative">
+              <div className="w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 flex items-center justify-center">
+                <Globe className="w-20 h-20 sm:w-24 sm:h-24 lg:w-28 lg:h-28 text-forest-500" />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Key Statistics */}
+        <motion.div
+          className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <StatCard
+            icon={TrendingUp}
+            value="40%"
+            label="Reduction in project administration time"
+            delay={0.1}
+          />
+          <StatCard
+            icon={CheckCircle}
+            value="90%"
+            label="Decrease in data entry errors"
+            delay={0.2}
+          />
+          <StatCard
+            icon={Clock}
+            value="35%"
+            label="Improvement in on-time delivery"
+            delay={0.3}
+          />
+          <StatCard
+            icon={BarChart3}
+            value="60%"
+            label="Faster report generation"
+            delay={0.4}
+          />
         </motion.div>
 
+        {/* Key Features */}
         <motion.div
-          className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 xs:gap-4 lg:gap-16 w-full max-w-[280px] xs:max-w-xs sm:max-w-sm md:max-w-md lg:max-w-6xl xl:max-w-6xl 2xl:max-w-6xl"
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6, delay: 1.0 }}
+          className="mb-8 sm:mb-10"
         >
-          <FeatureItem icon={Globe} text="Devops & CI/CD pipelines" />
-          <FeatureItem icon={Shield} text="Cloud Engineering" />
-          <FeatureItem icon={Cpu} text="Web-Development" />
-          <FeatureItem icon={ArrowRight} text="Graphic-Designing" />
+          <div className="text-center mb-6">
+            <motion.h2
+              className="text-xl sm:text-2xl lg:text-3xl font-bold text-forest-800 mb-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.1 }}
+            >
+              Why Choose ICS?
+            </motion.h2>
+            <motion.p
+              className="text-forest-600 text-base max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+            >
+              Built specifically for the precast concrete industry with features
+              that matter
+            </motion.p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {features.map((feature, index) => (
+              <FeatureCard
+                key={index}
+                icon={feature.icon}
+                title={feature.title}
+                description={feature.description}
+                delay={0.1 * (index + 1)}
+              />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="bg-white p-6 rounded-xl shadow-lg border border-sage-200 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.3 }}
+        >
+          <div className="text-center">
+            <motion.h3
+              className="text-xl sm:text-2xl font-bold text-forest-800 mb-3"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.4 }}
+            >
+              Ready to Transform Your Construction Management?
+            </motion.h3>
+            <motion.p
+              className="text-forest-600 text-base mb-4 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.5 }}
+            >
+              Join leading precast concrete companies who have already
+              eliminated Excel chaos and accelerated their project delivery with
+              ICS.
+            </motion.p>
+            <motion.button
+              className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition-all duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.6 }}
+            >
+              Get Started Today
+            </motion.button>
+          </div>
         </motion.div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default DotescapistInterface;
+export default HeroSection;

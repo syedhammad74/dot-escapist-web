@@ -1,8 +1,29 @@
 "use client";
 
 import { useState, Fragment } from "react";
-import { Star } from "lucide-react";
-import Image from "next/image";
+import {
+  Database,
+  Cloud,
+  Globe,
+  Smartphone,
+  Shield,
+  Zap,
+  Code,
+  Server,
+  Lock,
+  Activity,
+  Download,
+  Upload,
+  Search,
+  Bell,
+  Eye,
+  CheckCircle,
+  TrendingUp,
+  Cpu,
+  HardDrive,
+  Wifi,
+  Smartphone as Mobile,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Dialog, Transition } from "@headlessui/react";
@@ -12,62 +33,182 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
 
-const testimonials = [
+const technologyCategories = [
   {
-    quote:
-      "The Dotescapists has become my not-so-secret weapon in the world of marketing.",
-    name: "John Reynolds",
-    title: "Marketing Maven at Peak Promotions",
-    avatar: "/hammadbhai.png",
-    rating: 5,
+    title: "Cloud-Native Foundation",
+    icon: Cloud,
+    description:
+      "Built on modern, scalable architecture with enterprise-grade reliability",
+    technologies: [
+      {
+        name: "PostgreSQL Database",
+        icon: Database,
+        description:
+          "Enterprise-grade reliability and performance with advanced query optimization",
+        features: [
+          "ACID compliance",
+          "Advanced indexing",
+          "Real-time replication",
+          "Automatic backups",
+        ],
+      },
+      {
+        name: "Cloud Infrastructure",
+        icon: Server,
+        description:
+          "Auto-scaling with 99.9% uptime guarantee and global distribution",
+        features: [
+          "Auto-scaling",
+          "99.9% uptime",
+          "Global CDN",
+          "Load balancing",
+        ],
+      },
+      {
+        name: "Global Access",
+        icon: Globe,
+        description:
+          "Available anywhere with internet connectivity and optimized performance",
+        features: [
+          "Global availability",
+          "Low latency",
+          "Multi-region",
+          "Edge computing",
+        ],
+      },
+    ],
   },
   {
-    quote:
-      "Their expertise in cloud migrations was like a breath of fresh air for our tech ecosystem.",
-    name: "Sara Williams",
-    title: "Creative Director at Innovate Agency",
-    avatar: "/bilalbhai.png",
-    rating: 5,
+    title: "Integration Capabilities",
+    icon: Zap,
+    description:
+      "Seamless connectivity with existing systems and third-party tools",
+    technologies: [
+      {
+        name: "REST API",
+        icon: Code,
+        description:
+          "Complete API access for third-party integrations and custom development",
+        features: [
+          "RESTful endpoints",
+          "JSON responses",
+          "Rate limiting",
+          "API documentation",
+        ],
+      },
+      {
+        name: "Webhook Support",
+        icon: Bell,
+        description:
+          "Real-time notifications and data synchronization across systems",
+        features: [
+          "Real-time events",
+          "Custom webhooks",
+          "Retry logic",
+          "Event filtering",
+        ],
+      },
+      {
+        name: "ERP Integration",
+        icon: Database,
+        description:
+          "Connect with existing accounting and business systems seamlessly",
+        features: [
+          "SAP integration",
+          "Oracle connectivity",
+          "QuickBooks sync",
+          "Custom adapters",
+        ],
+      },
+    ],
   },
   {
-    quote:
-      "Using Power AI has streamlined our design process. The AI-generated images are stunning and have saved us countless hours.",
-    name: "Michael Chen",
-    title: "Lead Designer at PixelPerfect",
-    avatar: "/hammadbhai.png",
-    rating: 4,
+    title: "Modern User Experience",
+    icon: Smartphone,
+    description:
+      "Intuitive interface designed for both technical and non-technical users",
+    technologies: [
+      {
+        name: "Responsive Design",
+        icon: Mobile,
+        description:
+          "Optimized for desktop, tablet, and mobile with consistent experience",
+        features: [
+          "Mobile-first",
+          "Touch optimized",
+          "Cross-browser",
+          "Progressive web app",
+        ],
+      },
+      {
+        name: "Advanced Search",
+        icon: Search,
+        description:
+          "Multi-field search with intelligent filtering and real-time results",
+        features: [
+          "Full-text search",
+          "Smart filters",
+          "Search suggestions",
+          "Saved searches",
+        ],
+      },
+      {
+        name: "Real-Time Updates",
+        icon: Activity,
+        description:
+          "Live data synchronization across all users with instant notifications",
+        features: [
+          "WebSocket connections",
+          "Live updates",
+          "Push notifications",
+          "Conflict resolution",
+        ],
+      },
+    ],
   },
   {
-    quote:
-      "Dot Escapists helped us escape from outdated infrastructure, bringing us cutting-edge solutions that transformed our operations.",
-    name: "Emily Clarkson",
-    title: "Creative Strategist at Visionary Media",
-    avatar: "/hammadbhai.png",
-    rating: 5,
-  },
-  {
-    quote:
-      "Thanks to Dotescapist, we can now generate high-quality scripts on the web, which helps our social media campaigns immensely.",
-    name: "David Kim",
-    title: "Social Media Manager at Click Growth",
-    avatar: "/hammadbhai.png",
-    rating: 4,
-  },
-  {
-    quote:
-      "Dotescapist innovative features have given us a competitive edge in our industry. It's an indispensable tool for our team.",
-    name: "Alex Thompson",
-    title: "CTO at TechInnovate",
-    avatar: "/hammadbhai.png",
-    rating: 5,
-  },
-  {
-    quote:
-      "The customer support team at Dotescapist is exceptional. They've been incredibly helpful in optimizing our use of the platform.",
-    name: "Rachel Lee",
-    title: "Customer Success Manager at GrowthBoost",
-    avatar: "/hammadbhai.png",
-    rating: 4,
+    title: "Security & Compliance",
+    icon: Shield,
+    description:
+      "Enterprise-grade security protocols and comprehensive compliance features",
+    technologies: [
+      {
+        name: "JWT Authentication",
+        icon: Lock,
+        description:
+          "Enterprise-grade security protocols with token-based authentication",
+        features: [
+          "JWT tokens",
+          "Session management",
+          "Multi-factor auth",
+          "SSO support",
+        ],
+      },
+      {
+        name: "Data Encryption",
+        icon: Shield,
+        description:
+          "All data encrypted in transit and at rest with military-grade algorithms",
+        features: [
+          "AES-256 encryption",
+          "TLS 1.3",
+          "At-rest encryption",
+          "Key management",
+        ],
+      },
+      {
+        name: "Audit Trails",
+        icon: Eye,
+        description:
+          "Complete activity logging for compliance requirements and security monitoring",
+        features: [
+          "Activity logs",
+          "User tracking",
+          "Change history",
+          "Compliance reports",
+        ],
+      },
+    ],
   },
 ];
 
@@ -85,7 +226,7 @@ const HexagonBackground = ({ className = "" }) => (
           <path
             d="M25 0L50 14.4v28.9L25 57.7L0 43.3V14.4z"
             fill="none"
-            stroke="#ff7700"
+            stroke="#235347"
             strokeWidth="0.5"
           />
         </pattern>
@@ -95,104 +236,154 @@ const HexagonBackground = ({ className = "" }) => (
   </div>
 );
 
-const StarRating = ({ rating }: { rating: number }) => (
-  <div className="flex space-x-1">
-    {[...Array(5)].map((_, i) => (
-      <Star
-        key={i}
-        className={cn(
-          "w-4 h-4 md:w-5 md:h-5 transition-colors duration-200",
-          i < rating ? "text-yellow-400 fill-current" : "text-gray-500"
-        )}
-      />
-    ))}
-  </div>
-);
-
-const TestimonialCard = ({
-  review,
+const TechnologyCard = ({
+  category,
 }: {
-  review: {
-    quote: string;
-    name: string;
+  category: {
     title: string;
-    avatar: string;
-    rating: number;
+    icon: React.ElementType;
+    description: string;
+    technologies: Array<{
+      name: string;
+      icon: React.ElementType;
+      description: string;
+      features: string[];
+    }>;
   };
 }) => (
-  <div className="bg-gray-900 rounded-lg p-8 h-72 flex flex-col justify-between border border-gray-800 transition-all duration-300 hover:border-orange-500 hover:shadow-xl hover:shadow-orange-500/10">
+  <div className="bg-white/90 backdrop-blur-md rounded-lg p-8 h-full flex flex-col justify-between border border-sage-200/50 transition-all duration-300 hover:border-forest-500 hover:shadow-xl hover:shadow-forest-500/10 shadow-elegant">
     <div className="flex flex-col h-full">
       <div className="flex items-center mb-6">
-        <div className="relative w-16 h-16">
-          <Image
-            src={review.avatar}
-            alt={review.name}
-            fill
-            className="rounded-full border-2 border-orange-500 object-cover"
-          />
+        <div className="w-16 h-16 bg-gradient-to-br from-forest-500 to-sage-400 rounded-full flex items-center justify-center shadow-lg mr-4">
+          <category.icon className="w-8 h-8 text-white" />
         </div>
-        <div className="ml-4">
-          <p className="text-lg font-semibold text-white">{review.name}</p>
-          <p className="text-sm text-gray-400">{review.title}</p>
+        <div>
+          <h3 className="text-xl font-bold text-forest-800">
+            {category.title}
+          </h3>
+          <p className="text-forest-600 text-sm">{category.description}</p>
         </div>
       </div>
-      <StarRating rating={review.rating} />
-      <p className="text-base text-gray-300 mt-4 flex-grow">{review.quote}</p>
+
+      <div className="space-y-4 flex-grow">
+        {category.technologies.map((tech, index) => (
+          <div
+            key={index}
+            className="bg-sage-50 border border-sage-200/50 rounded-lg p-4"
+          >
+            <div className="flex items-center mb-2">
+              <tech.icon className="w-5 h-5 text-forest-500 mr-2" />
+              <h4 className="font-semibold text-forest-700">{tech.name}</h4>
+            </div>
+            <p className="text-forest-600 text-sm mb-2">{tech.description}</p>
+            <div className="flex flex-wrap gap-1">
+              {tech.features.slice(0, 2).map((feature, idx) => (
+                <span
+                  key={idx}
+                  className="text-xs bg-forest-100 text-forest-700 px-2 py-1 rounded"
+                >
+                  {feature}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 );
 
-export default function ResponsiveTestimonialSection() {
-  const [isReviewDialogOpen, setIsReviewDialogOpen] = useState(false);
-  const [reviews, setReviews] = useState(testimonials);
-  const [userName, setUserName] = useState("");
-  const [userQuote, setUserQuote] = useState("");
-  const [userRating, setUserRating] = useState(5);
+const TechSpecCard = ({
+  title,
+  value,
+  description,
+  icon: Icon,
+}: {
+  title: string;
+  value: string;
+  description: string;
+  icon: React.ElementType;
+}) => (
+  <div className="bg-gradient-to-br from-forest-50 to-sage-50 border border-forest-200/50 rounded-xl p-6 text-center">
+    <div className="w-16 h-16 bg-gradient-to-br from-forest-500 to-sage-400 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+      <Icon className="w-8 h-8 text-white" />
+    </div>
+    <h3 className="text-xl font-bold text-forest-800 mb-2">{title}</h3>
+    <div className="text-3xl font-extrabold text-forest-600 mb-2">{value}</div>
+    <p className="text-forest-600 text-sm">{description}</p>
+  </div>
+);
 
-  const handleReviewSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (userName && userQuote) {
-      const newReview = {
-        quote: userQuote,
-        name: userName,
-        title: "User Review",
-        avatar: "/default-avatar.png",
-        rating: userRating,
-      };
-      setReviews([...reviews, newReview]);
-      setIsReviewDialogOpen(false);
-      setUserName("");
-      setUserQuote("");
-      setUserRating(5);
-    }
-  };
+const techSpecs = [
+  {
+    title: "Uptime Guarantee",
+    value: "99.9%",
+    description: "Enterprise-grade reliability",
+    icon: Shield,
+  },
+  {
+    title: "Data Encryption",
+    value: "AES-256",
+    description: "Military-grade security",
+    icon: Lock,
+  },
+  {
+    title: "Global Access",
+    value: "24/7",
+    description: "Available worldwide",
+    icon: Globe,
+  },
+  {
+    title: "API Response",
+    value: "<100ms",
+    description: "Lightning-fast performance",
+    icon: Zap,
+  },
+];
+
+export default function TechnologiesSection() {
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
   return (
     <section
-      id="testimonial"
-      className="relative w-full bg-gradient-to-tr from-orange-900 via-gray-900 to-black py-16 md:py-20 lg:py-24 overflow-hidden"
+      id="technologies"
+      className="relative w-full bg-gradient-to-tr from-white via-sage-50 to-white py-16 md:py-20 lg:py-24 overflow-hidden"
     >
       <HexagonBackground />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="text-center mb-10 xs:mb-16">
           <div className="flex justify-center items-center mb-4">
-            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
+            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-forest-500 rounded-full"></div>
           </div>
 
-          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white mb-6">
-            Client Testimonials
+          <h2 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-forest-800 mb-6">
+            Technology Stack
           </h2>
 
           <div className="flex justify-center items-center mt-2 mb-4">
-            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-orange-500 rounded-full"></div>
+            <div className="h-[2px] w-12 xs:w-16 md:w-20 lg:w-32 bg-forest-500 rounded-full"></div>
           </div>
 
-          <p className="text-sm xs:text-base md:text-lg lg:text-xl text-gray-300 max-w-lg xs:max-w-2xl md:max-w-3xl mx-auto mt-4">
-            What Our Clients Say After Their Escape
+          <p className="text-sm xs:text-base md:text-lg lg:text-xl text-forest-600 max-w-lg xs:max-w-2xl md:max-w-3xl mx-auto mt-4">
+            Built on Modern, Scalable Architecture
           </p>
         </div>
 
+        {/* Technology Specifications */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+          {techSpecs.map((spec, index) => (
+            <TechSpecCard
+              key={index}
+              title={spec.title}
+              value={spec.value}
+              description={spec.description}
+              icon={spec.icon}
+            />
+          ))}
+        </div>
+
+        {/* Technology Categories */}
         <Swiper
           slidesPerView={1}
           spaceBetween={24}
@@ -215,136 +406,19 @@ export default function ResponsiveTestimonialSection() {
           }}
           className="mySwiper w-full max-w-6xl"
         >
-          {reviews.map((review, index) => (
+          {technologyCategories.map((category, index) => (
             <SwiperSlide key={index} className="h-auto">
-              <TestimonialCard review={review} />
+              <TechnologyCard category={category} />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <div className="flex justify-center mt-12 lg:mt-16">
-          <Button
-            onClick={() => setIsReviewDialogOpen(true)}
-            className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl text-base"
-          >
-            Add Your Review
+          <Button className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-semibold py-3 px-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl text-base">
+            Explore Integration Options
           </Button>
         </div>
       </div>
-
-      <Transition appear show={isReviewDialogOpen} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 z-50 overflow-y-auto"
-          onClose={() => setIsReviewDialogOpen(false)}
-        >
-          <div className="min-h-screen px-4 text-center">
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0"
-              enterTo="opacity-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
-            >
-              <div className="fixed inset-0 bg-black bg-opacity-80 transition-opacity"></div>
-            </Transition.Child>
-
-            <span
-              className="inline-block h-screen align-middle"
-              aria-hidden="true"
-            >
-              &#8203;
-            </span>
-            <Transition.Child
-              as={Fragment}
-              enter="ease-out duration-300"
-              enterFrom="opacity-0 scale-95"
-              enterTo="opacity-100 scale-100"
-              leave="ease-in duration-200"
-              leaveFrom="opacity-100 scale-100"
-              leaveTo="opacity-0 scale-95"
-            >
-              <div className="inline-block w-full max-w-md p-8 my-8 overflow-hidden text-left align-middle transition-all transform bg-gray-900 border border-gray-700 text-gray-100 rounded-lg shadow-2xl">
-                <Dialog.Title
-                  as="h3"
-                  className="text-2xl font-semibold leading-6 mb-6"
-                >
-                  Add Your Review
-                </Dialog.Title>
-                <form onSubmit={handleReviewSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-base font-medium">
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      value={userName}
-                      onChange={(e) => setUserName(e.target.value)}
-                      placeholder="Enter your name"
-                      className="w-full px-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base transition-colors duration-200"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label htmlFor="rating" className="text-base font-medium">
-                      Rating
-                    </label>
-                    <div className="flex space-x-2">
-                      {[1, 2, 3, 4, 5].map((value) => (
-                        <button
-                          key={value}
-                          type="button"
-                          onClick={() => setUserRating(value)}
-                          className={cn(
-                            "w-10 h-10 transition-all duration-300",
-                            userRating >= value
-                              ? "text-yellow-400"
-                              : "text-gray-500"
-                          )}
-                        >
-                          <Star className="w-8 h-8 fill-current" />
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label
-                      htmlFor="experience"
-                      className="text-base font-medium"
-                    >
-                      Your Experience
-                    </label>
-                    <textarea
-                      id="experience"
-                      value={userQuote}
-                      onChange={(e) => setUserQuote(e.target.value)}
-                      placeholder="Share your experience with Power AI"
-                      className="w-full px-4 py-3 border border-gray-700 rounded-lg bg-gray-800 text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500 text-base transition-colors duration-200"
-                      rows={4}
-                    />
-                  </div>
-                  <div className="flex justify-end gap-4 mt-8">
-                    <Button
-                      type="button"
-                      onClick={() => setIsReviewDialogOpen(false)}
-                      className="text-base border-gray-700 hover:bg-gray-800 transition-colors duration-200"
-                    >
-                      Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      className="bg-gradient-to-r from-orange-500 to-yellow-500 hover:from-orange-600 hover:to-yellow-600 text-white text-base transition-all duration-200"
-                    >
-                      Submit Review
-                    </Button>
-                  </div>
-                </form>
-              </div>
-            </Transition.Child>
-          </div>
-        </Dialog>
-      </Transition>
     </section>
   );
 }
