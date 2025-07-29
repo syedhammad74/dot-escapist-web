@@ -37,9 +37,10 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
         href={href}
         onClick={handleClick}
         className={cn(
-          "px-3 py-2 text-sm font-medium transition-all duration-300 relative",
-          "hover:text-forest-500 hover:bg-forest-500/5 rounded-lg",
-          "text-forest-700"
+          "px-4 py-2.5 text-sm font-semibold transition-all duration-300 relative",
+          "hover:text-forest-600 hover:bg-gradient-to-r hover:from-forest-50 hover:to-sage-50 rounded-xl",
+          "text-forest-700 border border-transparent hover:border-forest-200/50",
+          "backdrop-blur-sm"
         )}
       >
         {label}
@@ -47,8 +48,8 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
           {isHovered && (
             <motion.div
               layoutId="navIndicator"
-              className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-forest-500 to-sage-400 rounded-full"
-              style={{ bottom: "-2px" }}
+              className="absolute left-0 right-0 h-0.5 bg-gradient-to-r from-forest-500 via-sage-400 to-forest-600 rounded-full"
+              style={{ bottom: "-1px" }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               exit={{ scaleX: 0 }}
@@ -120,16 +121,16 @@ export default function Navbar() {
         >
           <motion.header
             className={cn(
-              "max-w-6xl mx-auto",
-              "bg-white/95 backdrop-blur-xl border border-sage-200/50",
-              "rounded-2xl shadow-lg",
-              isSticky ? "shadow-xl" : "shadow-md"
+              "max-w-7xl mx-auto",
+              "bg-white/98 backdrop-blur-2xl border border-sage-200/60",
+              "rounded-3xl shadow-2xl",
+              isSticky ? "shadow-3xl" : "shadow-xl"
             )}
             style={{
-              WebkitBackdropFilter: "blur(16px)",
-              backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(24px)",
+              backdropFilter: "blur(24px)",
             }}
-            animate={isSticky ? { scale: 0.98 } : { scale: 1 }}
+            animate={isSticky ? { scale: 0.99 } : { scale: 1 }}
             transition={{
               duration: 0.2,
               ease: "easeInOut",
@@ -138,24 +139,49 @@ export default function Navbar() {
               damping: 40,
             }}
           >
-            <div className="px-4 sm:px-6 lg:px-8 py-3">
-              <div className="flex items-center justify-between h-14 sm:h-16">
+            <div className="px-6 sm:px-8 lg:px-10 py-4">
+              <div className="flex items-center justify-between h-16 sm:h-18">
                 {/* Logo */}
                 <Link
                   href="/"
-                  className="hover:scale-105 transition-transform duration-200 ease-in-out"
+                  className="hover:scale-105 transition-transform duration-300 ease-in-out group"
                   aria-label="Home"
                 >
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="flex items-center space-x-3"
                   >
-                    <CustomLogo size="md" />
+                    <div className="relative">
+                      <CustomLogo size="md" />
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-forest-500/20 to-sage-400/20 rounded-full blur-xl"
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          opacity: [0.3, 0.6, 0.3],
+                        }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "easeInOut",
+                        }}
+                      />
+                    </div>
+                    <div className="hidden sm:block">
+                      <div className="text-xl font-bold text-forest-800 group-hover:text-forest-600 transition-colors duration-300">
+                        ICS
+                      </div>
+                      <div className="text-xs text-forest-600 group-hover:text-forest-500 transition-colors duration-300 leading-tight">
+                        Integrated Construction
+                        <br />
+                        Solutions
+                      </div>
+                    </div>
                   </motion.div>
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden lg:flex items-center space-x-1">
+                <nav className="hidden lg:flex items-center space-x-2">
                   {navItems.map((navItem, index) => (
                     <motion.div
                       key={`link-${index}`}
@@ -173,7 +199,7 @@ export default function Navbar() {
                 </nav>
 
                 {/* Desktop Actions */}
-                <div className="hidden lg:flex items-center space-x-2">
+                <div className="hidden lg:flex items-center space-x-3">
                   <motion.div
                     whileHover={{ scale: 1.05, y: -1 }}
                     whileTap={{ scale: 0.95 }}
@@ -182,10 +208,10 @@ export default function Navbar() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-forest-700 hover:bg-forest-500/10 hover:text-forest-500 transition-all duration-200"
+                      className="h-10 w-10 text-forest-700 hover:bg-gradient-to-r hover:from-forest-50 hover:to-sage-50 hover:text-forest-600 transition-all duration-300 rounded-xl border border-transparent hover:border-forest-200/50"
                       aria-label="Search"
                     >
-                      <Search className="h-4 w-4" />
+                      <Search className="h-5 w-5" />
                     </Button>
                   </motion.div>
 
@@ -197,15 +223,15 @@ export default function Navbar() {
                     <Button
                       variant="ghost"
                       size="icon"
-                      className="h-8 w-8 text-forest-700 hover:bg-forest-500/10 hover:text-forest-500 relative transition-all duration-200"
+                      className="h-10 w-10 text-forest-700 hover:bg-gradient-to-r hover:from-forest-50 hover:to-sage-50 hover:text-forest-600 relative transition-all duration-300 rounded-xl border border-transparent hover:border-forest-200/50"
                       aria-label="Notifications"
                     >
-                      <Bell className="h-4 w-4" />
+                      <Bell className="h-5 w-5" />
                       <motion.span
-                        className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-forest-500 rounded-full"
+                        className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-forest-500 to-sage-400 rounded-full shadow-lg"
                         animate={{
-                          scale: [1, 1.2, 1],
-                          opacity: [0.7, 1, 0.7],
+                          scale: [1, 1.3, 1],
+                          opacity: [0.8, 1, 0.8],
                         }}
                         transition={{
                           duration: 2,
@@ -217,20 +243,25 @@ export default function Navbar() {
                   </motion.div>
 
                   <motion.div
-                    className="h-5 w-px bg-sage-200"
+                    className="h-8 w-px bg-gradient-to-b from-transparent via-sage-300 to-transparent"
                     initial={{ scaleY: 0 }}
                     animate={{ scaleY: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   />
 
                   <motion.div
-                    whileHover={{ scale: 1.05, y: -1 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.95 }}
-                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                   >
                     <Button
-                      className="bg-gradient-to-r from-forest-500 to-sage-400 hover:from-forest-600 hover:to-sage-500 text-white font-medium py-2 px-4 text-sm transition-all duration-200"
-                      onClick={(e) => handleSmoothScroll(e, "CTA")}
+                      className="bg-gradient-to-r from-forest-500 via-sage-400 to-forest-600 hover:from-forest-600 hover:via-sage-500 hover:to-forest-700 text-white font-semibold py-3 px-6 text-sm transition-all duration-300 rounded-xl shadow-lg hover:shadow-xl border border-forest-400/20"
+                      onClick={() => {
+                        const element = document.getElementById("CTA");
+                        if (element) {
+                          element.scrollIntoView({ behavior: "smooth" });
+                        }
+                      }}
                     >
                       Schedule Demo
                     </Button>
@@ -249,7 +280,7 @@ export default function Navbar() {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 text-forest-700 hover:bg-forest-500/10 transition-all duration-200"
+                          className="h-10 w-10 text-forest-700 hover:bg-gradient-to-r hover:from-forest-50 hover:to-sage-50 transition-all duration-300 rounded-xl border border-transparent hover:border-forest-200/50"
                           aria-label="Open menu"
                         >
                           <AnimatePresence mode="wait">
@@ -280,7 +311,7 @@ export default function Navbar() {
                     </SheetTrigger>
                     <SheetContent
                       side="right"
-                      className="w-[280px] sm:w-[320px] bg-white/95 backdrop-blur-xl border-l border-sage-200"
+                      className="w-[300px] sm:w-[350px] bg-white/98 backdrop-blur-2xl border-l border-sage-200/60"
                     >
                       <motion.div
                         className="p-6 h-full flex flex-col"
