@@ -158,7 +158,7 @@ const Services = () => {
     <section className="relative py-20 sm:py-24 lg:py-32 bg-gradient-to-br from-white via-primary-50/30 to-white overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-grid-pattern opacity-5" />
-      
+
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
@@ -190,7 +190,11 @@ const Services = () => {
         />
         <motion.div
           className="absolute w-48 h-48 bg-gradient-to-br from-primary-500/3 to-secondary-500/3 rounded-full blur-xl"
-          style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
+          style={{
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+          }}
           animate={{
             scale: [1, 1.4, 1],
             opacity: [0.1, 0.3, 0.1],
@@ -282,13 +286,16 @@ const Services = () => {
               to your specific workflows.
             </motion.p>
           </Stack>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 1.1 }}
           >
-            <Button size="lg" className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group">
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-600 hover:to-secondary-600 text-white font-semibold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+            >
               <Sparkles className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
               Schedule Full Platform Demo
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />

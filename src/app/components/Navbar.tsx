@@ -1,28 +1,31 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Search, Bell, Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import Logo from "../../../public/logo.png";
+import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { navItems } from "@/constants/nav";
-import Image from "next/image";
+import { Menu, X, Search, Bell } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useAuth } from "@/hooks/use-auth";
+import { UserMenu } from "@/components/auth/UserMenu";
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+
+const navLinks = [
+  { href: "/properties", label: "Properties" },
+  { href: "/services", label: "Services" },
+  { href: "/experiences", label: "Experiences" },
+  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "AboutUs" },
+  { href: "/contact", label: "Contact" },
+];
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
-  const [isActive, setIsActive] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = document.querySelector(href);
-      if (element) {
-        const rect = element.getBoundingClientRect();
-        setIsActive(rect.top <= 100 && rect.bottom >= 100);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [href]);
+  const pathname = usePathname();
+  const isActive =
+    pathname === href || (href !== "/" && pathname.startsWith(href));
 
   return (
     <motion.div
@@ -31,21 +34,14 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       className="relative"
     >
-      <a
+      <Link
         href={href}
-        onClick={(e) => {
-          e.preventDefault();
-          const element = document.querySelector(href);
-          if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
-          }
-        }}
         className={cn(
-          "px-4 py-3 text-sm font-medium transition-all duration-300 relative",
-          "hover:text-forest-500 hover:bg-forest-50/80 rounded-lg",
+          "px-3 py-2 text-sm font-medium transition-all duration-300 relative",
+          "hover:text-[#8EB69B] hover:bg-[#8EB69B]/5 rounded-lg",
           isActive
-            ? "text-forest-800 font-semibold bg-forest-100/80"
-            : "text-forest-700"
+            ? "text-[#0B2B26] font-semibold bg-[#8EB69B]/10"
+            : "text-[#235347]"
         )}
       >
         {label}
@@ -53,7 +49,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
           {isActive && (
             <motion.div
               layoutId="activeIndicator"
-              className="absolute left-0 right-0 h-0.5 bg-forest-500 rounded-full"
+              className="absolute left-0 right-0 h-0.5 bg-[#8EB69B] rounded-full"
               style={{ bottom: "-5px" }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
@@ -62,19 +58,20 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
             />
           )}
         </AnimatePresence>
-      </a>
+      </Link>
     </motion.div>
   );
 };
 
-const Navbar: React.FC = () => {
-  const [isSticky, setIsSticky] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [scrollDelta, setScrollDelta] = useState(0);
-  const [lockout, setLockout] = useState(false);
+const Header = () => {
+  const [isSticky, setIsSticky] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
+  const [scrollDelta, setScrollDelta] = React.useState(0);
+  const [lockout, setLockout] = React.useState(false);
+  const { user, loading } = useAuth();
 
-  useEffect(() => {
+  React.useEffect(() => {
     let lastY = window.scrollY;
     let ticking = false;
 
@@ -132,7 +129,7 @@ const Navbar: React.FC = () => {
   }, [isVisible, lockout, scrollDelta]);
 
   // Ensure header is visible when at top of page
-  useEffect(() => {
+  React.useEffect(() => {
     if (window.scrollY < 50) {
       setIsVisible(true);
     }
@@ -142,7 +139,7 @@ const Navbar: React.FC = () => {
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          className="sticky top-0 left-0 right-0 z-50 w-full h-20 px-4 pt-6"
+          className="sticky top-0 left-0 right-0 z-50 w-full px-4 pt-6"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
@@ -157,7 +154,7 @@ const Navbar: React.FC = () => {
           <motion.header
             className={cn(
               "w-auto mx-auto",
-              "bg-white/95 backdrop-blur-xl border border-forest-200/50",
+              "bg-white/95 backdrop-blur-xl border border-[#EBEBEB]/50",
               "rounded-full shadow-lg",
               isSticky ? "shadow-xl" : "shadow-md"
             )}
@@ -177,24 +174,31 @@ const Navbar: React.FC = () => {
             <div className="px-4 sm:px-6 lg:px-8">
               <div className="flex items-center justify-between h-16">
                 {/* Logo */}
-                <motion.a
-                  href="#"
+                <Link
+                  href="/"
                   className="flex items-center space-x-2 sm:space-x-1"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.2 }}
                 >
-                  <div className="flex items-center space-x-1 sm:space-x-3">
-                    <span className="text-lg sm:text-xl lg:text-2xl font-bold text-forest-900">
-                      ICS
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.2 }}
+                    className="flex items-center space-x-1 sm:space-x-3"
+                  >
+                    <Image
+                      src={Logo}
+                      alt="Expat Stays"
+                      className="h-6 w-auto sm:h-8"
+                    />
+                    <span className="text-lg sm:text-xl lg:text-2xl font-bold text-[#0B2B26]">
+                      Expat Stays
                     </span>
-                  </div>
-                </motion.a>
+                  </motion.div>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <nav className="hidden xl:flex items-center space-x-1">
-                  {navItems.map((item, index) => (
+                  {navLinks.map((link, index) => (
                     <motion.div
-                      key={item.name}
+                      key={link.href}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
@@ -203,7 +207,7 @@ const Navbar: React.FC = () => {
                         ease: "easeOut",
                       }}
                     >
-                      <NavLink href={item.link} label={item.name} />
+                      <NavLink href={link.href} label={link.label} />
                     </motion.div>
                   ))}
                 </nav>
@@ -215,12 +219,14 @@ const Navbar: React.FC = () => {
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                   >
-                    <button
-                      className="h-10 w-10 flex items-center justify-center text-forest-700 hover:bg-forest-50 hover:text-forest-600 transition-all duration-200 rounded-lg"
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-9 w-9 text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] transition-all duration-200"
                       aria-label="Search"
                     >
-                      <Search className="h-5 w-5" />
-                    </button>
+                      <Search className="h-4 w-4" />
+                    </Button>
                   </motion.div>
 
                   <motion.div
@@ -228,13 +234,15 @@ const Navbar: React.FC = () => {
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                   >
-                    <button
-                      className="h-10 w-10 flex items-center justify-center text-forest-700 hover:bg-forest-50 hover:text-forest-600 relative transition-all duration-200 rounded-lg"
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-9 w-9 text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] relative transition-all duration-200"
                       aria-label="Notifications"
                     >
-                      <Bell className="h-5 w-5" />
+                      <Bell className="h-4 w-4" />
                       <motion.span
-                        className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-forest-500 rounded-full"
+                        className="absolute -top-0.5 -right-0.5 w-2 h-2 bg-[#8EB69B] rounded-full"
                         animate={{
                           scale: [1, 1.2, 1],
                           opacity: [0.7, 1, 0.7],
@@ -245,11 +253,11 @@ const Navbar: React.FC = () => {
                           ease: "easeInOut",
                         }}
                       />
-                    </button>
+                    </Button>
                   </motion.div>
 
                   <motion.div
-                    className="h-6 w-px bg-forest-200"
+                    className="h-6 w-px bg-[#EBEBEB]"
                     initial={{ scaleY: 0 }}
                     animate={{ scaleY: 1 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
@@ -260,18 +268,51 @@ const Navbar: React.FC = () => {
                     whileTap={{ scale: 0.95 }}
                     transition={{ duration: 0.2, ease: "easeOut" }}
                   >
-                    <button
-                      onClick={() => {
-                        const element = document.getElementById("CTA");
-                        if (element) {
-                          element.scrollIntoView({ behavior: "smooth" });
-                        }
-                      }}
-                      className="bg-forest-600 text-white hover:bg-forest-700 font-medium px-6 py-2 rounded-lg transition-all duration-200"
+                    <Button
+                      className="bg-[#8EB69B] text-[#0B2B26] hover:bg-[#7AA589] font-medium transition-all duration-200"
+                      asChild
                     >
-                      Schedule Demo
-                    </button>
+                      <Link href="/properties">Find A House</Link>
+                    </Button>
                   </motion.div>
+
+                  {!loading &&
+                    (user ? (
+                      <UserMenu />
+                    ) : (
+                      <motion.div
+                        className="flex items-center space-x-2 xl:space-x-3"
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.05, y: -1 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          <Link href="/auth/signin">
+                            <Button
+                              variant="ghost"
+                              className="text-[#235347] font-medium hover:bg-[#F2F2F2] hover:text-[#8EB69B] transition-all duration-200"
+                            >
+                              Sign In
+                            </Button>
+                          </Link>
+                        </motion.div>
+                        <motion.div
+                          whileHover={{ scale: 1.05, y: -1 }}
+                          whileTap={{ scale: 0.95 }}
+                          transition={{ duration: 0.2, ease: "easeOut" }}
+                        >
+                          <Link href="/auth/signup">
+                            <Button className="bg-[#0B2B26] text-white hover:bg-[#163832] font-medium transition-all duration-200">
+                              Sign Up
+                            </Button>
+                          </Link>
+                        </motion.div>
+                      </motion.div>
+                    ))}
                 </div>
 
                 {/* Mobile Menu */}
@@ -283,8 +324,10 @@ const Navbar: React.FC = () => {
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.2, ease: "easeOut" }}
                       >
-                        <button
-                          className="h-10 w-10 flex items-center justify-center text-forest-700 hover:bg-forest-50 transition-all duration-200 rounded-lg"
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-9 w-9 text-[#235347] hover:bg-[#F2F2F2] transition-all duration-200"
                           aria-label="Open menu"
                         >
                           <AnimatePresence mode="wait">
@@ -310,12 +353,12 @@ const Navbar: React.FC = () => {
                               </motion.div>
                             )}
                           </AnimatePresence>
-                        </button>
+                        </Button>
                       </motion.div>
                     </SheetTrigger>
                     <SheetContent
                       side="right"
-                      className="w-[300px] sm:w-[350px] bg-white/95 backdrop-blur-xl border-l border-forest-200"
+                      className="w-[300px] sm:w-[350px] bg-white/95 backdrop-blur-xl border-l border-[#EBEBEB]"
                     >
                       <motion.div
                         className="p-6 h-full flex flex-col"
@@ -328,25 +371,12 @@ const Navbar: React.FC = () => {
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: 0.1 }}
-                        >
-                          <div className="flex items-center space-x-3">
-                            <Image
-                              src="/logo.png"
-                              alt="ICS Logo"
-                              width={32}
-                              height={32}
-                              className="w-8 h-8 object-contain"
-                            />
-                            <span className="text-xl font-bold text-forest-900">
-                              ICS
-                            </span>
-                          </div>
-                        </motion.div>
+                        ></motion.div>
                         <nav className="flex-1">
                           <div className="space-y-2">
-                            {navItems.map((item, index) => (
+                            {navLinks.map((link, index) => (
                               <motion.div
-                                key={item.name}
+                                key={link.href}
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{
@@ -354,30 +384,19 @@ const Navbar: React.FC = () => {
                                   delay: 0.2 + index * 0.1,
                                 }}
                               >
-                                <a
-                                  href={item.link}
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    const element = document.querySelector(
-                                      item.link
-                                    );
-                                    if (element) {
-                                      element.scrollIntoView({
-                                        behavior: "smooth",
-                                      });
-                                    }
-                                    setIsMenuOpen(false);
-                                  }}
-                                  className="block px-3 py-2 text-base font-medium text-forest-700 hover:bg-forest-50 hover:text-forest-600 rounded-md transition-all duration-200"
+                                <Link
+                                  href={link.href}
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className="block px-3 py-2 text-base font-medium text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] rounded-md transition-all duration-200"
                                 >
-                                  {item.name}
-                                </a>
+                                  {link.label}
+                                </Link>
                               </motion.div>
                             ))}
                           </div>
                         </nav>
                         <motion.div
-                          className="border-t border-forest-200 pt-4 space-y-3"
+                          className="border-t border-[#EBEBEB] pt-4 space-y-3"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ duration: 0.4, delay: 0.3 }}
@@ -387,21 +406,62 @@ const Navbar: React.FC = () => {
                             whileTap={{ scale: 0.95 }}
                             transition={{ duration: 0.2, ease: "easeOut" }}
                           >
-                            <button
-                              className="w-full bg-forest-600 text-white hover:bg-forest-700 font-medium px-6 py-3 rounded-lg transition-all duration-200"
-                              onClick={() => {
-                                const element = document.getElementById("CTA");
-                                if (element) {
-                                  element.scrollIntoView({
-                                    behavior: "smooth",
-                                  });
-                                }
-                                setIsMenuOpen(false);
-                              }}
+                            <Button
+                              className="w-full bg-[#8EB69B] text-[#0B2B26] hover:bg-[#7AA589] font-medium transition-all duration-200"
+                              onClick={() => setIsMenuOpen(false)}
+                              asChild
                             >
-                              Schedule Demo
-                            </button>
+                              <Link href="/properties">Find A House</Link>
+                            </Button>
                           </motion.div>
+                          {!loading && !user && (
+                            <motion.div
+                              className="space-y-2"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.3, delay: 0.4 }}
+                            >
+                              <motion.div
+                                whileHover={{ scale: 1.05, y: -1 }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                              >
+                                <Link href="/auth/signin">
+                                  <Button
+                                    variant="outline"
+                                    className="w-full border-[#8EB69B] text-[#8EB69B] hover:bg-[#8EB69B] hover:text-[#0B2B26] transition-all duration-200"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    Sign In
+                                  </Button>
+                                </Link>
+                              </motion.div>
+                              <motion.div
+                                whileHover={{ scale: 1.05, y: -1 }}
+                                whileTap={{ scale: 0.95 }}
+                                transition={{ duration: 0.2, ease: "easeOut" }}
+                              >
+                                <Link href="/auth/signup">
+                                  <Button
+                                    className="w-full bg-[#0B2B26] text-white hover:bg-[#163832] transition-all duration-200"
+                                    onClick={() => setIsMenuOpen(false)}
+                                  >
+                                    Sign Up
+                                  </Button>
+                                </Link>
+                              </motion.div>
+                            </motion.div>
+                          )}
+                          {user && (
+                            <motion.div
+                              className="pt-3 border-t border-[#EBEBEB]"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ duration: 0.3, delay: 0.5 }}
+                            >
+                              <UserMenu />
+                            </motion.div>
+                          )}
                         </motion.div>
                       </motion.div>
                     </SheetContent>
@@ -416,4 +476,4 @@ const Navbar: React.FC = () => {
   );
 };
 
-export default Navbar;
+export default Header;
