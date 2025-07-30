@@ -31,6 +31,17 @@ const config: Config = {
           950: "hsl(160, 52%, 6%)",
         },
 
+        /* Forest Green Specific Colors */
+        forest: {
+          primary: "#235347",
+          dark: "#163832", 
+          sage: "#8EB69B",
+          mint: "#DAF1DE",
+          light: "#8EB69B",
+          medium: "#235347",
+          "medium-dark": "#163832",
+        },
+
         /* Secondary Colors - Teal Accent */
         secondary: {
           50: "hsl(180, 52%, 96%)",

@@ -101,7 +101,8 @@
   }
 
   body {
-    font-family: "GeistSans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "GeistSans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      Roboto, sans-serif;
     font-size: var(--font-size-base);
     line-height: var(--line-height-normal);
     color: hsl(0, 0%, 9%);
@@ -142,7 +143,12 @@
   }
 
   /* Perfect Typography */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -281,12 +287,14 @@
   .btn-primary {
     background: hsl(160, 52%, 44%);
     color: white;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
   }
 
   .btn-primary:hover {
     background: hsl(160, 52%, 36%);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 2px 4px -2px rgba(0, 0, 0, 0.1);
     transform: translateY(-1px);
   }
 
@@ -326,14 +334,16 @@
   .card {
     background: white;
     border-radius: var(--radius-2xl);
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+      0 1px 2px -1px rgba(0, 0, 0, 0.1);
     border: 1px solid hsl(0, 0%, 90%);
     transition: all var(--transition-normal);
     overflow: hidden;
   }
 
   .card:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+      0 4px 6px -4px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
   }
 
@@ -433,12 +443,14 @@
 
   /* Perfect Hover Effects */
   .hover-lift {
-    transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+    transition: transform var(--transition-normal),
+      box-shadow var(--transition-normal);
   }
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 8px 10px -6px rgba(0, 0, 0, 0.1);
   }
 
   .hover-scale {
@@ -569,15 +581,27 @@
 
   /* Perfect Gradient Utilities */
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(160, 52%, 44%) 0%, hsl(180, 52%, 44%) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(160, 52%, 44%) 0%,
+      hsl(180, 52%, 44%) 100%
+    );
   }
 
   .gradient-secondary {
-    background: linear-gradient(135deg, hsl(160, 52%, 96%) 0%, hsl(180, 52%, 96%) 100%);
+    background: linear-gradient(
+      135deg,
+      hsl(160, 52%, 96%) 0%,
+      hsl(180, 52%, 96%) 100%
+    );
   }
 
   .gradient-glass {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.05) 100%
+    );
   }
 }
 

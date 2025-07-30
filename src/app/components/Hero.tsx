@@ -1,32 +1,23 @@
 "use client";
 
-import React from "react";
+import type React from "react";
 import { motion } from "framer-motion";
-import { Play, ArrowRight, CheckCircle, Star, Users, Clock, TrendingUp, Home, MapPin } from "lucide-react";
-import { Container, Grid, Flex, Stack, Center } from "@/components/ui/layout";
-import Image from "next/image";
+import { ArrowRight, Play, Download, CheckCircle } from "lucide-react";
 
 const Hero: React.FC = () => {
-  const scrollToVideo = () => {
-    const videoSection = document.getElementById("video-demo");
-    if (videoSection) {
-      videoSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
         duration: 0.8,
-        staggerChildren: 0.15,
+        staggerChildren: 0.1,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
@@ -38,297 +29,222 @@ const Hero: React.FC = () => {
   };
 
   const stats = [
-    { 
-      value: "500+", 
-      label: "Luxury Properties", 
-      icon: Home,
-      color: "text-[#8EB69B]",
-      bgColor: "bg-[#8EB69B]/10"
+    {
+      value: "40%",
+      label: "Reduction in Admin Time",
+      description: "Streamlined workflows eliminate manual processes",
     },
-    { 
-      value: "50+", 
-      label: "Prime Locations", 
-      icon: MapPin,
-      color: "text-[#235347]",
-      bgColor: "bg-[#235347]/10"
+    {
+      value: "90%",
+      label: "Fewer Data Errors",
+      description: "Automated validation prevents costly mistakes",
     },
-    { 
-      value: "98%", 
-      label: "Client Satisfaction", 
-      icon: Star,
-      color: "text-[#8EB69B]",
-      bgColor: "bg-[#8EB69B]/10"
+    {
+      value: "35%",
+      label: "Faster Delivery",
+      description: "Real-time coordination accelerates projects",
     },
-    { 
-      value: "24/7", 
-      label: "Support", 
-      icon: Users,
-      color: "text-[#235347]",
-      bgColor: "bg-[#235347]/10"
+    {
+      value: "60%",
+      label: "Faster Reporting",
+      description: "Instant insights replace manual compilation",
     },
-  ];
-
-  const features = [
-    "Premium locations worldwide",
-    "Luxury amenities included",
-    "Professional property management",
-    "Flexible booking options",
   ];
 
   return (
-    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] overflow-hidden">
-      {/* Perfect Background Pattern */}
-      <div className="absolute inset-0 bg-hero-pattern bg-[length:20px_20px] opacity-10" />
-
-      {/* Decorative Elements with Mathematical Positioning */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute w-64 h-64 bg-gradient-to-br from-[#8EB69B]/20 to-[#235347]/20 rounded-full blur-3xl"
-          style={{ top: "10%", left: "5%" }}
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute w-48 h-48 bg-gradient-to-br from-[#235347]/15 to-[#8EB69B]/15 rounded-full blur-2xl"
-          style={{ top: "20%", right: "10%" }}
-          animate={{
-            scale: [1, 1.3, 1],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-        />
-        <motion.div
-          className="absolute w-80 h-80 bg-gradient-to-br from-[#8EB69B]/10 to-[#235347]/10 rounded-full blur-3xl"
-          style={{ bottom: "15%", left: "15%" }}
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.1, 0.4, 0.1],
-          }}
-          transition={{
-            duration: 12,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4,
-          }}
-        />
+    <section className="relative min-h-screen bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] overflow-hidden">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute top-20 left-10 w-72 h-72 bg-[#8EB69B] rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#235347] rounded-full blur-3xl"></div>
       </div>
 
-      <Container size="xl" className="relative z-10 h-full flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          className="flex flex-col lg:flex-row items-center justify-between w-full h-full py-20"
+          className="max-w-7xl mx-auto pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Perfect Content Section - Left Side */}
-          <motion.div
-            className="flex-1 max-w-2xl lg:max-w-3xl space-y-8 lg:space-y-10"
-            variants={itemVariants}
-          >
-            {/* Luxury Tag */}
+          {/* Main Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            {/* Left Column - Content */}
             <motion.div
-              className="inline-flex items-center px-4 py-2 bg-[#8EB69B]/20 border border-[#8EB69B]/30 rounded-full"
+              className="space-y-3 sm:space-y-4 lg:space-y-6"
               variants={itemVariants}
             >
-              <Star className="w-4 h-4 text-[#235347] mr-2" />
-              <span className="text-sm font-medium text-[#235347]">Luxury Rentals</span>
-            </motion.div>
-
-            {/* Perfect Typography Hierarchy */}
-            <Stack spacing="lg">
-              <motion.h1
-                className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight text-balance"
+              {/* Badge */}
+              <motion.div
+                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-[#8EB69B]/20 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium text-[#235347]"
                 variants={itemVariants}
               >
-                <span className="text-[#0B2B26]">Find Your</span>
-                <br />
-                <span className="text-[#8EB69B]">Perfect Home</span>
+                <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#8EB69B]" />
+                <span>Trusted by 500+ Construction Companies</span>
+              </motion.div>
+
+              {/* Headline */}
+              <motion.h1
+                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#235347] leading-tight"
+                variants={itemVariants}
+              >
+                Transform Your Precast Projects from{" "}
+                <span className="text-[#8EB69B]">Excel Chaos</span> to{" "}
+                <span className="text-[#8EB69B]">Cloud Control</span>
               </motion.h1>
 
+              {/* Subheadline */}
               <motion.p
-                className="text-xl sm:text-2xl lg:text-3xl text-[#235347] leading-relaxed max-w-3xl text-balance"
+                className="text-sm sm:text-base md:text-lg text-[#235347]/80 leading-relaxed max-w-2xl"
                 variants={itemVariants}
               >
-                Curated luxury properties for modern living. Minimal, beautiful, and effortless.
+                The complete construction management platform built specifically
+                for precast concrete companies. End data fragmentation,
+                eliminate manual errors, and accelerate project delivery with
+                our proven cloud solution.
               </motion.p>
-            </Stack>
 
-            {/* Perfect CTA Section */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 lg:gap-6"
-              variants={itemVariants}
-            >
-              <motion.button
-                onClick={scrollToVideo}
-                className="group relative inline-flex items-center justify-center px-8 py-4 bg-[#8EB69B] text-[#0B2B26] font-semibold rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#7AA589] hover:scale-105"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <Home className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform duration-300" />
-                Explore Properties
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.button>
-
-              <motion.button
-                className="group inline-flex items-center justify-center px-8 py-4 border-2 border-[#8EB69B] text-[#8EB69B] font-semibold rounded-2xl hover:bg-[#8EB69B] hover:text-[#0B2B26] transition-all duration-300 hover:scale-105"
-                whileHover={{ y: -2 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Book Now
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-              </motion.button>
-            </motion.div>
-
-            {/* Perfect Stats Grid */}
-            <motion.div
-              className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
-              variants={itemVariants}
-            >
-              {stats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="text-center space-y-2 group"
-                  variants={itemVariants}
-                  initial="hidden"
-                  animate="visible"
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ y: -4 }}
-                >
-                  <Center>
-                    <div className={`flex items-center justify-center w-12 h-12 mx-auto ${stat.bgColor} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
-                      <stat.icon className={`w-6 h-6 ${stat.color}`} />
-                    </div>
-                  </Center>
-                  <div className="text-xl lg:text-2xl font-bold text-[#0B2B26]">
-                    {stat.value}
-                  </div>
-                  <div className="text-sm lg:text-base text-[#235347] font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Perfect Features List */}
-            <motion.div className="pt-4 lg:pt-6" variants={itemVariants}>
-              <Grid cols={2} gap="md">
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={feature}
-                    className="flex items-center space-x-3 group"
-                    variants={itemVariants}
-                    initial="hidden"
-                    animate="visible"
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 4 }}
-                  >
-                    <div className="flex-shrink-0 w-5 h-5 bg-[#8EB69B] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="w-3 h-3 text-white" />
-                    </div>
-                    <span className="text-[#235347] font-medium text-sm lg:text-base">
-                      {feature}
-                    </span>
-                  </motion.div>
-                ))}
-              </Grid>
-            </motion.div>
-          </motion.div>
-
-          {/* Perfect Visual Section - Right Side */}
-          <motion.div
-            className="flex-1 w-full max-w-2xl lg:max-w-none mt-8 lg:mt-0 lg:ml-8"
-            variants={itemVariants}
-          >
-            <div className="relative w-full h-[400px] lg:h-[500px] xl:h-[600px]">
-              {/* Main Image */}
+              {/* CTA Buttons */}
               <motion.div
-                className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2"
+                variants={itemVariants}
+              >
+                <motion.button
+                  className="group inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 lg:py-3 bg-[#235347] text-white font-bold rounded-xl sm:rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#163832] hover:scale-105 text-sm sm:text-base"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Schedule Live Demo
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </motion.button>
+                <motion.button
+                  className="group inline-flex items-center justify-center px-4 sm:px-6 py-2 sm:py-2.5 lg:py-3 border-2 border-[#235347] text-[#235347] font-semibold rounded-xl sm:rounded-2xl hover:bg-[#235347] hover:text-white transition-all duration-300 hover:scale-105 bg-white/80 backdrop-blur-sm text-sm sm:text-base"
+                  whileHover={{ y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <Download className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  Download Case Study
+                </motion.button>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                className="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-6 text-xs sm:text-sm text-[#235347]/70 pt-2"
+                variants={itemVariants}
+              >
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#8EB69B] flex-shrink-0" />
+                  <span>30-Day Free Trial</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#8EB69B] flex-shrink-0" />
+                  <span>No Credit Card Required</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <CheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#8EB69B] flex-shrink-0" />
+                  <span>24/7 Support</span>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column - Hero Visual & Stats Cards */}
+            <motion.div
+              className="relative order-first lg:order-last"
+              variants={itemVariants}
+            >
+              {/* Hero Visual */}
+              <motion.div
+                className="relative mb-6 sm:mb-8"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
-                <Image
-                  src="/images/placeholder.jpg"
-                  alt="Luxury Bedroom"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-                
-                {/* Image Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                
-                {/* Luxury Details Tag */}
-                <motion.div
-                  className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm text-white px-3 py-2 rounded-lg"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 0.5 }}
-                >
-                  <span className="text-sm font-medium">Luxury Details</span>
-                </motion.div>
+                <div className="relative w-full h-32 sm:h-40 md:h-48 lg:h-56 bg-gradient-to-br from-[#8EB69B]/20 to-[#235347]/10 rounded-2xl sm:rounded-3xl overflow-hidden backdrop-blur-sm border border-[#8EB69B]/30">
+                  {/* Floating Elements */}
+                  <div className="absolute top-3 left-3 sm:top-4 sm:left-4 w-8 h-8 sm:w-12 sm:h-12 lg:w-16 lg:h-16 bg-[#8EB69B]/30 rounded-xl sm:rounded-2xl animate-bounce"></div>
+                  <div
+                    className="absolute top-4 right-4 sm:top-8 sm:right-8 w-6 h-6 sm:w-8 sm:h-8 lg:w-12 lg:h-12 bg-[#235347]/20 rounded-lg sm:rounded-xl animate-bounce"
+                    style={{ animationDelay: "1s" }}
+                  ></div>
+                  <div
+                    className="absolute bottom-4 left-4 sm:bottom-6 sm:left-8 w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-[#8EB69B]/25 rounded-2xl sm:rounded-3xl animate-bounce"
+                    style={{ animationDelay: "2s" }}
+                  ></div>
+
+                  {/* Central Platform Visual */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="relative">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 bg-white/90 backdrop-blur-md rounded-xl sm:rounded-2xl shadow-2xl border border-[#8EB69B]/20 flex items-center justify-center">
+                        <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-[#235347]">
+                          ICS
+                        </div>
+                      </div>
+                      {/* Connection Lines */}
+                      <div className="absolute -top-1 -left-1 sm:-top-2 sm:-left-2 w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-[#8EB69B] rounded-full animate-pulse"></div>
+                      <div
+                        className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-[#8EB69B] rounded-full animate-pulse"
+                        style={{ animationDelay: "0.5s" }}
+                      ></div>
+                      <div
+                        className="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-[#8EB69B] rounded-full animate-pulse"
+                        style={{ animationDelay: "1s" }}
+                      ></div>
+                      <div
+                        className="absolute -bottom-1 -right-1 sm:-bottom-2 sm:-right-2 w-2 h-2 sm:w-3 sm:h-3 lg:w-4 lg:h-4 bg-[#8EB69B] rounded-full animate-pulse"
+                        style={{ animationDelay: "1.5s" }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
 
-              {/* Carousel Indicators */}
-              <motion.div
-                className="flex justify-center space-x-2 mt-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.2, duration: 0.5 }}
-              >
-                {[1, 2, 3, 4].map((dot, index) => (
+              {/* Stats Cards */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:gap-4">
+                {stats.map((stat, index) => (
                   <motion.div
-                    key={dot}
-                    className={`w-2 h-2 rounded-full transition-colors duration-300 ${
-                      index === 0 ? 'bg-[#8EB69B]' : 'bg-[#8EB69B]/30'
-                    }`}
-                    whileHover={{ scale: 1.2 }}
-                  />
+                    key={stat.label}
+                    className="bg-white/90 backdrop-blur-md border border-[#8EB69B]/30 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.02 }}
+                  >
+                    <div className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold text-[#235347] mb-1">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs sm:text-sm font-semibold text-[#235347] mb-1">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-[#235347]/60 leading-relaxed">
+                      {stat.description}
+                    </div>
+                  </motion.div>
                 ))}
-              </motion.div>
+              </div>
+            </motion.div>
+          </div>
 
-              {/* Floating Elements */}
-              <motion.div
-                className="absolute top-4 right-4 bg-white/90 backdrop-blur-xl rounded-2xl p-3 shadow-xl border border-[#EBEBEB]"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <div className="w-2 h-2 bg-[#8EB69B] rounded-full animate-pulse"></div>
-                  <span className="text-xs font-medium text-[#235347]">Live View</span>
+          {/* Bottom Section - Video Preview */}
+          <motion.div
+            className="mt-8 sm:mt-12 lg:mt-16 text-center"
+            variants={itemVariants}
+          >
+            <motion.div
+              className="inline-flex items-center space-x-3 text-[#235347] hover:text-[#8EB69B] transition-colors duration-300 cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-[#8EB69B] rounded-full flex items-center justify-center shadow-lg">
+                <Play className="w-3 h-3 sm:w-4 sm:h-4 lg:w-6 lg:h-6 text-white ml-0.5" />
+              </div>
+              <div className="text-left">
+                <div className="font-semibold text-sm sm:text-base">
+                  See ICS in Action
                 </div>
-              </motion.div>
-
-              <motion.div
-                className="absolute bottom-20 left-4 bg-white/90 backdrop-blur-xl rounded-2xl p-3 shadow-xl border border-[#EBEBEB]"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.8, duration: 0.5 }}
-                whileHover={{ scale: 1.05 }}
-              >
-                <div className="flex items-center space-x-2">
-                  <MapPin className="w-3 h-3 text-[#8EB69B]" />
-                  <span className="text-xs font-medium text-[#235347]">Prime Location</span>
+                <div className="text-xs sm:text-sm opacity-70">
+                  2-minute platform overview
                 </div>
-              </motion.div>
-            </div>
+              </div>
+            </motion.div>
           </motion.div>
         </motion.div>
-      </Container>
+      </div>
     </section>
   );
 };

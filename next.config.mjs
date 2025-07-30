@@ -20,10 +20,7 @@ const nextConfig = {
         },
       },
     },
-    // Enable modern optimizations
-    modern: true,
     scrollRestoration: true,
-    legacyBrowsers: false,
   },
 
   // Image optimization
