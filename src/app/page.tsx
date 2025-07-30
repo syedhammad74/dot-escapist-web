@@ -57,9 +57,7 @@ const HomePage: React.FC = React.memo(() => {
       <main className="relative overflow-hidden">
         {/* Hero Section - Full Height */}
         <Suspense fallback={<LoadingSpinner />}>
-          <section className="relative min-h-screen flex items-center">
-            <Hero />
-          </section>
+          <Hero />
         </Suspense>
 
         {/* Video Section */}
@@ -68,9 +66,7 @@ const HomePage: React.FC = React.memo(() => {
             <SectionLoader className="bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE]" />
           }
         >
-          <section id="video-section" className="section relative">
-            <VideoSection />
-          </section>
+          <VideoSection />
         </Suspense>
 
         {/* Problem Section */}

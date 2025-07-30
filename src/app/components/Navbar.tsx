@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div
-          className="fixed top-0 left-0 right-0 z-50 w-full px-4 pt-4 sm:pt-6"
+          className="fixed top-0 left-0 right-0 z-50 w-full px-2 sm:px-4 pt-2 sm:pt-4 lg:pt-6"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -100, opacity: 0 }}
@@ -101,9 +101,9 @@ const Navbar: React.FC = () => {
         >
           <motion.nav
             className={cn(
-              "w-fit mx-auto",
+              "w-full sm:w-fit sm:mx-auto",
               "bg-white/95 backdrop-blur-xl border border-[#EBEBEB]/50",
-              "rounded-full shadow-lg",
+              "rounded-2xl sm:rounded-full shadow-lg",
               isScrolled ? "shadow-xl" : "shadow-md"
             )}
             style={{
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
               damping: 40,
             }}
           >
-            <div className="px-4 sm:px-6 lg:px-8">
+            <div className="px-3 sm:px-4 lg:px-6 xl:px-8">
               <div className="flex items-center justify-between h-12 sm:h-14 lg:h-16">
                 {/* Logo */}
                 <motion.div
@@ -127,8 +127,8 @@ const Navbar: React.FC = () => {
                   whileHover={{ scale: 1.02 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <div className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 bg-[#8EB69B] rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-[#235347] font-bold text-xs sm:text-sm lg:text-base">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 bg-[#8EB69B] rounded-lg flex items-center justify-center flex-shrink-0">
+                    <span className="text-[#235347] font-bold text-sm sm:text-base lg:text-lg">
                       ICS
                     </span>
                   </div>
@@ -141,7 +141,7 @@ const Navbar: React.FC = () => {
                     </span>
                   </div>
                   <div className="sm:hidden">
-                    <span className="text-sm font-bold text-[#235347]">
+                    <span className="text-base font-bold text-[#235347]">
                       ICS
                     </span>
                   </div>
@@ -177,7 +177,7 @@ const Navbar: React.FC = () => {
                         <Button
                           variant="ghost"
                           size="icon"
-                          className="h-8 w-8 sm:h-9 sm:w-9 text-[#235347] hover:bg-[#F2F2F2] transition-all duration-200"
+                          className="h-9 w-9 sm:h-10 sm:w-10 text-[#235347] hover:bg-[#F2F2F2] transition-all duration-200 rounded-xl"
                           aria-label="Open menu"
                         >
                           <AnimatePresence mode="wait">
@@ -189,7 +189,7 @@ const Navbar: React.FC = () => {
                                 exit={{ rotate: 90, opacity: 0 }}
                                 transition={{ duration: 0.2 }}
                               >
-                                <X className="h-4 w-4 sm:h-5 sm:w-5" />
+                                <X className="h-5 w-5 sm:h-6 sm:w-6" />
                               </motion.div>
                             ) : (
                               <motion.div
@@ -199,7 +199,7 @@ const Navbar: React.FC = () => {
                                 exit={{ rotate: -90, opacity: 0 }}
                                 transition={{ duration: 0.2 }}
                               >
-                                <Menu className="h-4 w-4 sm:h-5 sm:w-5" />
+                                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
                               </motion.div>
                             )}
                           </AnimatePresence>
@@ -216,8 +216,25 @@ const Navbar: React.FC = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.3 }}
                       >
+                        {/* Mobile Menu Header */}
+                        <div className="flex items-center space-x-3 mb-8 pb-4 border-b border-[#EBEBEB]">
+                          <div className="w-8 h-8 bg-[#8EB69B] rounded-lg flex items-center justify-center">
+                            <span className="text-[#235347] font-bold text-sm">
+                              ICS
+                            </span>
+                          </div>
+                          <div>
+                            <div className="text-sm font-bold text-[#235347]">
+                              Menu
+                            </div>
+                            <div className="text-xs text-[#8EB69B]">
+                              Navigation
+                            </div>
+                          </div>
+                        </div>
+
                         <nav className="flex-1">
-                          <div className="space-y-2">
+                          <div className="space-y-1">
                             {navItems.map((item, index) => (
                               <motion.div
                                 key={item.label}
@@ -231,7 +248,7 @@ const Navbar: React.FC = () => {
                                 <a
                                   href={item.href}
                                   onClick={() => setIsMenuOpen(false)}
-                                  className="block px-3 py-2 text-base font-medium text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] rounded-md transition-all duration-200"
+                                  className="block px-4 py-3 text-base font-medium text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] rounded-xl transition-all duration-200"
                                 >
                                   {item.label}
                                 </a>
@@ -239,6 +256,13 @@ const Navbar: React.FC = () => {
                             ))}
                           </div>
                         </nav>
+
+                        {/* Mobile Menu Footer */}
+                        <div className="pt-4 border-t border-[#EBEBEB]">
+                          <div className="text-xs text-[#235347]/60 text-center">
+                            © 2024 ICS Platform
+                          </div>
+                        </div>
                       </motion.div>
                     </SheetContent>
                   </Sheet>

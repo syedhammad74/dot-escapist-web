@@ -54,7 +54,7 @@ const VideoSection: React.FC = () => {
       </AnimatePresence>
 
       {/* Video Section */}
-      <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE]">
+      <section className="py-8 sm:py-12 lg:py-16 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE]">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             className="max-w-4xl mx-auto text-center"

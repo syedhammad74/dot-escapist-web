@@ -47,7 +47,7 @@ const FeaturesSection: React.FC = () => {
   const tabs = [
     {
       id: 0,
-      title: "Project Management",
+      title: "Project",
       icon: BarChart3,
       features: [
         {
@@ -74,7 +74,7 @@ const FeaturesSection: React.FC = () => {
     },
     {
       id: 1,
-      title: "Lifecycle Management",
+      title: "Lifecycle",
       icon: Database,
       features: [
         {
@@ -101,7 +101,7 @@ const FeaturesSection: React.FC = () => {
     },
     {
       id: 2,
-      title: "Reporting & Analytics",
+      title: "Reporting",
       icon: FileText,
       features: [
         {
@@ -128,7 +128,7 @@ const FeaturesSection: React.FC = () => {
     },
     {
       id: 3,
-      title: "Technology & Security",
+      title: "Technology",
       icon: Shield,
       features: [
         {
@@ -177,7 +177,7 @@ const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white">
+    <section className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -186,7 +186,10 @@ const FeaturesSection: React.FC = () => {
           animate="visible"
         >
           {/* Section Header */}
-          <motion.div className="text-center mb-12 sm:mb-16" variants={itemVariants}>
+          <motion.div
+            className="text-center mb-12 sm:mb-16"
+            variants={itemVariants}
+          >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-forest-primary mb-4 sm:mb-6 tracking-wide">
               Everything You Need.{" "}
               <span className="text-forest-sage">Nothing You Don't.</span>
@@ -203,7 +206,7 @@ const FeaturesSection: React.FC = () => {
             variants={itemVariants}
           >
             {tabs.map((tab) => (
-              <button
+              <motion.button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center space-x-2 px-4 sm:px-6 py-2 sm:py-3 rounded-xl font-semibold transition-all duration-300 text-sm sm:text-base ${
@@ -211,11 +214,13 @@ const FeaturesSection: React.FC = () => {
                     ? "bg-forest-primary text-white shadow-xl"
                     : "bg-white/95 backdrop-blur-sm border border-forest-sage/20 text-forest-primary/70 hover:bg-forest-sage/5 hover:border-forest-sage/40 shadow-lg"
                 }`}
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
               >
                 <tab.icon className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="hidden sm:inline">{tab.title}</span>
-                <span className="sm:hidden">{tab.title.split(' ')[0]}</span>
-              </button>
+                <span>{tab.title}</span>
+              </motion.button>
             ))}
           </motion.div>
 
@@ -224,7 +229,7 @@ const FeaturesSection: React.FC = () => {
             key={activeTab}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
             className="mb-12 sm:mb-16"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
@@ -233,6 +238,9 @@ const FeaturesSection: React.FC = () => {
                   key={feature.title}
                   className="bg-white/95 backdrop-blur-sm border border-forest-sage/20 rounded-2xl p-6 sm:p-8 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
                   variants={itemVariants}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ scale: 1.02 }}
                 >
                   <h3 className="text-lg sm:text-xl font-bold text-forest-primary mb-3 sm:mb-4 tracking-wide">
@@ -272,7 +280,9 @@ const FeaturesSection: React.FC = () => {
                   <div className="w-12 h-12 sm:w-16 sm:h-16 bg-forest-sage/20 rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4">
                     <tech.icon className="w-6 h-6 sm:w-8 sm:h-8 text-forest-sage" />
                   </div>
-                  <div className="font-semibold mb-1 text-sm sm:text-base">{tech.name}</div>
+                  <div className="font-semibold mb-1 text-sm sm:text-base">
+                    {tech.name}
+                  </div>
                   <div className="text-xs sm:text-sm text-white/80 font-medium">
                     {tech.description}
                   </div>
