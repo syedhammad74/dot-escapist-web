@@ -226,7 +226,8 @@ const Hero: React.FC = () => {
             className="mt-8 sm:mt-12 lg:mt-16 text-center"
             variants={itemVariants}
           >
-            <motion.div
+            <motion.a
+              href="#video-section"
               className="inline-flex items-center space-x-3 text-[#235347] hover:text-[#8EB69B] transition-colors duration-300 cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
@@ -241,7 +242,7 @@ const Hero: React.FC = () => {
                   2-minute platform overview
                 </div>
               </div>
-            </motion.div>
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>

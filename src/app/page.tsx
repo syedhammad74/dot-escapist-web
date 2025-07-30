@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 // Lazy load components for better performance
 const Hero = lazy(() => import("./components/Hero"));
+const VideoSection = lazy(() => import("./components/VideoSection"));
 const ProblemSection = lazy(() => import("./components/ProblemSection"));
 const SolutionSection = lazy(() => import("./components/SolutionSection"));
 const FeaturesSection = lazy(() => import("./components/FeaturesSection"));
@@ -58,6 +59,17 @@ const HomePage: React.FC = React.memo(() => {
         <Suspense fallback={<LoadingSpinner />}>
           <section className="relative min-h-screen flex items-center">
             <Hero />
+          </section>
+        </Suspense>
+
+        {/* Video Section */}
+        <Suspense
+          fallback={
+            <SectionLoader className="bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE]" />
+          }
+        >
+          <section id="video-section" className="section relative">
+            <VideoSection />
           </section>
         </Suspense>
 
