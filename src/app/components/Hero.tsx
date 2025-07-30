@@ -75,21 +75,30 @@ const Hero: React.FC = () => {
             >
               {/* Headline */}
               <motion.h1
-                className="text-3xl text-left sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#235347] leading-tight px-2 sm:px-0"
+                className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#235347] leading-[1.2] sm:leading-tight px-2 sm:px-0 tracking-tight sm:tracking-normal"
                 variants={itemVariants}
               >
-                Accelerate Your Workflows from{" "}
-                <span className="text-[#8EB69B]">Excel Chaos to</span> {" "}
-                <span className="text-[#8EB69B]">Cloud Control</span>
+                <span className="block sm:inline">
+                  Accelerate Your Workflows
+                </span>{" "}
+                <span className="block sm:inline">
+                  from <span className="text-[#8EB69B]">Excel Chaos to</span>{" "}
+                  <span className="text-[#8EB69B]">Cloud Control</span>
+                </span>
               </motion.h1>
 
               {/* Subheadline */}
               <motion.p
-                className="text-sm text-left sm:text-sm md:text-base lg:text-lg text-[#235347]/80 leading-relaxed max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0"
+                className="text-base sm:text-lg md:text-xl lg:text-xl text-left sm:text-center lg:text-left text-[#235347]/80 leading-relaxed max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0 mt-4 sm:mt-6"
                 variants={itemVariants}
               >
-                Complete construction management platform for Construction
-                Companies, Logistics, and Warehousing Management Companies. End data fragmentation and accelerate delivery.
+                <span className="block sm:inline">
+                  Complete construction management platform for Construction
+                  Companies, Logistics, and Warehousing Management Companies.
+                </span>{" "}
+                <span className="block sm:inline">
+                  End data fragmentation and accelerate delivery.
+                </span>
               </motion.p>
 
               {/* CTA Buttons */}
@@ -99,7 +108,7 @@ const Hero: React.FC = () => {
               >
                 <motion.a
                   href="#video-section"
-                  className="hidden md:inline-flex group items-center justify-center px-6 py-3 bg-[#235347] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#163832] hover:scale-105 text-sm"
+                  className="inline-flex group items-center justify-center px-6 py-3 bg-[#235347] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#163832] hover:scale-105 text-sm"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -110,56 +119,56 @@ const Hero: React.FC = () => {
 
               {/* Trust Indicators */}
               <motion.div
-                className="flex flex-col text-left sm:flex-row sm:items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-6 text-xs text-[#235347]/70"
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-6 text-sm text-[#235347]/70 mb-6 lg:mb-0"
                 variants={itemVariants}
               >
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-3 h-3 text-[#8EB69B] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-[#8EB69B] flex-shrink-0" />
                   <span>Customizable Workflows</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-3 h-3 text-[#8EB69B] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-[#8EB69B] flex-shrink-0" />
                   <span>Expert Support</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <CheckCircle className="w-3 h-3 text-[#8EB69B] flex-shrink-0" />
+                  <CheckCircle className="w-4 h-4 text-[#8EB69B] flex-shrink-0" />
                   <span>Cloud Integration</span>
                 </div>
               </motion.div>
 
               {/* Mobile Hero Text - Shows under text on mobile */}
               <motion.div
-                className="lg:hidden bg-white/90 backdrop-blur-md border border-[#8EB69B]/30 rounded-2xl p-6 shadow-xl"
+                className="lg:hidden bg-white/95 backdrop-blur-md border border-[#8EB69B]/20 rounded-3xl p-6 shadow-2xl"
                 variants={itemVariants}
               >
-                <div className="w-16 h-16 bg-[#8EB69B] rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-[#235347] font-bold text-xl">ICS</span>
+                <div className="w-20 h-20 bg-gradient-to-br from-[#8EB69B] to-[#235347] rounded-3xl flex items-center justify-center mx-auto mb-5 shadow-lg">
+                  <span className="text-white font-bold text-2xl">ICS</span>
                 </div>
-                <h3 className="text-lg font-bold text-[#235347] mb-2">
+                <h3 className="text-xl font-bold text-[#235347] mb-3 text-center">
                   All-in-One Platform
                 </h3>
-                <p className="text-sm text-[#235347]/70 leading-relaxed">
+                <p className="text-base text-[#235347]/80 leading-relaxed text-center">
                   Manage projects, track progress, and collaborate seamlessly
                   with our integrated construction solution.
                 </p>
               </motion.div>
 
               {/* Stats Cards - Mobile (under text) */}
-              <div className="lg:hidden grid grid-cols-2 gap-2 sm:gap-3">
+              <div className="lg:hidden grid grid-cols-2 gap-4 mt-6">
                 {stats.map((stat, index) => (
                   <motion.div
                     key={stat.label}
-                    className="bg-white/90 backdrop-blur-md border border-[#8EB69B]/30 rounded-xl p-3 sm:p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+                    className="bg-white/95 backdrop-blur-md border border-[#8EB69B]/20 rounded-2xl p-4 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
                     variants={itemVariants}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className="text-xl sm:text-2xl font-bold text-[#235347] mb-1">
+                    <div className="text-2xl font-bold text-[#235347] mb-2">
                       {stat.value}
                     </div>
-                    <div className="text-xs sm:text-sm font-semibold text-[#235347] mb-1 leading-tight">
+                    <div className="text-sm font-semibold text-[#235347] mb-2 leading-tight">
                       {stat.label}
                     </div>
-                    <div className="text-xs text-[#235347]/60 leading-tight">
+                    <div className="text-xs text-[#235347]/70 leading-tight">
                       {stat.description}
                     </div>
                   </motion.div>
@@ -251,9 +260,7 @@ const Hero: React.FC = () => {
               href="#video-section"
               className="inline-flex items-center space-x-3 text-[#235347] hover:text-[#8EB69B] transition-colors duration-300 cursor-pointer"
               whileHover={{ scale: 1.05 }}
-            >
-             
-            </motion.a>
+            ></motion.a>
           </motion.div>
         </motion.div>
       </div>
