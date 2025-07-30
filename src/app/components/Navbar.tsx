@@ -4,19 +4,18 @@ import { Button } from "@/components/ui/button";
 import type React from "react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Play } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import { navItems } from "@/constants/nav";
 
-const navItems = [
-  { label: "Features", href: "#features" },
-  { label: "Solutions", href: "#solutions" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+// Add Watch Live Demo to navigation
+const allNavItems = [
+  ...navItems,
+  { name: "Watch Live Demo", link: "#video-section" }
 ];
 
-const NavLink = ({ href, label }: { href: string; label: string }) => {
+const NavLink = ({ link, name }: { link: string; name: string }) => {
   return (
     <motion.div
       whileHover={{ y: -1 }}
@@ -25,14 +24,14 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
       className="relative"
     >
       <a
-        href={href}
+        href={link}
         className={cn(
           "px-3 py-2 text-sm font-medium transition-all duration-300 relative",
           "hover:text-[#8EB69B] hover:bg-[#8EB69B]/5 rounded-lg",
           "text-[#235347] whitespace-nowrap"
         )}
       >
-        {label}
+        {name}
       </a>
     </motion.div>
   );
@@ -149,9 +148,9 @@ const Navbar: React.FC = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden lg:flex items-center space-x-1">
-                  {navItems.map((item, index) => (
+                  {allNavItems.map((item, index) => (
                     <motion.div
-                      key={item.label}
+                      key={item.name}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{
@@ -160,7 +159,7 @@ const Navbar: React.FC = () => {
                         ease: "easeOut",
                       }}
                     >
-                      <NavLink href={item.href} label={item.label} />
+                      <NavLink link={item.link} name={item.name} />
                     </motion.div>
                   ))}
                 </nav>
@@ -235,9 +234,9 @@ const Navbar: React.FC = () => {
 
                         <nav className="flex-1">
                           <div className="space-y-1">
-                            {navItems.map((item, index) => (
+                            {allNavItems.map((item, index) => (
                               <motion.div
-                                key={item.label}
+                                key={item.name}
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{
@@ -246,11 +245,14 @@ const Navbar: React.FC = () => {
                                 }}
                               >
                                 <a
-                                  href={item.href}
+                                  href={item.link}
                                   onClick={() => setIsMenuOpen(false)}
-                                  className="block px-4 py-3 text-base font-medium text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] rounded-xl transition-all duration-200"
+                                  className="flex items-center px-4 py-3 text-base font-medium text-[#235347] hover:bg-[#F2F2F2] hover:text-[#8EB69B] rounded-xl transition-all duration-200"
                                 >
-                                  {item.label}
+                                  {item.name === "Watch Live Demo" && (
+                                    <Play className="w-4 h-4 mr-3 text-[#8EB69B]" />
+                                  )}
+                                  {item.name}
                                 </a>
                               </motion.div>
                             ))}
