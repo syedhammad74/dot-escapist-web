@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen pt-28 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] overflow-hidden flex items-center">
+    <section className="relative min-h-screen sm:pt-28 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] overflow-hidden flex items-center">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5 pt-24">
         <div className="absolute top-20 left-10 w-72 h-72 bg-[#8EB69B] rounded-full blur-3xl"></div>
@@ -73,32 +73,23 @@ const Hero: React.FC = () => {
               className="space-y-3 sm:space-y-4 lg:space-y-6 text-center lg:text-left flex flex-col justify-center"
               variants={itemVariants}
             >
-              {/* Badge */}
-              <motion.div
-                className="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm border border-[#8EB69B]/20 rounded-full px-3 py-1.5 text-xs font-medium text-[#235347]"
-                variants={itemVariants}
-              >
-                <CheckCircle className="w-3 h-3 text-[#8EB69B]" />
-                <span>Trusted by 500+ Companies</span>
-              </motion.div>
-
               {/* Headline */}
               <motion.h1
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#235347] leading-tight px-2 sm:px-0"
+                className="text-3xl text-left sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#235347] leading-tight px-2 sm:px-0"
                 variants={itemVariants}
               >
-                Transform Your Projects from{" "}
-                <span className="text-[#8EB69B]">Excel Chaos</span> to{" "}
+                Accelerate Your Workflows from{" "}
+                <span className="text-[#8EB69B]">Excel Chaos to</span> {" "}
                 <span className="text-[#8EB69B]">Cloud Control</span>
               </motion.h1>
 
               {/* Subheadline */}
               <motion.p
-                className="text-xs sm:text-sm md:text-base lg:text-lg text-[#235347]/80 leading-relaxed max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0"
+                className="text-sm text-left sm:text-sm md:text-base lg:text-lg text-[#235347]/80 leading-relaxed max-w-2xl mx-auto lg:mx-0 px-2 sm:px-0"
                 variants={itemVariants}
               >
-                Complete construction management platform for precast concrete
-                companies. End data fragmentation and accelerate delivery.
+                Complete construction management platform for Construction
+                Companies, Logistics, and Warehousing Management Companies. End data fragmentation and accelerate delivery.
               </motion.p>
 
               {/* CTA Buttons */}
@@ -106,40 +97,33 @@ const Hero: React.FC = () => {
                 className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
                 variants={itemVariants}
               >
-                <motion.button
-                  className="group inline-flex items-center justify-center px-6 py-3 bg-[#235347] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#163832] hover:scale-105 text-sm"
+                <motion.a
+                  href="#video-section"
+                  className="hidden md:inline-flex group items-center justify-center px-6 py-3 bg-[#235347] text-white font-bold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-[#163832] hover:scale-105 text-sm"
                   whileHover={{ y: -2 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  Schedule Demo
+                  Watch Live Demo
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-                </motion.button>
-                <motion.button
-                  className="group inline-flex items-center justify-center px-6 py-3 border-2 border-[#235347] text-[#235347] font-semibold rounded-xl hover:bg-[#235347] hover:text-white transition-all duration-300 hover:scale-105 bg-white/80 backdrop-blur-sm text-sm"
-                  whileHover={{ y: -2 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <Download className="w-4 h-4 mr-2" />
-                  Case Study
-                </motion.button>
+                </motion.a>
               </motion.div>
 
               {/* Trust Indicators */}
               <motion.div
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-6 text-xs text-[#235347]/70"
+                className="flex flex-col text-left sm:flex-row sm:items-center justify-center lg:justify-start space-y-2 sm:space-y-0 sm:space-x-6 text-xs text-[#235347]/70"
                 variants={itemVariants}
               >
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-3 h-3 text-[#8EB69B] flex-shrink-0" />
-                  <span>30-Day Free Trial</span>
+                  <span>Customizable Workflows</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-3 h-3 text-[#8EB69B] flex-shrink-0" />
-                  <span>No Credit Card</span>
+                  <span>Expert Support</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-3 h-3 text-[#8EB69B] flex-shrink-0" />
-                  <span>24/7 Support</span>
+                  <span>Cloud Integration</span>
                 </div>
               </motion.div>
 
@@ -260,7 +244,7 @@ const Hero: React.FC = () => {
 
           {/* Bottom Section - Video Preview */}
           <motion.div
-            className="mt-4 sm:mt-6 lg:mt-8 text-center"
+            className="hidden md:block mt-4 sm:mt-6 lg:mt-8 text-center"
             variants={itemVariants}
           >
             <motion.a
@@ -268,6 +252,7 @@ const Hero: React.FC = () => {
               className="inline-flex items-center space-x-3 text-[#235347] hover:text-[#8EB69B] transition-colors duration-300 cursor-pointer"
               whileHover={{ scale: 1.05 }}
             >
+             
             </motion.a>
           </motion.div>
         </motion.div>

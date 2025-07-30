@@ -31,15 +31,15 @@ const CTASection: React.FC = () => {
   const benefits = [
     {
       icon: Clock,
-      text: "30-Day Free Trial",
+      text: "Customizable Workflows",
     },
     {
       icon: Shield,
-      text: "No Credit Card Required",
+      text: "Expert Support",
     },
     {
       icon: CheckCircle,
-      text: "24/7 Expert Support",
+      text: "Cloud Integration",
     },
   ];
 
