@@ -8,8 +8,9 @@ import { X, Play, ExternalLink, Maximize2 } from "lucide-react";
 const VideoSection: React.FC = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const videoId = "3KPxicLpUvQ";
-  const videoUrl = `https://www.youtube.com/embed/${videoId}`;
+  // S3 video URL
+  const videoUrl = "https://11propbucket.s3.us-east-1.amazonaws.com/Screen+Recording+2025-07-30+at+00.26.00.mov";
+  const videoThumbnail = `https://img.youtube.com/vi/3KPxicLpUvQ/maxresdefault.jpg`; // Keep the YouTube thumbnail for now
 
   const handlePlayVideo = () => {
     setIsVideoPlaying(true);
@@ -49,14 +50,22 @@ const VideoSection: React.FC = () => {
                 <X className="w-5 h-5" />
               </motion.button>
 
-              {/* YouTube Embed */}
-              <iframe
-                src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1&showinfo=0&vq=hd1080&iv_load_policy=3&cc_load_policy=0`}
-                title="ICS Platform Overview"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              />
+              {/* HTML5 Video Player */}
+              <video
+                src={videoUrl}
+                className="w-full h-full object-cover"
+                controls
+                autoPlay
+                playsInline
+                preload="metadata"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "inherit",
+                }}
+              >
+                <p>Your browser doesn't support HTML5 video. Download the video <a href={videoUrl}>here</a>.</p>
+              </video>
             </motion.div>
           </motion.div>
         )}
@@ -117,11 +126,11 @@ const VideoSection: React.FC = () => {
                   <>
                     {/* Video Thumbnail */}
                     <img
-                      src={`https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
+                      src={videoThumbnail}
                       alt="ICS Platform Overview Video"
                       className="w-full h-full object-cover"
                       onError={(e) => {
-                        e.currentTarget.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                        e.currentTarget.src = `https://img.youtube.com/vi/3KPxicLpUvQ/hqdefault.jpg`;
                       }}
                     />
 
@@ -161,21 +170,23 @@ const VideoSection: React.FC = () => {
                   </>
                 ) : (
                   <>
-                    {/* YouTube Embed Wrapper */}
+                    {/* HTML5 Video Player */}
                     <div className="w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
-                      <iframe
-                        src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0`}
-                        title="ICS Platform Overview"
-                        className="w-full h-full"
+                      <video
+                        src={videoUrl}
+                        className="w-full h-full object-cover"
+                        controls
+                        autoPlay
+                        playsInline
+                        preload="metadata"
                         style={{
                           width: "100%",
                           height: "100%",
-                          border: "none",
                           borderRadius: "inherit",
                         }}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                      />
+                      >
+                        <p>Your browser doesn't support HTML5 video. Download the video <a href={videoUrl}>here</a>.</p>
+                      </video>
                     </div>
 
                     {/* Expand Button */}
