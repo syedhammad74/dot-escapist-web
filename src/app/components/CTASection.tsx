@@ -44,7 +44,7 @@ const CTASection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-[#235347] via-[#163832] to-[#235347] relative overflow-hidden">
+    <section className="py-4 sm:py-6 lg:py-8 bg-gradient-to-br from-[#235347] via-[#163832] to-[#235347] relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-10 left-10 w-64 h-64 bg-[#8EB69B] rounded-full blur-3xl"></div>
@@ -59,7 +59,7 @@ const CTASection: React.FC = () => {
           animate="visible"
         >
           {/* Main Content */}
-          <motion.div className="mb-8 sm:mb-12" variants={itemVariants}>
+          <motion.div className="mb-6 sm:mb-8" variants={itemVariants}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 tracking-wide">
               Ready to Transform Your{" "}
               <span className="text-forest-sage">Construction Management?</span>
@@ -72,7 +72,7 @@ const CTASection: React.FC = () => {
 
           {/* CTA Buttons */}
           <motion.div
-            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8"
             variants={itemVariants}
           >
             <motion.button

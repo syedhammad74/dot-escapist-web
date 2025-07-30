@@ -7,11 +7,22 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Play } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { navItems } from "@/constants/nav";
 
-// Add Watch Live Demo to navigation
-const allNavItems = [
-  ...navItems,
+// Define navigation items directly to avoid hydration issues
+interface NavItem {
+  name: string;
+  link: string;
+}
+
+const navItems: NavItem[] = [
+  { name: "Home", link: "/" },
+  { name: "Problems", link: "#problems" },
+  { name: "Services", link: "#services" },
+  { name: "Technology", link: "#technology" },
+  { name: "ROI", link: "#roi" },
+  { name: "Success Stories", link: "#success-stories" },
+  { name: "FAQ", link: "#faq" },
+  { name: "Contact", link: "#CTA" },
   { name: "Watch Live Demo", link: "#video-section" }
 ];
 
@@ -131,14 +142,7 @@ const Navbar: React.FC = () => {
                       ICS
                     </span>
                   </div>
-                  <div className="hidden sm:flex flex-col leading-tight">
-                    <span className="text-sm lg:text-base font-bold text-[#235347] whitespace-nowrap">
-                      Integrated Construction
-                    </span>
-                    <span className="text-xs lg:text-sm font-semibold text-[#8EB69B] whitespace-nowrap -mt-0.5">
-                      Solution
-                    </span>
-                  </div>
+
                   <div className="sm:hidden">
                     <span className="text-base font-bold text-[#235347]">
                       ICS
@@ -148,7 +152,7 @@ const Navbar: React.FC = () => {
 
                 {/* Desktop Navigation */}
                 <nav className="hidden lg:flex items-center space-x-1">
-                  {allNavItems.map((item, index) => (
+                  {navItems.map((item, index) => (
                     <motion.div
                       key={item.name}
                       initial={{ opacity: 0, y: 20 }}
@@ -234,7 +238,7 @@ const Navbar: React.FC = () => {
 
                         <nav className="flex-1">
                           <div className="space-y-1">
-                            {allNavItems.map((item, index) => (
+                            {navItems.map((item, index) => (
                               <motion.div
                                 key={item.name}
                                 initial={{ opacity: 0, x: 20 }}

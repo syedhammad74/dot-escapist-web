@@ -38,15 +38,18 @@ const SolutionSection: React.FC = () => {
   const beforeAfter = {
     before: [
       "15+ Excel files per project",
+      "No version control for project data",
       "5+ different communication channels",
       "Manual daily data updates",
       "Separate systems for each department",
+      "No real-time visibility for all stakeholders",
     ],
     after: [
-      "Single source of truth for all project data",
-      "Real-time collaboration across all teams",
+      "Cloud Database for realtime updates and version control for all project data",
+      "Real-time collaboration across all teams and departments",
       "Automated data synchronization",
       "Integrated workflows from design to payment",
+      "Real-time visibility for all stakeholders",
     ],
   };
 
@@ -101,7 +104,7 @@ const SolutionSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-[#F8F9FA]">
+    <section className="py-4 sm:py-6 lg:py-8 bg-[#F8F9FA]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -111,7 +114,7 @@ const SolutionSection: React.FC = () => {
         >
           {/* Section Header */}
           <motion.div
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-8 sm:mb-12"
             variants={itemVariants}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-forest-primary mb-4 sm:mb-6 tracking-wide">
@@ -178,7 +181,7 @@ const SolutionSection: React.FC = () => {
           </motion.div>
 
           {/* ICS Advantages */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
             {advantages.map((advantage, index) => (
               <motion.div
                 key={advantage.title}
@@ -203,10 +206,10 @@ const SolutionSection: React.FC = () => {
 
           {/* Workflow Process */}
           <motion.div
-            className="bg-gradient-to-r from-forest-primary to-forest-dark rounded-3xl p-6 sm:p-8 lg:p-12 text-white mb-12 sm:mb-16"
+            className="bg-gradient-to-r from-forest-primary to-forest-dark rounded-3xl p-6 sm:p-8 lg:p-12 text-white mb-8 sm:mb-12"
             variants={itemVariants}
           >
-            <div className="text-center mb-8 sm:mb-12">
+            <div className="text-center mb-6 sm:mb-8">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 tracking-wide">
                 Integrated Workflow Process
               </h3>
@@ -216,32 +219,32 @@ const SolutionSection: React.FC = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-              {workflowSteps.map((step, index) => (
-                <motion.div
-                  key={step.step}
-                  className="text-center relative"
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                >
-                  {/* Connector Line */}
-                  {index < workflowSteps.length - 1 && (
-                    <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-[#8EB69B]/30 z-0"></div>
-                  )}
-
-                  <div className="relative z-10">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-forest-sage rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-forest-primary font-bold text-lg sm:text-xl">
-                      {step.step}
+            <div className="relative">
+              {/* Background connector lines for desktop */}
+              <div className="hidden lg:block absolute top-8 left-0 right-0 h-0.5 bg-[#8EB69B]/30 z-0"></div>
+              
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 relative z-10">
+                {workflowSteps.map((step, index) => (
+                  <motion.div
+                    key={step.step}
+                    className="text-center relative"
+                    variants={itemVariants}
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    <div className="relative z-10">
+                      <div className="w-12 h-12 sm:w-16 sm:h-16 bg-forest-sage rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-forest-primary font-bold text-lg sm:text-xl">
+                        {step.step}
+                      </div>
+                      <h4 className="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">
+                        {step.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-medium">
+                        {step.description}
+                      </p>
                     </div>
-                    <h4 className="text-sm sm:text-lg font-semibold mb-1 sm:mb-2">
-                      {step.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-white/80 leading-relaxed font-medium">
-                      {step.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </motion.div>
 

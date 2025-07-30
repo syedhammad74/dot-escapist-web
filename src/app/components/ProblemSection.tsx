@@ -109,7 +109,7 @@ const ProblemSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-12 sm:py-16 lg:py-20 bg-white">
+    <section className="py-4 sm:py-6 lg:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -119,7 +119,7 @@ const ProblemSection: React.FC = () => {
         >
           {/* Section Header */}
           <motion.div
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-8 sm:mb-12"
             variants={itemVariants}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-forest-primary mb-4 sm:mb-6 tracking-wide">
@@ -134,7 +134,7 @@ const ProblemSection: React.FC = () => {
           </motion.div>
 
           {/* Problems Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-12 sm:mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 mb-8 sm:mb-12">
             {problems.map((problem, index) => (
               <motion.div
                 key={problem.title}

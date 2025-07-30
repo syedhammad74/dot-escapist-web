@@ -177,7 +177,7 @@ const FeaturesSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-8 sm:py-12 lg:py-16 bg-white">
+    <section className="py-4 sm:py-6 lg:py-8 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -187,7 +187,7 @@ const FeaturesSection: React.FC = () => {
         >
           {/* Section Header */}
           <motion.div
-            className="text-center mb-12 sm:mb-16"
+            className="text-center mb-8 sm:mb-12"
             variants={itemVariants}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-forest-primary mb-4 sm:mb-6 tracking-wide">
@@ -202,7 +202,7 @@ const FeaturesSection: React.FC = () => {
 
           {/* Tab Navigation */}
           <motion.div
-            className="flex flex-wrap justify-center gap-2 mb-8 sm:mb-12"
+            className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-8"
             variants={itemVariants}
           >
             {tabs.map((tab) => (
@@ -230,7 +230,7 @@ const FeaturesSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
-            className="mb-12 sm:mb-16"
+            className="mb-8 sm:mb-12"
           >
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
               {tabs[activeTab].features.map((feature, index) => (
@@ -259,7 +259,7 @@ const FeaturesSection: React.FC = () => {
             className="bg-gradient-to-r from-forest-primary to-forest-dark rounded-3xl p-6 sm:p-8 lg:p-12 text-white"
             variants={itemVariants}
           >
-            <div className="text-center mb-8 sm:mb-12">
+            <div className="text-center mb-6 sm:mb-8">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 tracking-wide">
                 Built on Modern, Scalable Architecture
               </h3>

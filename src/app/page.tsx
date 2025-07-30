@@ -60,19 +60,17 @@ const HomePage: React.FC = React.memo(() => {
           <Hero />
         </Suspense>
 
-        {/* Video Section */}
-        <Suspense
-          fallback={
-            <SectionLoader className="bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE]" />
-          }
-        >
-          <VideoSection />
-        </Suspense>
-
         {/* Problem Section */}
         <Suspense fallback={<SectionLoader className="bg-white" />}>
           <section className="section bg-white relative">
             <ProblemSection />
+          </section>
+        </Suspense>
+
+        {/* Features Section */}
+        <Suspense fallback={<SectionLoader className="bg-white" />}>
+          <section className="section bg-white relative">
+            <FeaturesSection />
           </section>
         </Suspense>
 
@@ -83,11 +81,13 @@ const HomePage: React.FC = React.memo(() => {
           </section>
         </Suspense>
 
-        {/* Features Section */}
-        <Suspense fallback={<SectionLoader className="bg-white" />}>
-          <section className="section bg-white relative">
-            <FeaturesSection />
-          </section>
+        {/* Video Section */}
+        <Suspense
+          fallback={
+            <SectionLoader className="bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE]" />
+          }
+        >
+          <VideoSection />
         </Suspense>
 
         {/* CTA Section */}

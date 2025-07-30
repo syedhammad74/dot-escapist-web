@@ -74,7 +74,7 @@ const VideoSection: React.FC = () => {
       {/* Video Section */}
       <section
         id="video-section"
-        className="hidden md:block py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] relative overflow-hidden"
+        className="hidden md:block py-4 sm:py-6 lg:py-8 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] relative overflow-hidden"
       >
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">
@@ -92,7 +92,7 @@ const VideoSection: React.FC = () => {
           >
             {/* Section Header */}
             <motion.div
-              className="mb-8 sm:mb-12"
+              className="mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -114,7 +114,7 @@ const VideoSection: React.FC = () => {
 
             {/* Video Player Block */}
             <motion.div
-              className="relative group mb-8 sm:mb-12"
+              className="relative group mb-6 sm:mb-8"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
