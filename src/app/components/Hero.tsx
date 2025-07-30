@@ -76,7 +76,7 @@ const Hero: React.FC = () => {
   ];
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-primary-50 via-white to-primary-50 overflow-hidden">
+    <section className="relative h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 via-white to-primary-50 overflow-hidden">
       {/* Perfect Background Pattern */}
       <div className="absolute inset-0 bg-hero-pattern bg-[length:20px_20px] opacity-20" />
 
@@ -125,16 +125,16 @@ const Hero: React.FC = () => {
         />
       </div>
 
-      <Container size="xl" className="relative z-10">
+      <Container size="xl" className="relative z-10 h-full flex items-center">
         <motion.div
-          className="flex flex-col lg:flex-row items-center justify-between min-h-screen py-20 lg:py-32"
+          className="flex flex-col lg:flex-row items-center justify-between w-full h-full py-20"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
-          {/* Perfect Content Section */}
+          {/* Perfect Content Section - Left Side */}
           <motion.div
-            className="flex-1 max-w-2xl lg:max-w-3xl space-y-10 lg:space-y-12"
+            className="flex-1 max-w-2xl lg:max-w-3xl space-y-8 lg:space-y-10"
             variants={itemVariants}
           >
             {/* Perfect Typography Hierarchy */}
@@ -190,13 +190,13 @@ const Hero: React.FC = () => {
 
             {/* Perfect Stats Grid */}
             <motion.div
-              className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 pt-8 lg:pt-12"
+              className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6"
               variants={itemVariants}
             >
               {stats.map((stat, index) => (
                 <motion.div
                   key={stat.label}
-                  className="text-center space-y-3 group"
+                  className="text-center space-y-2 group"
                   variants={itemVariants}
                   initial="hidden"
                   animate="visible"
@@ -204,11 +204,11 @@ const Hero: React.FC = () => {
                   whileHover={{ y: -4 }}
                 >
                   <Center>
-                    <div className={`flex items-center justify-center w-14 h-14 mx-auto ${stat.bgColor} rounded-2xl group-hover:scale-110 transition-transform duration-300`}>
-                      <stat.icon className={`w-7 h-7 ${stat.color}`} />
+                    <div className={`flex items-center justify-center w-12 h-12 mx-auto ${stat.bgColor} rounded-xl group-hover:scale-110 transition-transform duration-300`}>
+                      <stat.icon className={`w-6 h-6 ${stat.color}`} />
                     </div>
                   </Center>
-                  <div className="text-2xl lg:text-3xl font-bold text-neutral-900">
+                  <div className="text-xl lg:text-2xl font-bold text-neutral-900">
                     {stat.value}
                   </div>
                   <div className="text-sm lg:text-base text-neutral-600 font-medium">
@@ -219,7 +219,7 @@ const Hero: React.FC = () => {
             </motion.div>
 
             {/* Perfect Features List */}
-            <motion.div className="pt-8 lg:pt-12" variants={itemVariants}>
+            <motion.div className="pt-4 lg:pt-6" variants={itemVariants}>
               <Grid cols={2} gap="md">
                 {features.map((feature, index) => (
                   <motion.div
@@ -231,10 +231,10 @@ const Hero: React.FC = () => {
                     transition={{ delay: index * 0.1 }}
                     whileHover={{ x: 4 }}
                   >
-                    <div className="flex-shrink-0 w-6 h-6 bg-primary-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                      <CheckCircle className="w-4 h-4 text-white" />
+                    <div className="flex-shrink-0 w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      <CheckCircle className="w-3 h-3 text-white" />
                     </div>
-                    <span className="text-neutral-700 font-medium text-base lg:text-lg">
+                    <span className="text-neutral-700 font-medium text-sm lg:text-base">
                       {feature}
                     </span>
                   </motion.div>
@@ -243,38 +243,38 @@ const Hero: React.FC = () => {
             </motion.div>
           </motion.div>
 
-          {/* Perfect Visual Section */}
+          {/* Perfect Visual Section - Right Side */}
           <motion.div
-            className="flex-1 w-full max-w-2xl lg:max-w-none mt-12 lg:mt-0"
+            className="flex-1 w-full max-w-2xl lg:max-w-none mt-8 lg:mt-0 lg:ml-8"
             variants={itemVariants}
           >
-            <div className="relative w-full h-[400px] lg:h-[600px]">
+            <div className="relative w-full h-[300px] lg:h-[400px] xl:h-[500px]">
               <NeuralNetworkHero />
               
               {/* Floating Elements */}
               <motion.div
-                className="absolute top-10 right-10 bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-neutral-200"
+                className="absolute top-4 right-4 bg-white/90 backdrop-blur-xl rounded-2xl p-3 shadow-xl border border-neutral-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-success-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-medium text-neutral-700">Live Data</span>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-success-500 rounded-full animate-pulse"></div>
+                  <span className="text-xs font-medium text-neutral-700">Live Data</span>
                 </div>
               </motion.div>
 
               <motion.div
-                className="absolute bottom-20 left-10 bg-white/90 backdrop-blur-xl rounded-2xl p-4 shadow-xl border border-neutral-200"
+                className="absolute bottom-4 left-4 bg-white/90 backdrop-blur-xl rounded-2xl p-3 shadow-xl border border-neutral-200"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.5, duration: 0.5 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="flex items-center space-x-3">
-                  <Users className="w-4 h-4 text-primary-500" />
-                  <span className="text-sm font-medium text-neutral-700">Team Sync</span>
+                <div className="flex items-center space-x-2">
+                  <Users className="w-3 h-3 text-primary-500" />
+                  <span className="text-xs font-medium text-neutral-700">Team Sync</span>
                 </div>
               </motion.div>
             </div>

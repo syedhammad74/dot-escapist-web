@@ -184,13 +184,6 @@ const Navbar: React.FC = () => {
                   transition={{ duration: 0.2 }}
                 >
                   <div className="flex items-center space-x-1 sm:space-x-3">
-                    <Image
-                      src="/logo.png"
-                      alt="ICS Logo"
-                      width={32}
-                      height={32}
-                      className="h-6 w-auto sm:h-8"
-                    />
                     <span className="text-lg sm:text-xl lg:text-2xl font-bold text-forest-900">
                       ICS
                     </span>
