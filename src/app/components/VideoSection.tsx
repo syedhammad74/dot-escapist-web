@@ -51,7 +51,7 @@ const VideoSection: React.FC = () => {
 
               {/* YouTube Embed */}
               <iframe
-                src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1&showinfo=0`}
+                src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1&showinfo=0&vq=hd1080&iv_load_policy=3&cc_load_policy=0`}
                 title="ICS Platform Overview"
                 className="w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -164,7 +164,7 @@ const VideoSection: React.FC = () => {
                     {/* YouTube Embed Wrapper */}
                     <div className="w-full h-full rounded-2xl sm:rounded-3xl overflow-hidden">
                       <iframe
-                        src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1`}
+                        src={`${videoUrl}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&vq=hd1080&iv_load_policy=3&cc_load_policy=0`}
                         title="ICS Platform Overview"
                         className="w-full h-full"
                         style={{
