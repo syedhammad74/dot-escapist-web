@@ -15,7 +15,9 @@ const Testimonials: React.FC = () => {
   };
 
   const prevTestimonial = () => {
-    setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+    setCurrentIndex(
+      (prev) => (prev - 1 + testimonials.length) % testimonials.length
+    );
   };
 
   const goToTestimonial = (index: number) => {
@@ -77,7 +79,8 @@ const Testimonials: React.FC = () => {
           </div>
 
           <p className="text-lg lg:text-xl text-forest-600 max-w-3xl mx-auto">
-            Discover how our platform is transforming construction management for industry leaders
+            Discover how our platform is transforming construction management
+            for industry leaders
           </p>
         </motion.div>
 

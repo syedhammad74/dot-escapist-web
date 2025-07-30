@@ -20,8 +20,8 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [href]);
 
   return (
@@ -365,9 +365,13 @@ const Navbar: React.FC = () => {
                                   href={item.link}
                                   onClick={(e) => {
                                     e.preventDefault();
-                                    const element = document.querySelector(item.link);
+                                    const element = document.querySelector(
+                                      item.link
+                                    );
                                     if (element) {
-                                      element.scrollIntoView({ behavior: "smooth" });
+                                      element.scrollIntoView({
+                                        behavior: "smooth",
+                                      });
                                     }
                                     setIsMenuOpen(false);
                                   }}
@@ -395,7 +399,9 @@ const Navbar: React.FC = () => {
                               onClick={() => {
                                 const element = document.getElementById("CTA");
                                 if (element) {
-                                  element.scrollIntoView({ behavior: "smooth" });
+                                  element.scrollIntoView({
+                                    behavior: "smooth",
+                                  });
                                 }
                                 setIsMenuOpen(false);
                               }}

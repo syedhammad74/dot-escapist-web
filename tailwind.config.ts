@@ -14,35 +14,39 @@ const config: Config = {
         large: 2.618,
       },
 
-      /* Perfect Color System */
+      /* Perfect Color System - Inspired by First Image */
       colors: {
-        /* Forest Green Palette (Primary) */
-        forest: {
-          50: "hsl(160, 40%, 95%)",
-          100: "hsl(160, 40%, 90%)",
-          200: "hsl(160, 40%, 80%)",
-          300: "hsl(160, 40%, 70%)",
-          400: "hsl(160, 40%, 60%)",
-          500: "hsl(160, 40%, 50%)",
-          600: "hsl(160, 40%, 40%)",
-          700: "hsl(160, 40%, 30%)",
-          800: "hsl(160, 40%, 20%)",
-          900: "hsl(160, 40%, 10%)",
+        /* Primary Brand Colors - Forest Green Palette */
+        primary: {
+          50: "hsl(160, 52%, 96%)",
+          100: "hsl(160, 52%, 92%)",
+          200: "hsl(160, 52%, 84%)",
+          300: "hsl(160, 52%, 72%)",
+          400: "hsl(160, 52%, 56%)",
+          500: "hsl(160, 52%, 44%)", // Main brand color
+          600: "hsl(160, 52%, 36%)",
+          700: "hsl(160, 52%, 28%)",
+          800: "hsl(160, 52%, 20%)",
+          900: "hsl(160, 52%, 12%)",
+          950: "hsl(160, 52%, 6%)",
         },
-        /* Teal Palette (Secondary) */
-        teal: {
-          50: "hsl(180, 40%, 95%)",
-          100: "hsl(180, 40%, 90%)",
-          200: "hsl(180, 40%, 80%)",
-          300: "hsl(180, 40%, 70%)",
-          400: "hsl(180, 40%, 60%)",
-          500: "hsl(180, 40%, 50%)",
-          600: "hsl(180, 40%, 40%)",
-          700: "hsl(180, 40%, 30%)",
-          800: "hsl(180, 40%, 20%)",
-          900: "hsl(180, 40%, 10%)",
+
+        /* Secondary Colors - Teal Accent */
+        secondary: {
+          50: "hsl(180, 52%, 96%)",
+          100: "hsl(180, 52%, 92%)",
+          200: "hsl(180, 52%, 84%)",
+          300: "hsl(180, 52%, 72%)",
+          400: "hsl(180, 52%, 56%)",
+          500: "hsl(180, 52%, 44%)",
+          600: "hsl(180, 52%, 36%)",
+          700: "hsl(180, 52%, 28%)",
+          800: "hsl(180, 52%, 20%)",
+          900: "hsl(180, 52%, 12%)",
+          950: "hsl(180, 52%, 6%)",
         },
-        /* Neutral Palette */
+
+        /* Neutral Colors - Perfect for Text and Backgrounds */
         neutral: {
           50: "hsl(0, 0%, 98%)",
           100: "hsl(0, 0%, 96%)",
@@ -54,33 +58,55 @@ const config: Config = {
           700: "hsl(0, 0%, 25%)",
           800: "hsl(0, 0%, 15%)",
           900: "hsl(0, 0%, 9%)",
+          950: "hsl(0, 0%, 4%)",
         },
-        /* Semantic Colors */
-        primary: {
-          50: "hsl(160, 40%, 95%)",
-          100: "hsl(160, 40%, 90%)",
-          200: "hsl(160, 40%, 80%)",
-          300: "hsl(160, 40%, 70%)",
-          400: "hsl(160, 40%, 60%)",
-          500: "hsl(160, 40%, 50%)",
-          600: "hsl(160, 40%, 40%)",
-          700: "hsl(160, 40%, 30%)",
-          800: "hsl(160, 40%, 20%)",
-          900: "hsl(160, 40%, 10%)",
+
+        /* Success Colors */
+        success: {
+          50: "hsl(142, 76%, 97%)",
+          100: "hsl(141, 84%, 93%)",
+          200: "hsl(141, 79%, 85%)",
+          300: "hsl(142, 77%, 73%)",
+          400: "hsl(142, 69%, 58%)",
+          500: "hsl(142, 71%, 45%)",
+          600: "hsl(142, 76%, 36%)",
+          700: "hsl(142, 72%, 29%)",
+          800: "hsl(143, 64%, 24%)",
+          900: "hsl(144, 61%, 20%)",
+          950: "hsl(145, 80%, 10%)",
         },
-        secondary: {
-          50: "hsl(180, 40%, 95%)",
-          100: "hsl(180, 40%, 90%)",
-          200: "hsl(180, 40%, 80%)",
-          300: "hsl(180, 40%, 70%)",
-          400: "hsl(180, 40%, 60%)",
-          500: "hsl(180, 40%, 50%)",
-          600: "hsl(180, 40%, 40%)",
-          700: "hsl(180, 40%, 30%)",
-          800: "hsl(180, 40%, 20%)",
-          900: "hsl(180, 40%, 10%)",
+
+        /* Warning Colors */
+        warning: {
+          50: "hsl(48, 96%, 97%)",
+          100: "hsl(48, 100%, 93%)",
+          200: "hsl(48, 96%, 85%)",
+          300: "hsl(48, 94%, 73%)",
+          400: "hsl(48, 92%, 58%)",
+          500: "hsl(48, 96%, 45%)",
+          600: "hsl(48, 96%, 36%)",
+          700: "hsl(48, 94%, 29%)",
+          800: "hsl(48, 90%, 24%)",
+          900: "hsl(48, 88%, 20%)",
+          950: "hsl(48, 100%, 10%)",
         },
-        /* UI Colors */
+
+        /* Error Colors */
+        error: {
+          50: "hsl(0, 85%, 97%)",
+          100: "hsl(0, 93%, 94%)",
+          200: "hsl(0, 96%, 89%)",
+          300: "hsl(0, 94%, 82%)",
+          400: "hsl(0, 91%, 71%)",
+          500: "hsl(0, 84%, 60%)",
+          600: "hsl(0, 72%, 51%)",
+          700: "hsl(0, 74%, 42%)",
+          800: "hsl(0, 70%, 35%)",
+          900: "hsl(0, 63%, 31%)",
+          950: "hsl(0, 85%, 15%)",
+        },
+
+        /* Semantic UI Colors */
         background: "hsl(0, 0%, 100%)",
         foreground: "hsl(0, 0%, 9%)",
         card: "hsl(0, 0%, 100%)",
@@ -95,114 +121,97 @@ const config: Config = {
         "destructive-foreground": "hsl(0, 0%, 98%)",
         border: "hsl(0, 0%, 90%)",
         input: "hsl(0, 0%, 90%)",
-        ring: "hsl(160, 40%, 50%)",
+        ring: "hsl(160, 52%, 44%)",
       },
 
-      /* Perfect Typography Scale */
+      /* Perfect Typography Scale - Mathematical Progression */
       fontFamily: {
         sans: ["GeistSans", "system-ui", "sans-serif"],
         mono: ["GeistMono", "monospace"],
+        display: ["GeistSans", "system-ui", "sans-serif"],
       },
 
       fontSize: {
-        xs: ["0.75rem", { lineHeight: "1.25", letterSpacing: "-0.01em" }],
-        sm: ["0.875rem", { lineHeight: "1.5", letterSpacing: "-0.005em" }],
-        base: ["1rem", { lineHeight: "1.5", letterSpacing: "0em" }],
-        lg: ["1.125rem", { lineHeight: "1.5", letterSpacing: "0.005em" }],
-        xl: ["1.25rem", { lineHeight: "1.25", letterSpacing: "0.01em" }],
-        "2xl": ["1.5rem", { lineHeight: "1.25", letterSpacing: "0.015em" }],
-        "3xl": ["1.875rem", { lineHeight: "1.2", letterSpacing: "0.02em" }],
-        "4xl": ["2.25rem", { lineHeight: "1.1", letterSpacing: "0.025em" }],
-        "5xl": ["3rem", { lineHeight: "1.1", letterSpacing: "0.03em" }],
-        "6xl": ["3.75rem", { lineHeight: "1.1", letterSpacing: "0.035em" }],
-        "7xl": ["4.5rem", { lineHeight: "1.1", letterSpacing: "0.04em" }],
-        "8xl": ["6rem", { lineHeight: "1.1", letterSpacing: "0.045em" }],
+        /* Mathematical Typography Scale (Golden Ratio Progression) */
+        xs: ["0.75rem", { lineHeight: "1.25", letterSpacing: "-0.01em" }], /* 12px */
+        sm: ["0.875rem", { lineHeight: "1.5", letterSpacing: "-0.005em" }], /* 14px */
+        base: ["1rem", { lineHeight: "1.6", letterSpacing: "0em" }], /* 16px */
+        lg: ["1.125rem", { lineHeight: "1.6", letterSpacing: "0.005em" }], /* 18px */
+        xl: ["1.25rem", { lineHeight: "1.4", letterSpacing: "0.01em" }], /* 20px */
+        "2xl": ["1.5rem", { lineHeight: "1.3", letterSpacing: "0.015em" }], /* 24px */
+        "3xl": ["1.875rem", { lineHeight: "1.2", letterSpacing: "0.02em" }], /* 30px */
+        "4xl": ["2.25rem", { lineHeight: "1.1", letterSpacing: "0.025em" }], /* 36px */
+        "5xl": ["3rem", { lineHeight: "1.1", letterSpacing: "0.03em" }], /* 48px */
+        "6xl": ["3.75rem", { lineHeight: "1.1", letterSpacing: "0.035em" }], /* 60px */
+        "7xl": ["4.5rem", { lineHeight: "1.1", letterSpacing: "0.04em" }], /* 72px */
+        "8xl": ["6rem", { lineHeight: "1.1", letterSpacing: "0.045em" }], /* 96px */
+        "9xl": ["8rem", { lineHeight: "1.1", letterSpacing: "0.05em" }], /* 128px */
       },
 
-      /* Perfect Spacing Scale (Golden Ratio Progression) - 10% Bigger */
+      /* Perfect Spacing Scale (8px Grid with Golden Ratio) */
       spacing: {
-        "4": "0.275rem" /* 4.4px - 10% bigger */,
-        "8": "0.55rem" /* 8.8px - 10% bigger */,
-        "12": "0.825rem" /* 13.2px - 10% bigger */,
-        "16": "1.1rem" /* 17.6px - 10% bigger */,
-        "20": "1.375rem" /* 22px - 10% bigger */,
-        "24": "1.65rem" /* 26.4px - 10% bigger */,
-        "28": "1.925rem" /* 30.8px - 10% bigger */,
-        "32": "2.2rem" /* 35.2px - 10% bigger */,
-        "36": "2.475rem" /* 39.6px - 10% bigger */,
-        "40": "2.75rem" /* 44px - 10% bigger */,
-        "44": "3.025rem" /* 48.4px - 10% bigger */,
-        "48": "3.3rem" /* 52.8px - 10% bigger */,
-        "52": "3.575rem" /* 57.2px - 10% bigger */,
-        "56": "3.85rem" /* 61.6px - 10% bigger */,
-        "60": "4.125rem" /* 66px - 10% bigger */,
-        "64": "4.4rem" /* 70.4px - 10% bigger */,
-        "72": "4.95rem" /* 79.2px - 10% bigger */,
-        "80": "5.5rem" /* 88px - 10% bigger */,
-        "88": "6.05rem" /* 96.8px - 10% bigger */,
-        "96": "6.6rem" /* 105.6px - 10% bigger */,
-        "104": "7.15rem" /* 114.4px - 10% bigger */,
-        "112": "7.7rem" /* 123.2px - 10% bigger */,
-        "120": "8.25rem" /* 132px - 10% bigger */,
-        "128": "8.8rem" /* 140.8px - 10% bigger */,
-        "144": "9.9rem" /* 158.4px - 10% bigger */,
-        "160": "11rem" /* 176px - 10% bigger */,
-        "176": "12.1rem" /* 193.6px - 10% bigger */,
-        "192": "13.2rem" /* 211.2px - 10% bigger */,
-        "208": "14.3rem" /* 228.8px - 10% bigger */,
-        "224": "15.4rem" /* 246.4px - 10% bigger */,
-        "240": "16.5rem" /* 264px - 10% bigger */,
-        "256": "17.6rem" /* 281.6px - 10% bigger */,
-        "288": "19.8rem" /* 316.8px - 10% bigger */,
-        "320": "22rem" /* 352px - 10% bigger */,
-        "352": "24.2rem" /* 387.2px - 10% bigger */,
-        "384": "26.4rem" /* 422.4px - 10% bigger */,
-        "416": "28.6rem" /* 457.6px - 10% bigger */,
-        "448": "30.8rem" /* 492.8px - 10% bigger */,
-        "480": "33rem" /* 528px - 10% bigger */,
-        "512": "35.2rem" /* 563.2px - 10% bigger */,
-        "576": "39.6rem" /* 633.6px - 10% bigger */,
-        "640": "44rem" /* 704px - 10% bigger */,
-        "704": "48.4rem" /* 774.4px - 10% bigger */,
-        "768": "52.8rem" /* 844.8px - 10% bigger */,
-        "832": "57.2rem" /* 915.2px - 10% bigger */,
-        "896": "61.6rem" /* 985.6px - 10% bigger */,
-        "960": "66rem" /* 1056px - 10% bigger */,
-        "1024": "70.4rem" /* 1126.4px - 10% bigger */,
-        "1088": "74.8rem" /* 1196.8px - 10% bigger */,
-        "1152": "79.2rem" /* 1267.2px - 10% bigger */,
-        "1216": "83.6rem" /* 1337.6px - 10% bigger */,
-        "1280": "88rem" /* 1408px - 10% bigger */,
-        "1344": "92.4rem" /* 1478.4px - 10% bigger */,
-        "1408": "96.8rem" /* 1548.8px - 10% bigger */,
-        "1472": "101.2rem" /* 1619.2px - 10% bigger */,
-        "1536": "105.6rem" /* 1689.6px - 10% bigger */,
-        "1600": "110rem" /* 1760px - 10% bigger */,
-        "1664": "114.4rem" /* 1830.4px - 10% bigger */,
-        "1728": "118.8rem" /* 1900.8px - 10% bigger */,
-        "1792": "123.2rem" /* 1971.2px - 10% bigger */,
-        "1856": "127.6rem" /* 2041.6px - 10% bigger */,
-        "1920": "132rem" /* 2112px - 10% bigger */,
+        /* 8px Grid System with Golden Ratio Progression */
+        "0": "0",
+        "1": "0.25rem", /* 4px */
+        "2": "0.5rem", /* 8px */
+        "3": "0.75rem", /* 12px */
+        "4": "1rem", /* 16px */
+        "5": "1.25rem", /* 20px */
+        "6": "1.5rem", /* 24px */
+        "7": "1.75rem", /* 28px */
+        "8": "2rem", /* 32px */
+        "9": "2.25rem", /* 36px */
+        "10": "2.5rem", /* 40px */
+        "11": "2.75rem", /* 44px */
+        "12": "3rem", /* 48px */
+        "14": "3.5rem", /* 56px */
+        "16": "4rem", /* 64px */
+        "20": "5rem", /* 80px */
+        "24": "6rem", /* 96px */
+        "28": "7rem", /* 112px */
+        "32": "8rem", /* 128px */
+        "36": "9rem", /* 144px */
+        "40": "10rem", /* 160px */
+        "44": "11rem", /* 176px */
+        "48": "12rem", /* 192px */
+        "52": "13rem", /* 208px */
+        "56": "14rem", /* 224px */
+        "60": "15rem", /* 240px */
+        "64": "16rem", /* 256px */
+        "72": "18rem", /* 288px */
+        "80": "20rem", /* 320px */
+        "96": "24rem", /* 384px */
+        "128": "32rem", /* 512px */
+        "160": "40rem", /* 640px */
+        "192": "48rem", /* 768px */
+        "224": "56rem", /* 896px */
+        "256": "64rem", /* 1024px */
+        "288": "72rem", /* 1152px */
+        "320": "80rem", /* 1280px */
+        "384": "96rem", /* 1536px */
+        "448": "112rem", /* 1792px */
+        "512": "128rem", /* 2048px */
       },
 
       /* Perfect Border Radius */
       borderRadius: {
         none: "0",
-        xs: "0.125rem" /* 2px */,
-        sm: "0.25rem" /* 4px */,
-        md: "0.375rem" /* 6px */,
-        lg: "0.5rem" /* 8px */,
-        xl: "0.75rem" /* 12px */,
-        "2xl": "1rem" /* 16px */,
-        "3xl": "1.5rem" /* 24px */,
-        "4xl": "2rem" /* 32px */,
-        "5xl": "2.5rem" /* 40px */,
-        "6xl": "3rem" /* 48px */,
+        xs: "0.125rem", /* 2px */
+        sm: "0.25rem", /* 4px */
+        md: "0.375rem", /* 6px */
+        lg: "0.5rem", /* 8px */
+        xl: "0.75rem", /* 12px */
+        "2xl": "1rem", /* 16px */
+        "3xl": "1.5rem", /* 24px */
+        "4xl": "2rem", /* 32px */
+        "5xl": "2.5rem", /* 40px */
+        "6xl": "3rem", /* 48px */
         full: "9999px",
       },
 
-      /* Perfect Shadows */
+      /* Perfect Shadow System */
       boxShadow: {
+        /* Subtle shadows for depth */
         xs: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
         sm: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1)",
         md: "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
@@ -211,11 +220,26 @@ const config: Config = {
         "2xl": "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         "3xl": "0 35px 60px -15px rgba(0, 0, 0, 0.3)",
         "4xl": "0 50px 80px -20px rgba(0, 0, 0, 0.35)",
-        glow: "0 0 20px rgba(142, 182, 155, 0.3)",
-        "glow-lg": "0 0 40px rgba(142, 182, 155, 0.4)",
-        "glow-xl": "0 0 60px rgba(142, 182, 155, 0.5)",
+        
+        /* Colored shadows for brand consistency */
+        "primary-sm": "0 1px 3px 0 rgba(34, 197, 94, 0.1), 0 1px 2px -1px rgba(34, 197, 94, 0.1)",
+        "primary-md": "0 4px 6px -1px rgba(34, 197, 94, 0.1), 0 2px 4px -2px rgba(34, 197, 94, 0.1)",
+        "primary-lg": "0 10px 15px -3px rgba(34, 197, 94, 0.1), 0 4px 6px -4px rgba(34, 197, 94, 0.1)",
+        "primary-xl": "0 20px 25px -5px rgba(34, 197, 94, 0.1), 0 8px 10px -6px rgba(34, 197, 94, 0.1)",
+        
+        /* Glass morphism effects */
         glass: "0 8px 32px 0 rgba(31, 38, 135, 0.37)",
         "glass-dark": "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+        
+        /* Glow effects */
+        glow: "0 0 20px rgba(34, 197, 94, 0.3)",
+        "glow-lg": "0 0 40px rgba(34, 197, 94, 0.4)",
+        "glow-xl": "0 0 60px rgba(34, 197, 94, 0.5)",
+        
+        /* Inner shadows */
+        "inner-sm": "inset 0 1px 2px 0 rgba(0, 0, 0, 0.05)",
+        "inner-md": "inset 0 2px 4px 0 rgba(0, 0, 0, 0.1)",
+        "inner-lg": "inset 0 4px 6px 0 rgba(0, 0, 0, 0.1)",
       },
 
       /* Perfect Transitions */
@@ -255,6 +279,11 @@ const config: Config = {
         "gradient-shift": "gradientShift 3s ease-in-out infinite",
         "text-glow": "textGlow 2s ease-in-out infinite",
         "border-pulse": "borderPulse 2s ease-in-out infinite",
+        "fade-in-up": "fadeInUp 0.6s ease-out",
+        "fade-in-down": "fadeInDown 0.6s ease-out",
+        "scale-in-up": "scaleInUp 0.5s ease-out",
+        "slide-in-left": "slideInLeft 0.5s ease-out",
+        "slide-in-right": "slideInRight 0.5s ease-out",
       },
 
       /* Perfect Keyframes */
@@ -324,29 +353,45 @@ const config: Config = {
           "50%": { backgroundPosition: "100% 50%" },
         },
         textGlow: {
-          "0%, 100%": { textShadow: "0 0 5px rgba(142, 182, 155, 0.5)" },
-          "50%": {
-            textShadow:
-              "0 0 20px rgba(142, 182, 155, 0.8), 0 0 30px rgba(142, 182, 155, 0.6)",
-          },
+          "0%, 100%": { textShadow: "0 0 5px rgba(34, 197, 94, 0.5)" },
+          "50%": { textShadow: "0 0 20px rgba(34, 197, 94, 0.8), 0 0 30px rgba(34, 197, 94, 0.6)" },
         },
         borderPulse: {
-          "0%, 100%": { borderColor: "rgba(142, 182, 155, 0.3)" },
-          "50%": { borderColor: "rgba(142, 182, 155, 0.8)" },
+          "0%, 100%": { borderColor: "rgba(34, 197, 94, 0.3)" },
+          "50%": { borderColor: "rgba(34, 197, 94, 0.8)" },
+        },
+        fadeInUp: {
+          "0%": { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        fadeInDown: {
+          "0%": { opacity: "0", transform: "translateY(-30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        scaleInUp: {
+          "0%": { opacity: "0", transform: "scale(0.9) translateY(20px)" },
+          "100%": { opacity: "1", transform: "scale(1) translateY(0)" },
+        },
+        slideInLeft: {
+          "0%": { opacity: "0", transform: "translateX(-30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        slideInRight: {
+          "0%": { opacity: "0", transform: "translateX(30px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
         },
       },
 
       /* Perfect Background Images */
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "hero-pattern":
-          "radial-gradient(circle at 1px 1px, rgba(35, 83, 71, 0.05) 1px, transparent 0)",
-        "grid-pattern":
-          "linear-gradient(rgba(35, 83, 71, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(35, 83, 71, 0.1) 1px, transparent 1px)",
-        "dots-pattern":
-          "radial-gradient(circle, rgba(35, 83, 71, 0.1) 1px, transparent 1px)",
+        "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "hero-pattern": "radial-gradient(circle at 1px 1px, rgba(34, 197, 94, 0.05) 1px, transparent 0)",
+        "grid-pattern": "linear-gradient(rgba(34, 197, 94, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(34, 197, 94, 0.1) 1px, transparent 1px)",
+        "dots-pattern": "radial-gradient(circle, rgba(34, 197, 94, 0.1) 1px, transparent 1px)",
+        "gradient-primary": "linear-gradient(135deg, hsl(160, 52%, 44%) 0%, hsl(180, 52%, 44%) 100%)",
+        "gradient-secondary": "linear-gradient(135deg, hsl(160, 52%, 96%) 0%, hsl(180, 52%, 96%) 100%)",
+        "gradient-glass": "linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)",
       },
 
       /* Perfect Container */
@@ -369,7 +414,7 @@ const config: Config = {
         },
       },
 
-      /* Perfect Screens */
+      /* Perfect Responsive Breakpoints */
       screens: {
         xs: "475px",
         sm: "640px",
@@ -383,12 +428,12 @@ const config: Config = {
 
       /* Perfect Aspect Ratios */
       aspectRatio: {
-        square: "1 / 1",
-        portrait: "3 / 4",
-        landscape: "16 / 9",
-        hero: "21 / 9",
-        ultrawide: "32 / 9",
-        golden: "1.618 / 1",
+        "square": "1 / 1",
+        "portrait": "3 / 4",
+        "landscape": "16 / 9",
+        "hero": "21 / 9",
+        "ultrawide": "32 / 9",
+        "golden": "1.618 / 1",
         "golden-vertical": "1 / 1.618",
       },
 
