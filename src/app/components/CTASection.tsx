@@ -75,14 +75,17 @@ const CTASection: React.FC = () => {
             className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8"
             variants={itemVariants}
           >
-            <motion.button
+            <motion.a
+              href="https://wa.me/923335239104?text=Hi! I'm interested in scheduling a personalized demo for ICS construction management platform."
+              target="_blank"
+              rel="noopener noreferrer"
               className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 bg-forest-sage text-forest-primary font-bold rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:bg-white hover:scale-105 ring-2 ring-forest-sage/20 hover:ring-forest-sage/40 text-sm sm:text-base"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
               Schedule Your Personalized Demo
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-            </motion.button>
+            </motion.a>
 
             <motion.button
               className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-forest-sage text-forest-sage font-semibold rounded-2xl hover:bg-forest-sage hover:text-forest-primary transition-all duration-300 hover:scale-105 bg-white/10 backdrop-blur-sm text-sm sm:text-base"
@@ -116,7 +119,7 @@ const CTASection: React.FC = () => {
 
           {/* Success Journey */}
           <motion.div
-            className="mt-12 sm:mt-16 bg-white/10 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-white/20"
+            className="mt-12 sm:mt-16 bg-white/10 backdrop-blur-sm rounded-3xl p-6 sm:p-8"
             variants={itemVariants}
           >
             <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 sm:mb-6 tracking-wide">

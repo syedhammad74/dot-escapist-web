@@ -65,16 +65,13 @@ const Footer: React.FC = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: "#", label: "Facebook" },
-    { icon: Twitter, href: "#", label: "Twitter" },
-    { icon: Instagram, href: "#", label: "Instagram" },
-    { icon: Linkedin, href: "#", label: "LinkedIn" },
+    { icon: Linkedin, href: "https://www.linkedin.com/in/syed-hammad-shah-19487a12a/", label: "LinkedIn" },
   ];
 
   return (
-    <footer className="bg-forest-primary text-white">
-      {/* Newsletter Section */}
-      <div className="border-b border-white/10">
+    <footer className="bg-white">
+      {/* Newsletter Section - White Background */}
+      <div className="bg-white border-b border-gray-200">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
           <motion.div
             className="max-w-4xl mx-auto text-center"
@@ -83,10 +80,10 @@ const Footer: React.FC = () => {
             animate="visible"
           >
             <motion.div className="mb-6 sm:mb-8" variants={itemVariants}>
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 tracking-wide">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 tracking-wide text-forest-primary">
                 Stay Updated
               </h3>
-              <p className="text-base sm:text-lg text-white/90 max-w-2xl mx-auto font-medium">
+              <p className="text-base sm:text-lg text-forest-primary/70 max-w-2xl mx-auto font-medium">
                 Get the latest insights on construction management, industry
                 trends, and ICS platform updates.
               </p>
@@ -99,10 +96,10 @@ const Footer: React.FC = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-forest-sage focus:border-transparent text-sm sm:text-base"
+                className="flex-1 px-4 py-3 bg-forest-primary/5 border border-forest-primary/20 rounded-xl text-forest-primary placeholder-forest-primary/50 focus:outline-none focus:ring-2 focus:ring-forest-sage focus:border-transparent text-sm sm:text-base"
               />
               <motion.button
-                className="px-6 py-3 bg-forest-sage text-forest-primary font-bold rounded-xl hover:bg-white transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                className="px-6 py-3 bg-forest-primary text-white font-bold rounded-xl hover:bg-forest-dark transition-all duration-300 flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl text-sm sm:text-base"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -114,8 +111,9 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+      {/* Main Footer Content - Green Background */}
+      <div className="bg-forest-primary text-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
         <motion.div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8"
           variants={containerVariants}
@@ -217,30 +215,24 @@ const Footer: React.FC = () => {
           className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/10"
           variants={itemVariants}
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div className="flex items-center space-x-3">
               <Mail className="w-4 h-4 sm:w-5 sm:h-5 text-forest-sage flex-shrink-0" />
               <a
-                href="mailto:info@icsplatform.com"
+                href="mailto:hammadllk@gmail.com"
                 className="text-sm sm:text-base text-white/80 hover:text-forest-sage transition-colors duration-300 font-medium"
               >
-                info@icsplatform.com
+                hammadllk@gmail.com
               </a>
             </div>
             <div className="flex items-center space-x-3">
               <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-forest-sage flex-shrink-0" />
               <a
-                href="tel:+1234567890"
+                href="https://wa.me/923335239104"
                 className="text-sm sm:text-base text-white/80 hover:text-forest-sage transition-colors duration-300 font-medium"
               >
-                +1 (234) 567-890
+                +92-333-5239104
               </a>
-            </div>
-            <div className="flex items-center space-x-3 sm:col-span-2 lg:col-span-1">
-              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-forest-sage flex-shrink-0" />
-              <span className="text-sm sm:text-base text-white/80 font-medium">
-                Construction Tech Hub, Innovation District
-              </span>
             </div>
           </div>
         </motion.div>
@@ -265,6 +257,7 @@ const Footer: React.FC = () => {
             ))}
           </div>
         </motion.div>
+        </div>
       </div>
     </footer>
   );

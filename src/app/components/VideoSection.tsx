@@ -74,7 +74,7 @@ const VideoSection: React.FC = () => {
       {/* Video Section */}
       <section
         id="video-section"
-        className="hidden md:block py-4 sm:py-6 lg:py-8 bg-gradient-to-br from-[#DAF1DE] via-white to-[#DAF1DE] relative overflow-hidden"
+        className="hidden md:block py-4 sm:py-6 lg:py-8 relative overflow-hidden"
       >
         {/* Background Elements */}
         <div className="absolute inset-0 opacity-5">

@@ -10,6 +10,7 @@ import {
   Users,
   Database,
 } from "lucide-react";
+import FeaturesCarousel from "./FeaturesCarousel";
 
 const ProblemSection: React.FC = () => {
   const containerVariants = {
@@ -109,7 +110,7 @@ const ProblemSection: React.FC = () => {
   ];
 
   return (
-    <section className="py-4 sm:py-6 lg:py-8 bg-white">
+    <section className="py-4 sm:py-6 lg:py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -223,6 +224,25 @@ const ProblemSection: React.FC = () => {
             >
               See How ICS Solves These Problems
             </motion.button>
+          </motion.div>
+
+          {/* Features Carousel Section */}
+          <motion.div
+            className="mt-16 sm:mt-20"
+            variants={itemVariants}
+          >
+            {/* Section Header */}
+            <div className="text-center mb-8 sm:mb-12">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-forest-primary mb-4 tracking-wide">
+                See ICS in Action: <span className="text-forest-sage">Enterprise Features</span> That Replace Legacy Systems
+              </h3>
+              <p className="text-lg sm:text-xl text-forest-primary/70 max-w-3xl mx-auto leading-relaxed">
+                Discover how cloud-based, centralized administration transforms large-scale construction management
+              </p>
+            </div>
+
+            {/* Features Carousel */}
+            <FeaturesCarousel />
           </motion.div>
         </motion.div>
       </div>
