@@ -87,14 +87,15 @@ const CTASection: React.FC = () => {
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
             </motion.a>
 
-            <motion.button
+            <motion.a
+              href="/gsheetcompare"
               className="group inline-flex items-center justify-center px-6 sm:px-8 py-3 sm:py-4 border-2 border-forest-sage text-forest-sage font-semibold rounded-2xl hover:bg-forest-sage hover:text-forest-primary transition-all duration-300 hover:scale-105 bg-white/10 backdrop-blur-sm text-sm sm:text-base"
               whileHover={{ y: -2 }}
               whileTap={{ scale: 0.98 }}
             >
-              Download Case Study
+              Read Case Study
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
-            </motion.button>
+            </motion.a>
           </motion.div>
 
           {/* Benefits */}
