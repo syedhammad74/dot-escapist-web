@@ -125,11 +125,10 @@ const ProblemSection: React.FC = () => {
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-forest-primary mb-4 sm:mb-6 tracking-wide">
               Your Current Reality: The{" "}
               <span className="text-forest-sage">Hidden Costs</span> of
-              Fragmented Project Management
+              Legacy Systems in Large-Scale Construction
             </h2>
             <p className="text-lg sm:text-xl font-semibold text-forest-primary/70 max-w-3xl mx-auto leading-relaxed tracking-wide">
-              The daily struggle your teams face with Excel-based project
-              management is costing you more than you realize
+              The daily struggle your enterprise teams face with Excel, Google Sheets, and MS Access is costing millions in large-scale construction projects
             </p>
           </motion.div>
 

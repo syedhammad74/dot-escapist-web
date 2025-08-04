@@ -383,14 +383,14 @@ export default function GSheetComparePage() {
 
         {/* Hero Section */}
         <section className="hero">
-          <h1>Google Sheets vs. ICS:<br /><span className="highlight">Why Spreadsheets Hit the Wall</span></h1>
-          <p>Understanding why advanced spreadsheet tools still can't replace purpose-built construction management systems</p>
+          <h1>Legacy Systems vs. ICS:<br /><span className="highlight">Why Your $2M Project Failed Because of Spreadsheets</span></h1>
+          <p>Discover why cloud-based, centralized, secure construction management platforms are replacing Excel, Google Sheets, and MS Access in enterprise construction</p>
         </section>
 
         {/* The Spreadsheet Ceiling */}
         <section className="comparison">
-          <h2>The Spreadsheet Ceiling</h2>
-          <p className="comparison-subtitle">Unavoidable limitations that break construction workflows</p>
+          <h2>The Legacy Systems Crisis</h2>
+          <p className="comparison-subtitle">Critical limitations that destroy large-scale construction projects when cloud-based, centralized administration is missing</p>
           
           <div className="comparison-grid">
             <div className="comparison-item">
@@ -401,10 +401,10 @@ export default function GSheetComparePage() {
                 Multi-User Chaos
               </h3>
               <ul>
-                <li>Google Sheets breaks down with 10+ concurrent users</li>
-                <li>No true role-based permissions (everyone sees everything or nothing)</li>
-                <li>Version conflicts when multiple people edit simultaneously</li>
-                <li>No audit trails for quality control decisions</li>
+                <li>Legacy systems collapse with 100+ concurrent users across multiple sites</li>
+                <li>No enterprise role-based permissions or departmental administration</li>
+                <li>Version conflicts destroy data integrity with hundreds of team members</li>
+                <li>No secure audit trails for quality control and compliance</li>
               </ul>
             </div>
 
@@ -416,10 +416,10 @@ export default function GSheetComparePage() {
                 Data Structure Breakdown
               </h3>
               <ul>
-                <li>Spreadsheets are flat - construction projects are hierarchical</li>
-                <li>Can't handle complex relationships (Project → Elements → Inspections)</li>
-                <li>Performance degrades rapidly with large datasets (1000+ elements)</li>
-                <li>No data validation between related sheets</li>
+                <li>Legacy systems are flat - enterprise construction requires hierarchical cloud architecture</li>
+                <li>Can't handle complex relationships across 100,000+ elements and multiple projects</li>
+                <li>Performance catastrophically fails with large-scale datasets without centralized cloud infrastructure</li>
+                <li>No data validation or secure backup systems between related databases</li>
               </ul>
             </div>
 
@@ -431,10 +431,10 @@ export default function GSheetComparePage() {
                 Workflow Limitations
               </h3>
               <ul>
-                <li>No approval workflows or digital signatures</li>
-                <li>Can't trigger automated actions based on field changes</li>
-                <li>No notification system for stakeholders</li>
-                <li>Can't handle file attachments per element</li>
+                <li>No enterprise approval workflows, digital signatures, or role-based administration</li>
+                <li>Can't trigger automated actions across multiple site teams in real-time</li>
+                <li>No centralized notification system for hundreds of stakeholders</li>
+                <li>Can't handle secure file attachments, professional reports, or data backups per element</li>
               </ul>
             </div>
 
@@ -446,10 +446,10 @@ export default function GSheetComparePage() {
                 Professional Reporting Crisis
               </h3>
               <ul>
-                <li>Can't generate professional, branded reports automatically</li>
-                <li>No multi-language support (English/Arabic)</li>
-                <li>Limited export options for client presentations</li>
-                <li>No automated report distribution</li>
+                <li>Can't generate professional, branded reports automatically for enterprise clients</li>
+                <li>No multi-language support or departmental customization (English/Arabic)</li>
+                <li>Limited export options without cloud-based storage and security</li>
+                <li>No automated report distribution or employee time-saving features</li>
               </ul>
             </div>
           </div>
@@ -554,32 +554,32 @@ export default function GSheetComparePage() {
 
         {/* Real-World Test Challenge */}
         <section className="challenge">
-          <h3>🎯 The Real-World Test Challenge</h3>
-          <p><strong>Ask your team to try this with Google Sheets:</strong></p>
+          <h3>🎯 The Enterprise Reality Check</h3>
+          <p><strong>Ask your team to try this with Excel, Google Sheets, or MS Access:</strong></p>
           <ol>
-            <li>Create a system for 500+ precast concrete elements</li>
-            <li>Give 15 different users role-based access (designers see design data, site workers see installation data, clients see progress only)</li>
-            <li>Generate automated Arabic/English reports with company branding</li>
-            <li>Set up approval workflows where QC manager must digitally approve before production starts</li>
-            <li>Track financial milestones tied to specific element completion</li>
-            <li>Integrate with accounting system for automated invoicing</li>
+            <li>Create a cloud-based system for 100,000+ precast concrete elements across multiple sites</li>
+            <li>Give 200+ different users role-based access with departmental administration and secure permissions</li>
+            <li>Generate automated professional reports with centralized data and real-time updates</li>
+            <li>Set up enterprise approval workflows with digital signatures and audit trails</li>
+            <li>Integrate multiple site teams with real-time data synchronization that saves engineers hours of Excel updates after work</li>
+            <li>Implement employee management, department management, data security, and automated backups across large-scale project management</li>
           </ol>
           <div className="challenge-result">
-            <strong>Result:</strong> Google Sheets will hit multiple walls within days.
+            <strong>Result:</strong> Legacy systems will catastrophically fail within hours, costing millions in enterprise construction projects.
           </div>
         </section>
 
         {/* Bottom Line */}
         <section className="bottom-line">
-          <h3>The Strategic Difference</h3>
-          <p><strong>Google Sheets = Enhanced Digital Spreadsheet</strong><br />
-          Still thinking in rows and columns, built for general use, limited by spreadsheet paradigm</p>
+          <h3>The Enterprise Transformation</h3>
+          <p><strong>Legacy Systems = Outdated, Insecure, Limited Tools</strong><br />
+          Excel, Google Sheets, MS Access - built for small-scale use, lack cloud infrastructure, centralized administration, and enterprise security</p>
           
-          <p><strong>ICS = Purpose-Built Construction Management System</strong><br />
-          Designed for construction workflows, enterprise scalability, professional client delivery</p>
+          <p><strong>ICS = Enterprise-Grade, Cloud-Based Construction Platform</strong><br />
+          Purpose-built for large-scale construction with centralized administration, role-based security, real-time collaboration, and professional report management that saves engineers hours of post-work data entry</p>
 
           <div className="final-quote">
-            "Google Sheets with AI is like putting a rocket engine on a bicycle - impressive technology, but the wrong foundation for serious construction management."
+            "Using Excel for enterprise construction is like managing a skyscraper with sticky notes - impressive dedication, but the wrong foundation for million-dollar projects that require cloud-based, secure, centralized management."
           </div>
         </section>
       </div>

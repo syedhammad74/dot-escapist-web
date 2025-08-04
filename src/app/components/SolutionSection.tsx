@@ -119,12 +119,11 @@ const SolutionSection: React.FC = () => {
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-forest-primary mb-4 sm:mb-6 tracking-wide">
               One Platform.{" "}
-              <span className="text-forest-sage">Complete Control.</span> Real
+              <span className="text-forest-sage">Complete Control.</span> Enterprise
               Results.
             </h2>
             <p className="text-lg sm:text-xl font-semibold text-forest-primary/70 max-w-3xl mx-auto leading-relaxed tracking-wide">
-              Transform your fragmented project management into a unified,
-              cloud-based solution that delivers measurable results
+              Transform your fragmented legacy systems into a unified, cloud-based, centralized solution with enterprise-grade security and role-based administration
             </p>
           </motion.div>
 

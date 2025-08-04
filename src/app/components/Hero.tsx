@@ -79,11 +79,11 @@ const Hero: React.FC = () => {
                 variants={itemVariants}
               >
                 <span className="block sm:inline">
-                  Accelerate Your Workflows
+                  Stop Losing Millions to
                 </span>{" "}
                 <span className="block sm:inline">
-                  from <span className="text-[#8EB69B]">Excel Chaos to</span>{" "}
-                  <span className="text-[#8EB69B]">Cloud Control</span>
+                  <span className="text-[#8EB69B]">Legacy Excel Chaos</span>{" "}
+                  in Large-Scale Construction
                 </span>
               </motion.h1>
 
@@ -93,11 +93,10 @@ const Hero: React.FC = () => {
                 variants={itemVariants}
               >
                 <span className="block sm:inline">
-                  Complete construction management platform for Construction
-                  Companies, Logistics, and Warehousing Management Companies.
+                  Built for precast companies, now solving enterprise needs for large-scale construction companies, logistics firms, and any organization trapped by legacy Excel sheets, Google Sheets, or MS Access.
                 </span>{" "}
                 <span className="block sm:inline">
-                  End data fragmentation and accelerate delivery.
+                  Experience the power of cloud-based, centralized, secure construction management.
                 </span>
               </motion.p>
 
@@ -124,15 +123,15 @@ const Hero: React.FC = () => {
               >
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-[#8EB69B] flex-shrink-0" />
-                  <span>Customizable Workflows</span>
+                  <span>Cloud-Based & Centralized</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-[#8EB69B] flex-shrink-0" />
-                  <span>Expert Support</span>
+                  <span>Enterprise-Grade Security</span>
                 </div>
                 <div className="flex items-center space-x-2">
                   <CheckCircle className="w-4 h-4 text-[#8EB69B] flex-shrink-0" />
-                  <span>Cloud Integration</span>
+                  <span>Role-Based Administration</span>
                 </div>
               </motion.div>
 
@@ -145,11 +144,10 @@ const Hero: React.FC = () => {
                   <span className="text-white font-bold text-2xl">ICS</span>
                 </div>
                 <h3 className="text-xl font-bold text-[#235347] mb-3 text-center">
-                  All-in-One Platform
+                  Enterprise Construction Platform
                 </h3>
                 <p className="text-base text-[#235347]/80 leading-relaxed text-center">
-                  Manage projects, track progress, and collaborate seamlessly
-                  with our integrated construction solution.
+                  Centralized, cloud-based solution replacing legacy systems with secure, role-based administration for large-scale construction management.
                 </p>
               </motion.div>
 
